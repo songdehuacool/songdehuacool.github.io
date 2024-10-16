@@ -1,10 +1,10 @@
-+++
-Categories = ["Golang"]
-Description = ""
-Tags = ["golang"]
-title = 'hello world !'
-date = 2024-10-12T15:49:29+08:00
-menu = "main"
+---
+title: "My First Post"
+date: 2022-11-20T09:03:20-08:00
+draft: true
+---
+## Introduction
 
-draft = true
-+++
+This is **bold** text, and this is *emphasized* text.
+
+Visit the [Hugo](https://gohugo.io) website!
