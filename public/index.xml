@@ -3,8 +3,8 @@
   <channel>
     <title>songdehua blog</title>
     <link>http://localhost:1313/</link>
-    <description>Recent content on songdehua blog</description>
-    <generator>Hugo</generator>
+    <description>songdehua blog</description>
+    <generator>Hugo 0.135.0 &amp; FixIt v0.3.13</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 20 Nov 2022 09:03:20 -0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
@@ -13,14 +13,7 @@
       <link>http://localhost:1313/posts/my-first-post/</link>
       <pubDate>Sun, 20 Nov 2022 09:03:20 -0800</pubDate>
       <guid>http://localhost:1313/posts/my-first-post/</guid>
-      <description>&lt;p&gt;你好，这是我的个人站点，希望大家能互相交流、学习，共同进步。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/series/learn-hugo/day1-install/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/series/learn-hugo/day1-install/</guid>
-      <description>&lt;p&gt;install&lt;/p&gt;</description>
+      <description><![CDATA[&lt;p&gt;你好，这是我的个人站点，希望大家能互相交流、学习，共同进步。&lt;/p&gt;&#xA;]]></description>
     </item>
   </channel>
 </rss>
