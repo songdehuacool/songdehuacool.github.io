@@ -1,10 +1,6 @@
 ---
-title: "My First Post"
+title: "hello world"
 date: 2022-11-20T09:03:20-08:00
 draft: true
 ---
-## Introduction
-
-This is **bold** text, and this is *emphasized* text.
-
-Visit the [Hugo](https://gohugo.io) website!
+你好，这是我的个人站点，希望大家能互相交流、学习，共同进步。
