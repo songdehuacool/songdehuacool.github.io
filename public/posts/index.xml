@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>All Posts - songdehua blog</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>songdehua blog</description>
+    <generator>Hugo 0.135.0 &amp; FixIt v0.3.13</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 20 Nov 2022 09:03:20 -0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hello world</title>
+      <link>http://localhost:1313/posts/my-first-post/</link>
+      <pubDate>Sun, 20 Nov 2022 09:03:20 -0800</pubDate>
+      <guid>http://localhost:1313/posts/my-first-post/</guid>
+      <description>&lt;p&gt;你好，这是我的个人站点，希望大家能互相交流、学习，共同进步。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
