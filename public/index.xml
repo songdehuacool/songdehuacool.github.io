@@ -15,5 +15,12 @@
       <guid>http://localhost:1313/posts/my-first-post/</guid>
       <description>&lt;p&gt;你好，这是我的个人站点，希望大家能互相交流、学习，共同进步。&lt;/p&gt;</description>
     </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/series/learn-hugo/day1-install/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/series/learn-hugo/day1-install/</guid>
+      <description>&lt;p&gt;install&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

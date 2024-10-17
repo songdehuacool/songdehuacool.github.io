@@ -3,6 +3,9 @@ languageCode = 'en-us'
 title = 'songdehua blog'
 theme = 'ananke'
 
+[module]
+  proxy = 'https://goproxy.cn,direct'
+
 [menu]
 [[menu.main]]
   name = '首页'
