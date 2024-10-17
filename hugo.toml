@@ -1,7 +1,7 @@
 baseURL = 'https://songdehuacool.github.io/'
 languageCode = 'en-us'
 title = 'songdehua blog'
-theme = 'ananke'
+theme = 'FixIt'
 
 [module]
   proxy = 'https://goproxy.cn,direct'
