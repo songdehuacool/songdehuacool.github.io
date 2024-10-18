@@ -45,11 +45,11 @@ hugo (extended/stable) 0.58.3 from Hugo Authors installed
 
 ## 2. 生成博客网站
 
-执行下面的命令在本地生成博客网站项目文件夹，该文件夹是这一系列文章之后所有操作执行的根目录(简称为项目根目录)，我建立的项目文件夹名为 shuzang.github.io （因为之后要使用 [Github Pages](https://pages.github.com/) 托管博客）。
+执行下面的命令在本地生成博客网站项目文件夹，该文件夹是这一系列文章之后所有操作执行的根目录(简称为项目根目录)，我建立的项目文件夹名为 songdehua.github.io （因为之后要使用 [Github Pages](https://pages.github.com/) 托管博客）。
 
 ```bash
-$ hugo new site shuzang.github.io
-$ cd shuzang.github.io
+$ hugo new site songdehua.github.io
+$ cd songdehua.github.io
 ```
 
 blog 文件夹的目录结构如下所示，其中各文件夹的作用我们将在之后的使用过程中逐步了解
@@ -72,7 +72,7 @@ $ git commit -m "Initial commit"
 浏览器打开 Github 网站，创建和项目文件夹同名的仓库，该仓库用于存储项目文件夹下所有内容。创建完成后，在本地项目根目录，执行下列命令，将项目文件推送到远程仓库。
 
 ```bash
-$ git remote add origin https://github.com/shuzang/shuzang.github.io.git
+$ git remote add origin https://github.com/songdehuacool/songdehuacool.github.io.git
 $ git push -u origin master
 ```
 
@@ -99,7 +99,7 @@ $ git branch -vv
 * blog   c63526c [origin/blog] Update posts
 ```
 
-将本地 `blog` 分支的内容推送到远程仓库后，在网页端进入`shuzang.github.io`仓库的设置页面，将默认分支设置为 `blog` 分支。
+将本地 `blog` 分支的内容推送到远程仓库后，在网页端进入`songdehua.github.io`仓库的设置页面，将默认分支设置为 `blog` 分支。
 
 ![设置默认分支](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20190426_1HePXR.png)
 
@@ -114,7 +114,7 @@ ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f blog -N ""
 #   blog     (private key)
 ```
 
-然后进入 `shuzang.github.io` 仓库设置页面，在 `Deploy Keys` 中添加公钥，在 `Secrets` 中添加私钥，私钥名设置为 `ACTIONS_DEPLOY_KEY`
+然后进入 `songdehua.github.io` 仓库设置页面，在 `Deploy Keys` 中添加公钥，在 `Secrets` 中添加私钥，私钥名设置为 `ACTIONS_DEPLOY_KEY`
 
 接着新建 YAML 配置文件，Github Action 要求配置文件位于 `.github/workflows` 目录下，新建完成后目录结构如下
 
@@ -208,10 +208,10 @@ $ cp themes/KeepIt/exampleSite/. .
 ### 5.1 基础配置
 
 ```toml
-baseURL = "https://shuzang.github.io"
+baseURL = "https://songdehua.github.io"
 languageCode = "en"
 defaultContentLanguage = "en"
-title = "Shuzang's blog"
+title = "songdehua's blog"
 theme = "KeepIt"
 
 paginate = 12
@@ -282,7 +282,7 @@ total 88
 
 ```toml
 [params.social]
-    GitHub = "/shuzang"
+    GitHub = "/songdehua"
     Email   = "xxxxx@qq.com"
 ```
 
@@ -291,14 +291,14 @@ total 88
 编辑站点配置文件的以下内容
 
 ```toml
-title = "shuzang's blog"  # 网站标题
+title = "songdehua's blog"  # 网站标题
 [params]
     since = 2018                     # 站点建立时间
-    author = "shuzang"               # 作者名
+    author = "songdehua"               # 作者名
     subtitle = "世界钟爱热爱生活的人"       # 子标题
     home_mode = "" # post or other      # post模式会在主页面显示文章
     
-    description = "shuzang的个人博客" # 网站描述
+    description = "songdehua的个人博客" # 网站描述
     keywords = "blog, Golang, Hugo, blockchain " # 网站关键词
 ```
 
@@ -323,10 +323,10 @@ title = "shuzang's blog"  # 网站标题
 
 ```toml
 [author]
-  name = "shuzang"
+  name = "songdehua"
 
   [params.publisher]
-    name = "shuzang"
+    name = "songdehua"
 
     [params.publisher.logo]
       url = "logo.png"
@@ -392,7 +392,7 @@ Markdown由Aaron Swartz和John Gruber共同设计
 作者中的Aaron Swartz是天才程序员，著名社交网站[Reddit](http://www.reddit.com/)的联合创始人，14岁参与RSS 1.0规格标准的制订，致力于网络信息开放。在2011年7月19日，因被指控从MIT和JSTOR下载480万篇学术论文并以免费形式上传于网络被捕，2013年1月自杀身亡，年仅26岁。  
 ```
 
-文章保持后将仓库新增内容推送到远程，几分钟后即可在  https://shuzang.github.io 看的这篇文章
+文章保持后将仓库新增内容推送到远程，几分钟后即可在  https://songdehua.github.io 看的这篇文章
 
 ![示例文章](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20190426_%E7%A4%BA%E4%BE%8B%E6%96%87%E7%AB%A0.png)
 
@@ -416,14 +416,14 @@ $ git submodule add https://github.com/dillonzq/LoveIt.git themes/LoveIt
 具体的配置可以参考主题文档，一个参考配置如下
 
 ```toml
-title = "Shuzang's Blog"                # 设置网站标题
+title = "songdehua's Blog"                # 设置网站标题
 theme = "LoveIt"                        # 设置主题为LoveIt
 hasCJKLanguage = true                   # 启用对中文统计的支持，不启用字数统计会出问题
 paginate = 10                           # 每页的文章数量设置为10，便于根据页数快速计算总文章数
 
 # 作者名设置
 [author]                                            
-  name = "shuzang"
+  name = "songdehua"
   
 # 菜单栏新添life页面并调整顺序
 [menu]                                               
@@ -459,7 +459,7 @@ paginate = 10                           # 每页的文章数量设置为10，便
     
  # 基本参数设置，包括网站描述字段、关键词、主页文章显示模式、子标题
  [params]
-  description = "shuzang's personal blog"                      # site description
+  description = "songdehua's personal blog"                      # site description
   keywords = ["blog", "Golang", "Hugo", "blockchain", "go", "life"]     # site keywords
                                               
   home_mode = "other"                                # [post, other] home mode
@@ -470,7 +470,7 @@ paginate = 10                           # 每页的文章数量设置为10，便
     email = "lylw1996@qq.com"
 
   [params.social]                                    # Social Info in home page
-    GitHub = "shuzang"
+    GitHub = "songdehua"
     Email = "lylw1996@qq.com"
     Steam = "76561198343669932"
     Skype = "live:844327696"
@@ -488,7 +488,7 @@ Github Actions入门可以阅读[官方文档](https://help.github.com/en/action
 
 ## 附录II 使用Travis CI
 
-通过Travis CI做博客的持续集成，可以每次自动渲染生成新的博客网页并推送到`shuzang.github.io`仓库，从而实现调整域名的目的。但之前尝试了多次持续集成都没有成功，还把博客搞坏了，最终只能重建网站。这一次发现了之前存在的问题，终于成功了。
+通过Travis CI做博客的持续集成，可以每次自动渲染生成新的博客网页并推送到`songdehua.github.io`仓库，从而实现调整域名的目的。但之前尝试了多次持续集成都没有成功，还把博客搞坏了，最终只能重建网站。这一次发现了之前存在的问题，终于成功了。
 
 ### 步骤1 申请Token
 
@@ -552,7 +552,7 @@ dist: bionic  # Ubuntu 18.04
 env:
  global:
    # Github Pages
-   - GH_REF: github.com/shuzang/shuzang.github.io
+   - GH_REF: github.com/songdehua/songdehua.github.io
 
 # Specify which branches to build using a safelist
 # 分支白名单限制：只有 master 分支的提交才会触发构建
@@ -577,7 +577,7 @@ install:
 script:
   - cd ./docs
   - git init
-  - git config user.name "shuzang"
+  - git config user.name "songdehua"
   - git config user.email "lylw1996@qq.com"
   - git add .
   - git commit -m "Update Blog By TravisCI With Build $TRAVIS_BUILD_NUMBER"
@@ -598,4 +598,4 @@ script:
 
 ![持续集成通过](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20190426_1HVos1.png)
 
-然后访问[博客首页](https://shuzang.github.io)，不出意外就可以看到新的改动了。如果部署失败，在网页端的日志记录中找到失败原因，然后修改代码重新提交即可，新的提交通过后，原先失败的提交将会被解决。
+然后访问[博客首页](https://songdehua.github.io)，不出意外就可以看到新的改动了。如果部署失败，在网页端的日志记录中找到失败原因，然后修改代码重新提交即可，新的提交通过后，原先失败的提交将会被解决。

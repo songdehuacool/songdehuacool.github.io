@@ -164,7 +164,7 @@ Methods，Path，Name，Handler分别用来限定请求方法、匹配字符串�
 package main
 
 import (
-     . "github.com/shuzang/projectname/routes"
+     . "github.com/songdehua/projectname/routes"
     "log"
     "net/http"
 )

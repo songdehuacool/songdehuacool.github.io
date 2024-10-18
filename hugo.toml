@@ -18,6 +18,7 @@ enableEmoji = true
 
 
 [menu]
+
   [[menu.main]]
     identifier = "posts"
     # you can add extra information before the name (HTML format is supported), such as icons
@@ -95,7 +96,7 @@ enableEmoji = true
   # site default theme ["light", "dark", "auto"]
   defaultTheme = "auto"
   # public git repo url only then enableGitInfo is true
-  gitRepo = "https://github.com/shuzang/shuzang.github.io"
+  gitRepo = "https://github.com/songdehuacool/songdehuacool.github.io"
   # FixIt 0.1.1 | NEW which hash function used for SRI, when empty, no SRI is used
   # ["sha256", "sha384", "sha512", "md5"]
   fingerprint = ""
@@ -114,7 +115,7 @@ enableEmoji = true
   # FixIt 0.2.0 | NEW App icon config
   [params.app]
     # optional site title override for the app when added to an iOS home screen or Android launcher
-    title = "Shuzang's Blog"
+    title = "songdehua's Blog"
     # whether to omit favicon resource links
     noFavicon = false
     # modern SVG favicon to use in place of older style .png and .ico files
@@ -173,7 +174,7 @@ enableEmoji = true
       # logo = "/images/avatar.png"
       logo = "https://picped-1301226557.cos.ap-beijing.myqcloud.com/avatar.png"
       # title name
-      name = "Shuzang's Blog"
+      name = "songdehua's Blog"
       # you can add extra information before the name (HTML format is supported), such as icons
       pre = ""
       # you can add extra information after the name (HTML format is supported), such as icons
@@ -294,7 +295,7 @@ enableEmoji = true
 
   # FixIt 0.2.16 | CHANGED Social config about the author
   [params.social]
-    GitHub = "shuzang"
+    GitHub = "songdehua"
     Linkedin = ""
     Twitter = ""
     Instagram = ""
@@ -804,7 +805,7 @@ enableEmoji = true
   # FixIt 0.2.14 | NEW GitHub banner in the top-right or top-left corner
   [params.githubCorner]
     enable = true
-    permalink = "https://github.com/shuzang/shuzang.github.io"
+    permalink = "https://github.com/songdehuacool/songdehuacool.github.io"
     title = "View source on GitHub"
     position = "right" # ["left", "right"]
 
@@ -898,7 +899,7 @@ enableEmoji = true
 
 # 作者配置
 [author]
-  name = "Shuzang"
+  name = "songdehua"
   email = "liuyang8443@qq.com"
   link = ""
   # avatar = "/images/avatar.png" # FixIt 0.2.18 | 新增

@@ -263,14 +263,14 @@ GitHub需要SSH Key识别出你推送的提交确实是你推送的，而不是�
   git init
   git add README.md
   git commit -m "first commit"
-  git remote add origin https://github.com/shuzang/gittest.git
+  git remote add origin https://github.com/songdehua/gittest.git
   git push -u origin master
   ```
 
 - ...or push an existing repository from the command line
 
    ```bash
-  git remote add origin https://github.com/shuzang/gittest.git
+  git remote add origin https://github.com/songdehua/gittest.git
   git push -u origin master
   ```
 
@@ -283,7 +283,7 @@ GitHub需要SSH Key识别出你推送的提交确实是你推送的，而不是�
 按提示执行命令即可
 
 ```bash
-$ git remote add origin https://github.com/shuzang/gittest.git
+$ git remote add origin https://github.com/songdehua/gittest.git
 $ git push -u origin master
 Enumerating objects: 6, done.
 Counting objects: 100% (6/6), done.
@@ -291,7 +291,7 @@ Delta compression using up to 4 threads
 Compressing objects: 100% (2/2), done.
 Writing objects: 100% (6/6), 448 bytes | 448.00 KiB/s, done.
 Total 6 (delta 0), reused 0 (delta 0)
-To https://github.com/shuzang/gittest.git
+To https://github.com/songdehua/gittest.git
  * [new branch]      master -> master
 Branch 'master' set up to track remote branch 'master' from 'origin'.
 ```
@@ -345,13 +345,13 @@ $ git clone -b 分支名 仓库地址
 ```bash
 $ git log
 commit ae3c27f99068e6eb301fd7d28960b97ec56b9733 (HEAD -> master, origin/master)
-Author: shuzang <844327696@qq.com>
+Author: songdehua <844327696@qq.com>
 Date:   Tue Jan 7 10:52:14 2020 +0800
 
     add a line
 
 commit a91c24851ecd74e933bd638fd30773050bd7c692
-Author: shuzang <844327696@qq.com>
+Author: songdehua <844327696@qq.com>
 Date:   Tue Jan 7 10:42:01 2020 +0800
 
     first commit

@@ -61,7 +61,7 @@ hasCJKLanguage = true
 
 ```toml
 [params.gitalk]
-owner = "shuzang"       # 你的GitHub ID       
+owner = "songdehua"       # 你的GitHub ID       
 repo = "blog"        # 博客网址    
 clientId = ""    # 刚刚记录的client ID      
 clientSecret = "" # 刚刚记录的client secret
@@ -99,7 +99,7 @@ tags: [Golang]
 categories: [爱编程爱技术的孩子]
 ```
 
-这篇文章最后的URL将会是` http://shuzang.github.io/2019/12/100-question-of-golang-basic-syntax/ `
+这篇文章最后的URL将会是` http://songdehua.github.io/2019/12/100-question-of-golang-basic-syntax/ `
 
 ## 5. 图片插入
 
@@ -176,7 +176,7 @@ $code-font-family: Fira Mono, Source Code Pro, Menlo, Consolas, Monaco, monospac
 
 ### 3.3 GitHub 上的设置
 
-到 Github `shuzang.github.io`仓库设置里，在 `Custom domain` 这里填写`shuzang.top`域名并保存。
+到 Github `songdehua.github.io`仓库设置里，在 `Custom domain` 这里填写`songdehua.top`域名并保存。
 
 ![github域名设置](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20190712_1He3HP.png)
 
@@ -189,18 +189,18 @@ $code-font-family: Fira Mono, Source Code Pro, Menlo, Consolas, Monaco, monospac
 发现上面这种方法每次提交后都需要重新填写`custom domin`字段，因此采用另一种方式，创建一个名为 `CNAME` 的文件放在`content`目录，其中的内容**只**写上你的域名，像这样
 
 ```bash
-shuzang.top
+songdehua.top
 ```
 
 使用hugo命令生成文件会将CNAME文件直接复制到public目录，并通过持续集成将其推送到master分支根目录。
 
-等几分钟 (刷新 DNS 缓存)，然后在浏览器中输入`shuzang.top`，回车，不出意外看到了自己的博客。
+等几分钟 (刷新 DNS 缓存)，然后在浏览器中输入`songdehua.top`，回车，不出意外看到了自己的博客。
 
 ### 3.4 其他玩法
 
 除了将域名绑定给博客外博客，还可以用域名干一些别的事。
 
-比如，**使用 A 记录将 `mail.shuzang.me` 这个二级域名指向 `207.46.149.80` 就可以 “搭建” 一个 [临时邮箱](http://mail.shuzang.top/)服务** (感谢 [萌咖 | MoeClub.org](https://moeclub.org/) 提供的服务器)
+比如，**使用 A 记录将 `mail.songdehua.me` 这个二级域名指向 `207.46.149.80` 就可以 “搭建” 一个 [临时邮箱](http://mail.songdehua.top/)服务** (感谢 [萌咖 | MoeClub.org](https://moeclub.org/) 提供的服务器)
 
 如果你还有一台拥有**公网 IP** 的服务器，可玩性就更高了！
 

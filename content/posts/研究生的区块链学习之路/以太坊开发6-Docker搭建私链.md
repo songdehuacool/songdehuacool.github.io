@@ -424,7 +424,7 @@ INFO [03-13|03:18:52.778] Blockchain manager stopped
 INFO [03-13|03:18:52.778] Stopping Ethereum protocol 
 INFO [03-13|03:18:52.778] Ethereum protocol stopped 
 INFO [03-13|03:18:52.778] Transaction pool stopped 
-shuzang@ubuntu:~$
+songdehua@ubuntu:~$
 ```
 
 此时使用`docker ps`命令会发现正在运行的容器列表为空，此时使用`start`命令可启动关闭的容器

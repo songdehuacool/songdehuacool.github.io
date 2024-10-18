@@ -160,7 +160,7 @@ typedef struct iphdr
 
 ![ping程序实现](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20181001_ping程序.png)
 
-代码放在了 [Github Gist](https://gist.github.com/shuzang/26b2052e5283fa0ff596c43fa3c52265.js)，测试结果如下参数
+代码放在了 [Github Gist](https://gist.github.com/songdehua/26b2052e5283fa0ff596c43fa3c52265.js)，测试结果如下参数
 
 ```c
 > www.neu.edu.cn

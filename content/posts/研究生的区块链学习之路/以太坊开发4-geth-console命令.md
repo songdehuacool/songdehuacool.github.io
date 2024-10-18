@@ -96,7 +96,7 @@ geth attach ws://191.168.1.1:8546
 
 ```bash
 $ tree ~/Desktop -L 2
-/home/shuzang/Desktop
+/home/songdehua/Desktop
 ├── data
 │   ├── geth
 │   ├── geth.ipc

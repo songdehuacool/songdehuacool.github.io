@@ -192,8 +192,8 @@ $ go env
 GO111MODULE=""
 GOARCH="amd64"
 GOBIN=""
-GOCACHE="/home/shuzang/.cache/go-build"
-GOENV="/home/shuzang/.config/go/env"
+GOCACHE="/home/songdehua/.cache/go-build"
+GOENV="/home/songdehua/.config/go/env"
 GOEXE=""
 GOFLAGS=""
 GOHOSTARCH="amd64"
@@ -202,7 +202,7 @@ GOINSECURE=""
 GONOPROXY=""
 GONOSUMDB=""
 GOOS="linux"
-GOPATH="/home/shuzang/go"
+GOPATH="/home/songdehua/go"
 GOPRIVATE=""
 GOPROXY="https://proxy.golang.org,direct"
 GOROOT="/usr/local/go"
@@ -311,7 +311,7 @@ func main() {
 使用`go install`命令编译安装
 
 ```bash
-> go install github.com/shuzang/hello
+> go install github.com/songdehua/hello
 ```
 
 该命令会编译程序并产生一个二进制包，然后将该二进制包安装到 `$HOME/go/bin/hello` ，如果是 Windows，会安装到 ` %USERPROFILE%\go\bin\hello.exe`。
@@ -339,7 +339,7 @@ Hello, world!
 
 ```powershell
 $ git init
-Initialized empty Git repository in C:/Users/lylw1/go/src/github.com/shuzang/hello/.git/
+Initialized empty Git repository in C:/Users/lylw1/go/src/github.com/songdehua/hello/.git/
 $ git add go.mod hello.go
 $ git commit -m "initial commit"
 [master (root-commit) 0b4507d] initial commit

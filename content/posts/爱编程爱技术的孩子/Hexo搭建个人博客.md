@@ -9,7 +9,7 @@ slug: using Hexo build persoanl blog
 
 [Hexo](https://hexo.io/zh-cn/index.html)是一款快速、简洁且高效的静态博客框架，使用Markdown渲染引擎解析文章，拥有着丰富的[主题社区](https://hexo.io/themes/)，可以帮助我们快速建立自己的博客，正在成为越来越多的技术人员制作自己博客的首选。
 
-我选用了Hexo+github的博客部署模式，博客地址为：[https://shuzang.github.io](https://shuzang.github.io)
+我选用了Hexo+github的博客部署模式，博客地址为：[https://songdehua.github.io](https://songdehua.github.io)
 
 <!-- more -->
 
@@ -115,11 +115,11 @@ theme: Chic
 
 ```yaml
 # Site
-title: shuzang's blog
+title: songdehua's blog
 subtitle: '世界钟爱热爱生活的人'
-description: 'shuzang的个人博客'
+description: 'songdehua的个人博客'
 keywords: 'blog, Golang, Hugo, blockchain' 
-author: shuzang
+author: songdehua
 language: en
 timezone: ''
 ```
@@ -128,7 +128,7 @@ timezone: ''
 
 ```yaml
 # Header
-navname: shuzang's Blog
+navname: songdehua's Blog
 nickname: ''  # nickname置空，因为navname中已经出现了我们的名字
 description: 世界钟爱热爱生活的人
 ```
@@ -151,7 +151,7 @@ avatar: /image/avatar.png
 
 ```yaml
 links:
-  Github: https://github.com/shuzang
+  Github: https://github.com/songdehua
   RSS: 
 ```
 
@@ -408,14 +408,14 @@ mermaid: ## mermaid url https://github.com/knsv/mermaid
     ```yaml
    # URL
    ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-   url: https://github.com/shuzang/hexo_blog
+   url: https://github.com/songdehua/hexo_blog
    root: /hexo_blog/
    
    # Deployment
    ## Docs: https://hexo.io/docs/deployment.html
    deploy:
        type: git
-       repo: git@github.com:shuzang/hexo_blog.git
+       repo: git@github.com:songdehua/hexo_blog.git
        branch: master
    ```
 

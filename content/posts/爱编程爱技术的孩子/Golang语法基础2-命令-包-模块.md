@@ -84,7 +84,7 @@ go build [-o output] [-i] [build flags] [packages]
 以 hello world 程序为例，编译后的 hello.exe 文件位于项目根目录下
 
 ```bash
-$ go build github.com/shuzang/hello
+$ go build github.com/songdehua/hello
 $ ls
 go.mod  go.sum  gotest.exe  main.go
 ```
@@ -96,7 +96,7 @@ go.mod  go.sum  gotest.exe  main.go
 `go install` 命令在编译的基础上增添了安装这一步，`安装` 的基本含义是将生成的可执行文件放到指定的目录，默认为 GOBIN 环境变量指定的目录，即 `$GOPATH/bin`。仍以`hello`为例，如下命令执行后，`hello.exe`文件将位于`$GOPATH/bin`目录下
 
 ```powershell
-> go install github.com/shuzang/hello
+> go install github.com/songdehua/hello
 ```
 
 #### go get
@@ -128,7 +128,7 @@ github.com/google/codesearch/index
 以上三个命令虽然都包含编译过程，但也到此为止，在生成可执行文件后将不再做任何操作，需要自己来执行。`go run`命令则在编译后直接执行运行操作，以`hello`为例
 
 ```powershell
-> go run github.com/shuzang/hello
+> go run github.com/songdehua/hello
 Hello, Go!
 ```
 
@@ -163,8 +163,8 @@ bin\hello.exe: go1.13.4
 添加`-m`参数会打印包导入的模块信息，添加`-v`参数会将无法识别的文件信息也打印出来，以`stringutil`为例
 
 ```powershell
-> go version -v src/github.com/shuzang/stringutil
-src\github.com\shuzang\stringutil\reverse.go: not executable file
+> go version -v src/github.com/songdehua/stringutil
+src\github.com\songdehua\stringutil\reverse.go: not executable file
 ```
 
 #### go env
@@ -248,11 +248,11 @@ import (
    "fmt"
    "os"
     "crypto/rot13"
-    "github.com/shuzang/hello"
+    "github.com/songdehua/hello"
 )
 ```
 
-包名也是导入路径的最后一个字段，比如`crypto/rot13`，其包名为`rot13`；`github.com/shuzang/hello`，其包名为`hello`
+包名也是导入路径的最后一个字段，比如`crypto/rot13`，其包名为`rot13`；`github.com/songdehua/hello`，其包名为`hello`
 
 没有必要刻意使用不同的包名，只要导入路径保持唯一即可
 

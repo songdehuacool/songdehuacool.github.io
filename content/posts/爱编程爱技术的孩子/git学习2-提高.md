@@ -495,7 +495,7 @@ Body部分的格式是固定的，必须写成`This reverts commit <hash>.`，�
     ```
 
 ## 参考及扩展阅读
-- [git cheat sheet](https://github.com/shuzang/books/blob/master/git-cheatsheet.pdf) 
+- [git cheat sheet](https://github.com/songdehua/books/blob/master/git-cheatsheet.pdf) 
 
 - [git官网](https://git-scm.com/) 
 

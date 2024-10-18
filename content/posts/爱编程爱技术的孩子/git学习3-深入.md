@@ -111,7 +111,7 @@ $ git submodule update --remote themes/LoveIt
 如果像下面这样直接克隆包含子模块的项目，虽然有子模块目录，但是是空的
 
 ```bash
- $ git clone https://github.com/shuzang/blog.git
+ $ git clone https://github.com/songdehua/blog.git
  $ cd blog
  $ ls themes/LoveIt
  $
@@ -142,7 +142,7 @@ Submodule path 'themes/KeepIt': checked out '87c33888f3fa86b8cc096bc3f6d7f2efe9c
 不过有一个更简单的方法，就是给 `git clone` 命令传递 `--recurse-submodules` 参数，这样就会自动初始化并更新仓库中每一个子模块，包括可能存在的嵌套子模块
 
 ```bash
- $ git clone https://github.com/shuzang/blog.git --recurse-submodules
+ $ git clone https://github.com/songdehua/blog.git --recurse-submodules
 ```
 
 ### 2.5 修改子模块
@@ -254,7 +254,7 @@ GitHub 项目的 README.md 中可以添加徽章（Badge）对项目进行标记
 
 在上图中的框中填入相关信息，三条横线从前到后依次是`label`,`message`,`color`，color有选项可以选择，上图的预览样式如下：
 
-![预览](<https://img.shields.io/badge/Hey!-shuzang-red.svg>)
+![预览](<https://img.shields.io/badge/Hey!-songdehua-red.svg>)
 
 ### 3.4 常用徽章
 

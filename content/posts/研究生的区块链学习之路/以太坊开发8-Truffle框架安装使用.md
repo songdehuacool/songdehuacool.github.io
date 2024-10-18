@@ -107,7 +107,7 @@ Compiling your contracts...
 > Compiling ./contracts/ConvertLib.sol
 > Compiling ./contracts/MetaCoin.sol
 > Compiling ./contracts/Migrations.sol
-> Artifacts written to /home/shuzang/MetaCoin/build/contracts
+> Artifacts written to /home/songdehua/MetaCoin/build/contracts
 > Compiled successfully using:
    - solc: 0.5.8+commit.23d335f2.Emscripten.clang
 ```

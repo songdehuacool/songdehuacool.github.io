@@ -408,7 +408,7 @@ static domain_name_servers=192.168.191.1
 已经交叉编译过了，这里下载的是最后生成的文件，放到了Github上。交叉编译的过程可以参考本系列文章的两篇补充说明。
 
 ```bash
-git clone -b gethonly https://github.com/shuzang/quorum-raspbian.git
+git clone -b gethonly https://github.com/songdehua/quorum-raspbian.git
 cd quorum-raspbian
 sudo cp geth /usr/local/bin
 sudo chmod +x /usr/local/bin/geth
@@ -534,12 +534,12 @@ genesis.json
 ```bash
 $ ls -l
 total 24
-drwxr-xr-x 2 shuzang shuzang 4096 Dec 23 18:40 0
-drwxr-xr-x 2 shuzang shuzang 4096 Dec 23 18:40 1
-drwxr-xr-x 2 shuzang shuzang 4096 Dec 23 18:40 2
-drwxr-xr-x 2 shuzang shuzang 4096 Dec 23 18:40 3
--rwxr-xr-x 1 shuzang shuzang 1792 Dec 23 18:40 genesis.json
--rwxr-xr-x 1 shuzang shuzang  666 Dec 23 18:40 static-nodes.json
+drwxr-xr-x 2 songdehua songdehua 4096 Dec 23 18:40 0
+drwxr-xr-x 2 songdehua songdehua 4096 Dec 23 18:40 1
+drwxr-xr-x 2 songdehua songdehua 4096 Dec 23 18:40 2
+drwxr-xr-x 2 songdehua songdehua 4096 Dec 23 18:40 3
+-rwxr-xr-x 1 songdehua songdehua 1792 Dec 23 18:40 genesis.json
+-rwxr-xr-x 1 songdehua songdehua  666 Dec 23 18:40 static-nodes.json
 ```
 
 使用预定的IP和端口号为所有验证者节点更新 `static-nodes.json` 文件。 在 `static-nodes.json`中，每个节点占据一行，按节点标号顺序排列
@@ -671,11 +671,11 @@ $ cd node0
 $ geth --datadir data init genesis.json
 WARN [12-23|18:52:30.425] Sanitizing cache to Go's GC limits       provided=1024 updated=655
 INFO [12-23|18:52:30.438] Maximum peer count                       ETH=25 LES=0 total=25
-INFO [12-23|18:52:30.439] Allocated cache and file handles         database=/home/shuzang/istanbul/node0/data/geth/chaindata cache=16 handles=16
+INFO [12-23|18:52:30.439] Allocated cache and file handles         database=/home/songdehua/istanbul/node0/data/geth/chaindata cache=16 handles=16
 INFO [12-23|18:52:30.453] Writing custom genesis block 
 INFO [12-23|18:52:30.455] Persisted trie from memory database      nodes=5 size=819.00B time=76.952µs gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
 INFO [12-23|18:52:30.456] Successfully wrote genesis state         database=chaindata                                        hash=afaace…b46039
-INFO [12-23|18:52:30.456] Allocated cache and file handles         database=/home/shuzang/istanbul/node0/data/geth/lightchaindata cache=16 handles=16
+INFO [12-23|18:52:30.456] Allocated cache and file handles         database=/home/songdehua/istanbul/node0/data/geth/lightchaindata cache=16 handles=16
 INFO [12-23|18:52:30.460] Writing custom genesis block 
 INFO [12-23|18:52:30.460] Persisted trie from memory database      nodes=5 size=819.00B time=47.175µs gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
 INFO [12-23|18:52:30.460] Successfully wrote genesis state         database=lightchaindata                                        hash=afaace…b46039
@@ -684,11 +684,11 @@ $ cd ../node1
 $ geth --datadir data init genesis.json
 WARN [12-23|18:53:24.245] Sanitizing cache to Go's GC limits       provided=1024 updated=655
 INFO [12-23|18:53:24.246] Maximum peer count                       ETH=25 LES=0 total=25
-INFO [12-23|18:53:24.247] Allocated cache and file handles         database=/home/shuzang/istanbul/node1/data/geth/chaindata cache=16 handles=16
+INFO [12-23|18:53:24.247] Allocated cache and file handles         database=/home/songdehua/istanbul/node1/data/geth/chaindata cache=16 handles=16
 INFO [12-23|18:53:24.251] Writing custom genesis block 
 INFO [12-23|18:53:24.252] Persisted trie from memory database      nodes=5 size=819.00B time=51.433µs gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
 INFO [12-23|18:53:24.252] Successfully wrote genesis state         database=chaindata                                        hash=afaace…b46039
-INFO [12-23|18:53:24.252] Allocated cache and file handles         database=/home/shuzang/istanbul/node1/data/geth/lightchaindata cache=16 handles=16
+INFO [12-23|18:53:24.252] Allocated cache and file handles         database=/home/songdehua/istanbul/node1/data/geth/lightchaindata cache=16 handles=16
 INFO [12-23|18:53:24.255] Writing custom genesis block 
 INFO [12-23|18:53:24.255] Persisted trie from memory database      nodes=5 size=819.00B time=48.23µs  gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
 INFO [12-23|18:53:24.255] Successfully wrote genesis state         database=lightchaindata                                        hash=afaace…b46039
@@ -698,11 +698,11 @@ $ cd ../node2
 $ geth --datadir data init genesis.json
 WARN [12-23|18:53:52.025] Sanitizing cache to Go's GC limits       provided=1024 updated=655
 INFO [12-23|18:53:52.026] Maximum peer count                       ETH=25 LES=0 total=25
-INFO [12-23|18:53:52.027] Allocated cache and file handles         database=/home/shuzang/istanbul/node2/data/geth/chaindata cache=16 handles=16
+INFO [12-23|18:53:52.027] Allocated cache and file handles         database=/home/songdehua/istanbul/node2/data/geth/chaindata cache=16 handles=16
 INFO [12-23|18:53:52.032] Writing custom genesis block 
 INFO [12-23|18:53:52.032] Persisted trie from memory database      nodes=5 size=819.00B time=76.54µs gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
 INFO [12-23|18:53:52.032] Successfully wrote genesis state         database=chaindata                                        hash=afaace…b46039
-INFO [12-23|18:53:52.032] Allocated cache and file handles         database=/home/shuzang/istanbul/node2/data/geth/lightchaindata cache=16 handles=16
+INFO [12-23|18:53:52.032] Allocated cache and file handles         database=/home/songdehua/istanbul/node2/data/geth/lightchaindata cache=16 handles=16
 INFO [12-23|18:53:52.035] Writing custom genesis block 
 INFO [12-23|18:53:52.035] Persisted trie from memory database      nodes=5 size=819.00B time=44.94µs gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
 INFO [12-23|18:53:52.035] Successfully wrote genesis state         database=lightchaindata                                        hash=afaace…b46039
@@ -712,11 +712,11 @@ $ cd ../node3
 $ geth --datadir data init genesis.json
 WARN [12-23|18:54:13.106] Sanitizing cache to Go's GC limits       provided=1024 updated=655
 INFO [12-23|18:54:13.107] Maximum peer count                       ETH=25 LES=0 total=25
-INFO [12-23|18:54:13.108] Allocated cache and file handles         database=/home/shuzang/istanbul/node3/data/geth/chaindata cache=16 handles=16
+INFO [12-23|18:54:13.108] Allocated cache and file handles         database=/home/songdehua/istanbul/node3/data/geth/chaindata cache=16 handles=16
 INFO [12-23|18:54:13.115] Writing custom genesis block 
 INFO [12-23|18:54:13.122] Persisted trie from memory database      nodes=5 size=819.00B time=65.787µs gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
 INFO [12-23|18:54:13.123] Successfully wrote genesis state         database=chaindata                                        hash=afaace…b46039
-INFO [12-23|18:54:13.123] Allocated cache and file handles         database=/home/shuzang/istanbul/node3/data/geth/lightchaindata cache=16 handles=16
+INFO [12-23|18:54:13.123] Allocated cache and file handles         database=/home/songdehua/istanbul/node3/data/geth/lightchaindata cache=16 handles=16
 INFO [12-23|18:54:13.126] Writing custom genesis block 
 INFO [12-23|18:54:13.127] Persisted trie from memory database      nodes=5 size=819.00B time=45.203µs gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
 INFO [12-23|18:54:13.127] Successfully wrote genesis state         database=lightchaindata                                        hash=afaace…b46039

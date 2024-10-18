@@ -515,4 +515,4 @@ Hugo写文章的主要格式是Markdown，但是很多高级的语法默认的�
 
 ## 附录II 书影音页面
 
-因为添加书籍、电影记录过于繁琐，决定删除该页面，相关的代码放在[github gist](https://gist.github.com/shuzang/c067f021518224252f4ea3b84748170f)中
+因为添加书籍、电影记录过于繁琐，决定删除该页面，相关的代码放在[github gist](https://gist.github.com/songdehua/c067f021518224252f4ea3b84748170f)中

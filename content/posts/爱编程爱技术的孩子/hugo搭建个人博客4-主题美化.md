@@ -30,13 +30,13 @@ hugo (extended/stable) 0.58.3 from Hugo Authors installed
 $ hugo new site newTheme
 $ ls -l
 total 28
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 15:52 archetypes
--rw-r--r-- 1 shuzang shuzang   82 Sep 25 15:52 config.toml
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 15:52 content
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 15:52 data
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 15:52 layouts
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 15:52 static
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 15:52 themes
+drwxr-xr-x 2 songdehua songdehua 4096 Sep 25 15:52 archetypes
+-rw-r--r-- 1 songdehua songdehua   82 Sep 25 15:52 config.toml
+drwxr-xr-x 2 songdehua songdehua 4096 Sep 25 15:52 content
+drwxr-xr-x 2 songdehua songdehua 4096 Sep 25 15:52 data
+drwxr-xr-x 2 songdehua songdehua 4096 Sep 25 15:52 layouts
+drwxr-xr-x 2 songdehua songdehua 4096 Sep 25 15:52 static
+drwxr-xr-x 2 songdehua songdehua 4096 Sep 25 15:52 themes
 ```
 
 创建主题
@@ -44,15 +44,15 @@ drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 15:52 themes
 ```bash
 $ hugo new theme LeaveIt
 $ find themes -type f | xargs ls -l
--rw-r--r-- 1 shuzang shuzang    8 Sep 25 16:09 themes/LeaveIt/archetypes/default.md
--rw-r--r-- 1 shuzang shuzang    0 Sep 25 16:09 themes/LeaveIt/layouts/404.html
--rw-r--r-- 1 shuzang shuzang    0 Sep 25 16:09 themes/LeaveIt/layouts/_default/list.html
--rw-r--r-- 1 shuzang shuzang    0 Sep 25 16:09 themes/LeaveIt/layouts/_default/single.html
--rw-r--r-- 1 shuzang shuzang    0 Sep 25 16:09 themes/LeaveIt/layouts/index.html
--rw-r--r-- 1 shuzang shuzang    0 Sep 25 16:09 themes/LeaveIt/layouts/partials/footer.html
--rw-r--r-- 1 shuzang shuzang    0 Sep 25 16:09 themes/LeaveIt/layouts/partials/header.html
--rw-r--r-- 1 shuzang shuzang 1081 Sep 25 16:09 themes/LeaveIt/LICENSE.md
--rw-r--r-- 1 shuzang shuzang  436 Sep 25 16:09 themes/LeaveIt/theme.toml
+-rw-r--r-- 1 songdehua songdehua    8 Sep 25 16:09 themes/LeaveIt/archetypes/default.md
+-rw-r--r-- 1 songdehua songdehua    0 Sep 25 16:09 themes/LeaveIt/layouts/404.html
+-rw-r--r-- 1 songdehua songdehua    0 Sep 25 16:09 themes/LeaveIt/layouts/_default/list.html
+-rw-r--r-- 1 songdehua songdehua    0 Sep 25 16:09 themes/LeaveIt/layouts/_default/single.html
+-rw-r--r-- 1 songdehua songdehua    0 Sep 25 16:09 themes/LeaveIt/layouts/index.html
+-rw-r--r-- 1 songdehua songdehua    0 Sep 25 16:09 themes/LeaveIt/layouts/partials/footer.html
+-rw-r--r-- 1 songdehua songdehua    0 Sep 25 16:09 themes/LeaveIt/layouts/partials/header.html
+-rw-r--r-- 1 songdehua songdehua 1081 Sep 25 16:09 themes/LeaveIt/LICENSE.md
+-rw-r--r-- 1 songdehua songdehua  436 Sep 25 16:09 themes/LeaveIt/theme.toml
 ```
 
 `find themes -type f`将themes目录及其子目录的所有一般文件列出
@@ -103,21 +103,21 @@ theme = "LeaveIt"
 $ hugo --verbose
 $ ls -l public
 total 24
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 15:56 categories
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 16:09 css
--rw-r--r-- 1 shuzang shuzang  468 Sep 25 16:43 index.xml
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 16:09 js
--rw-r--r-- 1 shuzang shuzang  437 Sep 25 16:43 sitemap.xml
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 15:56 tags
+drwxr-xr-x 2 songdehua songdehua 4096 Sep 25 15:56 categories
+drwxr-xr-x 2 songdehua songdehua 4096 Sep 25 16:09 css
+-rw-r--r-- 1 songdehua songdehua  468 Sep 25 16:43 index.xml
+drwxr-xr-x 2 songdehua songdehua 4096 Sep 25 16:09 js
+-rw-r--r-- 1 songdehua songdehua  437 Sep 25 16:43 sitemap.xml
+drwxr-xr-x 2 songdehua songdehua 4096 Sep 25 15:56 tags
 $ find themes/LeaveIt -type d | xargs ls -ld
-drwxr-xr-x 5 shuzang shuzang 4096 Sep 25 16:32 themes/LeaveIt
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 16:09 themes/LeaveIt/archetypes
-drwxr-xr-x 4 shuzang shuzang 4096 Sep 25 16:09 themes/LeaveIt/layouts
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 16:09 themes/LeaveIt/layouts/_default
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 16:09 themes/LeaveIt/layouts/partials
-drwxr-xr-x 4 shuzang shuzang 4096 Sep 25 16:09 themes/LeaveIt/static
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 16:09 themes/LeaveIt/static/css
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 16:09 themes/LeaveIt/static/js
+drwxr-xr-x 5 songdehua songdehua 4096 Sep 25 16:32 themes/LeaveIt
+drwxr-xr-x 2 songdehua songdehua 4096 Sep 25 16:09 themes/LeaveIt/archetypes
+drwxr-xr-x 4 songdehua songdehua 4096 Sep 25 16:09 themes/LeaveIt/layouts
+drwxr-xr-x 2 songdehua songdehua 4096 Sep 25 16:09 themes/LeaveIt/layouts/_default
+drwxr-xr-x 2 songdehua songdehua 4096 Sep 25 16:09 themes/LeaveIt/layouts/partials
+drwxr-xr-x 4 songdehua songdehua 4096 Sep 25 16:09 themes/LeaveIt/static
+drwxr-xr-x 2 songdehua songdehua 4096 Sep 25 16:09 themes/LeaveIt/static/css
+drwxr-xr-x 2 songdehua songdehua 4096 Sep 25 16:09 themes/LeaveIt/static/js
 ```
 
 ### 开发流程

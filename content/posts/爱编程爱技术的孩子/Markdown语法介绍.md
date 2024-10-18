@@ -142,20 +142,20 @@ console.log(i + j);
 行内式语法为：
 
 ```markdown
-[书葬的github](https://github.com/shuzang)
+[书葬的github](https://github.com/songdehua)
 ```
 
 效果：  
 
- [书葬的github](https://github.com/shuzang)
+ [书葬的github](https://github.com/songdehua)
 
 参考式语法为：
 
 ```markdown
 [书葬的github][1]    
 [书葬的github][2]    
-[1]:https://github.com/shuzang   
-[2]:https://github.com/shuzang   
+[1]:https://github.com/songdehua   
+[2]:https://github.com/songdehua   
 ```
 
 效果：  
@@ -163,8 +163,8 @@ console.log(i + j);
  [书葬的github][1]    
  [书葬的github][2]
 
-[1]: https://github.com/shuzang
-[2]: https://github.com/shuzang
+[1]: https://github.com/songdehua
+[2]: https://github.com/songdehua
 
 ### 图片
 
