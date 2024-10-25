@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>智能合约知识点总结 - songdehua blog</title><meta name="author" content="">
+<meta name="description" content="项目进行过程中知识点的总结
+1. 字符串比较 翻译自：Fravoll-String Equality Comparison
+比较两个给定字符串是否相等，是 Solidity 编程中最常见的一种情况，但语言本身并没有提供内置函数用于字符串比较，本文介绍两种可用方法并分析 Gas 消耗情况。
+1.1 StringUtils 库 第一种方法是使用 Ethereum 基金会提供的 StringUtils 库，它对每个字符进行成对比较，如果有一个字符对不匹配，则返回false。这种办法可以返回正确的结果，对于短字符串和字符不同发生在字符串前面的情况仅消耗少量 Gas。但是对于相等的字符串和长字符串，这种方法的 Gas 消耗较高，因为必须做很多比较才能得到正确结果。因此，字符串比较的两个可衡量的因素是字符串平均长度和正确率。
+1.2 哈希函数 作者提出使用哈希函数进行比较，同时检查所提供的字符串的长度，从一开始就剔除长度不匹配的字符串。其步骤如下
+检查两个字符串是否有相同长度，通过转换为 bytes 类型完成，因为 bytes 类型有内置长度函数。如果相同进入第2步，如果不相同返回结果； 使用 keccak256() 函数对两个字符串求哈希，然后比较计算得到的哈希值，从而确定是否相等。 一个示例代码如下
+1 2 3 4 5 6 7 8 # 这段代码未经安全审计，使用有风险 function hashCompareWithLengthCheck(string a, string b) internal returns (bool) { if(bytes(a).length != bytes(b).length) { return false; } else { return keccak256(abi.encodePacket(a)) == keccak256(abi.encodePacket(b)); } } abi.encodePacket(...) returns (bytes) 用于对给定参数执行紧打包编码，官方文档中不推荐使用 keccak256(...) 直接计算哈希，而是使用 keccak256(abi.encodePacked(...))
+1.3 Gas 消耗分析 在 Remix 编写代码测试了三种不同情况的字符串比较的 Gas 消耗
+比较哈希 比较每个字符，同时比较字符串长度 比较哈希，同时比较字符串长度 结果如下表所示，输入列为输入的待比较字符串，输出列的单位为 Wei
+Input A Input B Hash Character &#43; Length Hash &#43; Length abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz 1225 7062 1261 abcdefghijklmnopqrstuvwxyX abcdefghijklmnopqrstuvwxyz 1225 7012 1261 Xbcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz 1225 912 1261 aXcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz 1225 1156 1261 abXdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz 1225 1400 1261 abcdefghijkl abcdefghijklmnopqrstuvwxyz 1225 690 707 a a 1225 962 1261 ab ab 1225 1156 1261 abc abc 1225 1450 1261 可以看出，哈希&#43;字符串长度 的比较方式 Gas 消耗更加稳定，这种方式比较高效。
+2. 可见性与Getter函数 转自：Solidity 0.6.4 中文文档
+Solidity 有两种函数调用：内部调用（Internal Function Calls）和外部调用（External Function Calls）。前者指直接或递归地调用合约内部函数，不会产生实际的 EVM 调用，因此也被称为「消息嗲用」，后者指从合约外部调用合约中的函数，会产生一个 EVM 调用。
+2.1 可见性 因此，函数和状态变量有四种可见性。函数可以指定为 external，public，internal 或 private，对于状态变量， 默认是 internal 且不能设置为 external。
+external：外部函数作为合约接口的一部分，意味着我们可以从其他合约和交易中调用。 一个外部函数 f 不能从内部调用（即 f 不起作用，但 this.f()可以）。 当收到大量数据的时候，外部函数有时候会更有效率，因为数据不会从calldata复制到内存. public：public 函数是合约接口的一部分，可以在内部或通过消息调用。对于 public 状态变量， 会自动生成一个 getter 函数（见下面）。 internal：这些函数和状态变量只能是内部访问（即从当前合约内部或从它派生的合约访问），不使用 this 调用。 private：private 函数和状态变量仅在当前定义它们的合约中使用，并且不能被派生合约使用。 合约中的所有内容对外部观察者都是可见的。设置一些 private 类型只能阻止其他合约访问和修改这些信息， 但是对于区块链外的整个世界它仍然是可见的。
+可见性标识符的定义位置，对于状态变量来说是在类型后面，对于函数是在参数列表和返回关键字中间，如下例
+1 2 3 4 5 6 7 pragma solidity &gt;=0.4.16 &lt;0.7.0; contract C { function f(uint a) private pure returns (uint b) { return a &#43; 1; } function setData(uint a) internal { data = a; } uint public data; } 在下面的例子中，D 可以调用 c.getData（） 来获取状态存储中 data 的值，但不能调用 f 。 合约 E 继承自 C ，因此可以调用 compute。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 pragma solidity &gt;=0.4.0 &lt;0.7.0; contract C { uint private data; function f(uint a) private returns(uint b) { return a &#43; 1; } function setData(uint a) public { data = a; } function getData() public returns(uint) { return data; } function compute(uint a, uint b) internal returns (uint) { return a&#43;b; } } // 下面代码编译错误 contract D { function readData() public { C c = new C(); uint local = c.f(7); // 错误：成员 `f` 不可见 c.setData(3); local = c.getData(); local = c.compute(3, 5); // 错误：成员 `compute` 不可见 } } contract E is C { function g() public { C c = new C(); uint val = compute(3, 5); // 访问内部成员（从继承合约访问父合约成员） } } 2.2 Getter 函数 编译器自动为所有 public 状态变量创建 getter 函数。对于下面给出的合约，编译器会生成一个名为 data 的函数， 该函数没有参数，返回值是一个 uint 类型，即状态变量 data 的值。 状态变量的初始化可以在声明时完成。
+1 2 3 4 5 6 7 8 9 10 11 12 pragma solidity &gt;=0.4.0 &lt;0.7.0; contract C { uint public data = 42; } contract Caller { C c = new C(); function f() public { uint local = c.data(); } } getter 函数具有外部（external）可见性。如果在内部访问 getter（即没有 this. ），它被认为一个状态变量。 如果使用外部访问（即用 this. ），它被认作为一个函数。
+1 2 3 4 5 6 7 8 9 pragma solidity ^0.4.0 &lt;0.7.0; contract C { uint public data; function x() public { data = 3; // 内部访问 uint val = this.data(); // 外部访问 } } 如果你有一个数组类型的 public 状态变量，那么你只能通过生成的 getter 函数访问数组的单个元素。 这个机制以避免返回整个数组时的高成本gas。 可以使用如 data(0) 用于指定参数要返回的单个元素。 如果要在一次调用中返回整个数组，则需要写一个函数，例如：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 pragma solidity &gt;=0.4.0 &lt;0.7.0; contract arrayExample { // public state variable uint[] public myArray; // 指定生成的Getter 函数 /* function myArray(uint i) public view returns (uint) { return myArray[i]; } */ // 返回整个数组 function getArray() public view returns (uint[] memory) { return myArray; } } 现在可以使用 getArray() 获得整个数组，而 myArray(i) 是返回单个元素。
+下一个例子稍微复杂一些：
+1 2 3 4 5 6 7 8 9 10 pragma solidity ^0.4.0 &lt;0.7.0; contract Complex { struct Data { uint a; bytes3 b; mapping (uint =&gt; uint) map; } mapping (uint =&gt; mapping(bool =&gt; Data[])) public data; } 这将会生成以下形式的函数
+1 2 3 4 function data(uint arg1, bool arg2, uint arg3) public returns (uint a, bytes3 b) { a = data[arg1][arg2][arg3].a; b = data[arg1][arg2][arg3].b; } 请注意，因为没有好的方法来提供映射的键，所以结构中的映射被省略。
+3. 合约间调用 之前的实验合约间的调用没有成功，这次就仔细地研究一下合约间地调用机制。分为两种情况
+调用者和被调用者在一个sol文件中 调用者和被调用者在不同的sol文件中 本文提到的合约调用方法的实质是抽象合约的使用。
+3.1 同sol文件的智能合约调用 下面的智能合约中，Main和Add两个合约定义在一个Main.sol文件中，可以同时编译，然后逐个部署。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 pragma solidity ^0.5.0; contract Main { Add add; constructor(address _m) public { add = Add(_m); } function Addnumber() public view returns (uint) { return add.add5(10); } } contract Add { function add5(uint s) public pure returns (uint){ return 5&#43;s; } } 以使用Remix为例，点击编译按钮编译Main.sol文件，将会同时编译Main和Add两个合约。
+然后首先部署Add合约，因为Main合约的部署需要Add的合约地址作为参数。切换到部署和运行选项卡，选择Add合约，点击Deploy，成功部署后，复制合约地址。
+然后重新选择Main合约，填入Add合约地址作为参数，点击部署按钮。
+测试合约间调用，由合约内容可知，Main合约中的Addnumber函数调用了Add合约的add5函数，传入参数为10，得到的结果应为15。展开左侧的Deployed Contracts，点击Addnumber进行调用，结果如下。
+3.2 不同sol文件的智能合约调用 这一次我们测试不同sol文件的智能合约调用，来一个复杂一点的，两个合约分别是Add.sol和Main.sol。
+Add.sol使用了一个结构体来定义数值，并通过映射定义查找表来寻找这个值。文件中定义了两个函数，numRegister用来向表中添加数值，addValue用来将从表中查到的指定值&#43;5返回。之所以用这个结构是因为我们的项目里用到了，这里来测试一下可不可行。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 pragma solidity ^0.5.0; contract Add { struct Num{ uint value; } mapping(uint =&gt; Num) public lookupTable; function numRegister(uint key, uint _value) public { lookupTable[key].value = _value; } function addValue(uint key) public view returns (uint) { return lookupTable[key].value &#43; 5; } } Main.sol没有多大变化
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 pragma solidity ^0.5.0; contract Main { Add add; constructor(address _m) public { add = Add(_m); } function Addnumber() public view returns (uint) { return add.addValue(5); } } contract Add { function addValue(uint key) public view returns (uint); } 仍然是先编译部署Add合约，部署后调用numRegister函数写入数值5，并调用addValue函数测试返回。
+接着编译部署Main合约，复制Add合约地址作为初始化参数，部署后调用Addnumber函数测试
+3.3 总结 合约内的调用方法是相同的，都要先实例化，然后传入被调合约地址，接着才能调用。而写在不同sol文件中时，需要额外声明被调合约的抽象合约，有些文章中说使用call，callcode或delegatecall，但并不建议，因为这三个函数都是非常底层的函数，破坏了类型的安全，只能作为最后的手段使用。
+详细的解释参考了StackExchange-Calling function from deployed contract
+4. 函数修饰词pure和view 转自深入理解Solidity-函数
+这两个函数修饰词的作用是告诉编译器函数是否会读取/修改状态，view 表示保证不修改状态，pure 表示保证不读取也不修改状态。Solidity v0.4.17 之前没有这两个修饰词，而是使用 constant 关键字，和 view 的含义相同，不过在 v0.5.0 之后被移除，现在只能使用这两个 view 和 pure。
+4.1 view 视图函数 Getter 方法会被自动标记为 view，除此之外，一个 view 修饰的例子如下
+1 2 3 4 5 6 7 pragma solidity &gt;=0.5.0 &lt;0.7.0; contract C { function f(uint a, uint b) public view returns (uint) { return a * (b &#43; 42) &#43; now; } } view 保证函数不修改状态，以下操作会被认为是修改状态
+修改状态变量。 产生事件。 创建其它合约。 使用 selfdestruct。 通过调用发送以太币。 调用任何没有标记为 view 或者 pure 的函数。 使用低级调用。 使用包含特定操作码的内联汇编。 4.2 pure 纯函数 pure 保证不读取也不修改状态，不修改的定义上面已经提到，下面的操作被认为是读取状态
+读取状态变量。 访问 address(this).balance 或者 .balance。 访问 block，tx， msg 中任意成员 （除 msg.sig 和 msg.data 之外）。 调用任何未标记为 pure 的函数。 使用包含某些操作码的内联汇编。 一个 pure 修饰的例子如下
+1 2 3 4 5 6 7 pragma solidity &gt;=0.5.0 &lt;0.7.0; contract C { function f(uint a, uint b) public pure returns (uint) { return a * (b &#43; 42); } } 5. 浮点数处理 首先声明，Solidity 中支持浮点数定义，但无法赋值和进行计算。文档中对其描述是「目前还不完全支持」，虽然这意味着以后可能会完全支持，但等不及了，下面记录几个可参考的资料。
+来自 ethereum stackexchange 中的回答，介绍了一些可用的库； ABDK Math Quad，包含两个合约库，一个支持定点数，一个支持浮点数； Mikhail Vladimirov 的 Math in Solidity 系列文章，介绍如何在 Solidity 中处理各种数学运算，写的非常棒。 6. 地址类型 在智能合约中显式传入地址类型时，可能会出现如下错误
+Address checksum
+This looks like an address but has an invalid checksum. If this is not used as an address, please prepend &lsquo;00&rsquo;.
+关于该问题的一个讨论见 https://github.com/ethereum/EIPs/issues/55
+这是因为合约中现在使用地址类型必须做一个转换，不是简单的全部大写字母或小写字母，而是遵循一定的规则，这个规则见 ethereum/EIPs#55
+但是网上提供的解决方案一般是使用JS库中的转换函数，在智能合约中无法直接解决，好在，web3提供了一个在线API接口，可以调用其checkAddressChecksum函数对地址进行转换，然后将转换后的结果直接用于合约代码。
+7. Gas limit问题 在搭建的以太坊私链上进行智能合约部署时，出现了以下问题
+1 2 INFO [03-21|13:50:11.690] Served eth_sendTransaction reqid=24 t=684.186µs err=&#34;exceeds block gas limit&#34; Error: exceeds block gas limit undefined 出现该错误的原因如错误描述，是当前合约所需的gas超过了区块的最大gas。这可能与参数gasLimit有关。在创世区块的配置文件中，我们使用了默认的配置值，为0x2fefd8，转换为10进制即3141592。
+注：在线转换工具
+"><meta name="keywords" content='区块链'>
+  <meta itemprop="name" content="智能合约知识点总结">
+  <meta itemprop="description" content="项目进行过程中知识点的总结
+1. 字符串比较 翻译自：Fravoll-String Equality Comparison
+比较两个给定字符串是否相等，是 Solidity 编程中最常见的一种情况，但语言本身并没有提供内置函数用于字符串比较，本文介绍两种可用方法并分析 Gas 消耗情况。
+1.1 StringUtils 库 第一种方法是使用 Ethereum 基金会提供的 StringUtils 库，它对每个字符进行成对比较，如果有一个字符对不匹配，则返回false。这种办法可以返回正确的结果，对于短字符串和字符不同发生在字符串前面的情况仅消耗少量 Gas。但是对于相等的字符串和长字符串，这种方法的 Gas 消耗较高，因为必须做很多比较才能得到正确结果。因此，字符串比较的两个可衡量的因素是字符串平均长度和正确率。
+1.2 哈希函数 作者提出使用哈希函数进行比较，同时检查所提供的字符串的长度，从一开始就剔除长度不匹配的字符串。其步骤如下
+检查两个字符串是否有相同长度，通过转换为 bytes 类型完成，因为 bytes 类型有内置长度函数。如果相同进入第2步，如果不相同返回结果； 使用 keccak256() 函数对两个字符串求哈希，然后比较计算得到的哈希值，从而确定是否相等。 一个示例代码如下
+1 2 3 4 5 6 7 8 # 这段代码未经安全审计，使用有风险 function hashCompareWithLengthCheck(string a, string b) internal returns (bool) { if(bytes(a).length != bytes(b).length) { return false; } else { return keccak256(abi.encodePacket(a)) == keccak256(abi.encodePacket(b)); } } abi.encodePacket(...) returns (bytes) 用于对给定参数执行紧打包编码，官方文档中不推荐使用 keccak256(...) 直接计算哈希，而是使用 keccak256(abi.encodePacked(...))
+1.3 Gas 消耗分析 在 Remix 编写代码测试了三种不同情况的字符串比较的 Gas 消耗
+比较哈希 比较每个字符，同时比较字符串长度 比较哈希，同时比较字符串长度 结果如下表所示，输入列为输入的待比较字符串，输出列的单位为 Wei
+Input A Input B Hash Character &#43; Length Hash &#43; Length abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz 1225 7062 1261 abcdefghijklmnopqrstuvwxyX abcdefghijklmnopqrstuvwxyz 1225 7012 1261 Xbcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz 1225 912 1261 aXcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz 1225 1156 1261 abXdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz 1225 1400 1261 abcdefghijkl abcdefghijklmnopqrstuvwxyz 1225 690 707 a a 1225 962 1261 ab ab 1225 1156 1261 abc abc 1225 1450 1261 可以看出，哈希&#43;字符串长度 的比较方式 Gas 消耗更加稳定，这种方式比较高效。
+2. 可见性与Getter函数 转自：Solidity 0.6.4 中文文档
+Solidity 有两种函数调用：内部调用（Internal Function Calls）和外部调用（External Function Calls）。前者指直接或递归地调用合约内部函数，不会产生实际的 EVM 调用，因此也被称为「消息嗲用」，后者指从合约外部调用合约中的函数，会产生一个 EVM 调用。
+2.1 可见性 因此，函数和状态变量有四种可见性。函数可以指定为 external，public，internal 或 private，对于状态变量， 默认是 internal 且不能设置为 external。
+external：外部函数作为合约接口的一部分，意味着我们可以从其他合约和交易中调用。 一个外部函数 f 不能从内部调用（即 f 不起作用，但 this.f()可以）。 当收到大量数据的时候，外部函数有时候会更有效率，因为数据不会从calldata复制到内存. public：public 函数是合约接口的一部分，可以在内部或通过消息调用。对于 public 状态变量， 会自动生成一个 getter 函数（见下面）。 internal：这些函数和状态变量只能是内部访问（即从当前合约内部或从它派生的合约访问），不使用 this 调用。 private：private 函数和状态变量仅在当前定义它们的合约中使用，并且不能被派生合约使用。 合约中的所有内容对外部观察者都是可见的。设置一些 private 类型只能阻止其他合约访问和修改这些信息， 但是对于区块链外的整个世界它仍然是可见的。
+可见性标识符的定义位置，对于状态变量来说是在类型后面，对于函数是在参数列表和返回关键字中间，如下例
+1 2 3 4 5 6 7 pragma solidity &gt;=0.4.16 &lt;0.7.0; contract C { function f(uint a) private pure returns (uint b) { return a &#43; 1; } function setData(uint a) internal { data = a; } uint public data; } 在下面的例子中，D 可以调用 c.getData（） 来获取状态存储中 data 的值，但不能调用 f 。 合约 E 继承自 C ，因此可以调用 compute。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 pragma solidity &gt;=0.4.0 &lt;0.7.0; contract C { uint private data; function f(uint a) private returns(uint b) { return a &#43; 1; } function setData(uint a) public { data = a; } function getData() public returns(uint) { return data; } function compute(uint a, uint b) internal returns (uint) { return a&#43;b; } } // 下面代码编译错误 contract D { function readData() public { C c = new C(); uint local = c.f(7); // 错误：成员 `f` 不可见 c.setData(3); local = c.getData(); local = c.compute(3, 5); // 错误：成员 `compute` 不可见 } } contract E is C { function g() public { C c = new C(); uint val = compute(3, 5); // 访问内部成员（从继承合约访问父合约成员） } } 2.2 Getter 函数 编译器自动为所有 public 状态变量创建 getter 函数。对于下面给出的合约，编译器会生成一个名为 data 的函数， 该函数没有参数，返回值是一个 uint 类型，即状态变量 data 的值。 状态变量的初始化可以在声明时完成。
+1 2 3 4 5 6 7 8 9 10 11 12 pragma solidity &gt;=0.4.0 &lt;0.7.0; contract C { uint public data = 42; } contract Caller { C c = new C(); function f() public { uint local = c.data(); } } getter 函数具有外部（external）可见性。如果在内部访问 getter（即没有 this. ），它被认为一个状态变量。 如果使用外部访问（即用 this. ），它被认作为一个函数。
+1 2 3 4 5 6 7 8 9 pragma solidity ^0.4.0 &lt;0.7.0; contract C { uint public data; function x() public { data = 3; // 内部访问 uint val = this.data(); // 外部访问 } } 如果你有一个数组类型的 public 状态变量，那么你只能通过生成的 getter 函数访问数组的单个元素。 这个机制以避免返回整个数组时的高成本gas。 可以使用如 data(0) 用于指定参数要返回的单个元素。 如果要在一次调用中返回整个数组，则需要写一个函数，例如：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 pragma solidity &gt;=0.4.0 &lt;0.7.0; contract arrayExample { // public state variable uint[] public myArray; // 指定生成的Getter 函数 /* function myArray(uint i) public view returns (uint) { return myArray[i]; } */ // 返回整个数组 function getArray() public view returns (uint[] memory) { return myArray; } } 现在可以使用 getArray() 获得整个数组，而 myArray(i) 是返回单个元素。
+下一个例子稍微复杂一些：
+1 2 3 4 5 6 7 8 9 10 pragma solidity ^0.4.0 &lt;0.7.0; contract Complex { struct Data { uint a; bytes3 b; mapping (uint =&gt; uint) map; } mapping (uint =&gt; mapping(bool =&gt; Data[])) public data; } 这将会生成以下形式的函数
+1 2 3 4 function data(uint arg1, bool arg2, uint arg3) public returns (uint a, bytes3 b) { a = data[arg1][arg2][arg3].a; b = data[arg1][arg2][arg3].b; } 请注意，因为没有好的方法来提供映射的键，所以结构中的映射被省略。
+3. 合约间调用 之前的实验合约间的调用没有成功，这次就仔细地研究一下合约间地调用机制。分为两种情况
+调用者和被调用者在一个sol文件中 调用者和被调用者在不同的sol文件中 本文提到的合约调用方法的实质是抽象合约的使用。
+3.1 同sol文件的智能合约调用 下面的智能合约中，Main和Add两个合约定义在一个Main.sol文件中，可以同时编译，然后逐个部署。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 pragma solidity ^0.5.0; contract Main { Add add; constructor(address _m) public { add = Add(_m); } function Addnumber() public view returns (uint) { return add.add5(10); } } contract Add { function add5(uint s) public pure returns (uint){ return 5&#43;s; } } 以使用Remix为例，点击编译按钮编译Main.sol文件，将会同时编译Main和Add两个合约。
+然后首先部署Add合约，因为Main合约的部署需要Add的合约地址作为参数。切换到部署和运行选项卡，选择Add合约，点击Deploy，成功部署后，复制合约地址。
+然后重新选择Main合约，填入Add合约地址作为参数，点击部署按钮。
+测试合约间调用，由合约内容可知，Main合约中的Addnumber函数调用了Add合约的add5函数，传入参数为10，得到的结果应为15。展开左侧的Deployed Contracts，点击Addnumber进行调用，结果如下。
+3.2 不同sol文件的智能合约调用 这一次我们测试不同sol文件的智能合约调用，来一个复杂一点的，两个合约分别是Add.sol和Main.sol。
+Add.sol使用了一个结构体来定义数值，并通过映射定义查找表来寻找这个值。文件中定义了两个函数，numRegister用来向表中添加数值，addValue用来将从表中查到的指定值&#43;5返回。之所以用这个结构是因为我们的项目里用到了，这里来测试一下可不可行。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 pragma solidity ^0.5.0; contract Add { struct Num{ uint value; } mapping(uint =&gt; Num) public lookupTable; function numRegister(uint key, uint _value) public { lookupTable[key].value = _value; } function addValue(uint key) public view returns (uint) { return lookupTable[key].value &#43; 5; } } Main.sol没有多大变化
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 pragma solidity ^0.5.0; contract Main { Add add; constructor(address _m) public { add = Add(_m); } function Addnumber() public view returns (uint) { return add.addValue(5); } } contract Add { function addValue(uint key) public view returns (uint); } 仍然是先编译部署Add合约，部署后调用numRegister函数写入数值5，并调用addValue函数测试返回。
+接着编译部署Main合约，复制Add合约地址作为初始化参数，部署后调用Addnumber函数测试
+3.3 总结 合约内的调用方法是相同的，都要先实例化，然后传入被调合约地址，接着才能调用。而写在不同sol文件中时，需要额外声明被调合约的抽象合约，有些文章中说使用call，callcode或delegatecall，但并不建议，因为这三个函数都是非常底层的函数，破坏了类型的安全，只能作为最后的手段使用。
+详细的解释参考了StackExchange-Calling function from deployed contract
+4. 函数修饰词pure和view 转自深入理解Solidity-函数
+这两个函数修饰词的作用是告诉编译器函数是否会读取/修改状态，view 表示保证不修改状态，pure 表示保证不读取也不修改状态。Solidity v0.4.17 之前没有这两个修饰词，而是使用 constant 关键字，和 view 的含义相同，不过在 v0.5.0 之后被移除，现在只能使用这两个 view 和 pure。
+4.1 view 视图函数 Getter 方法会被自动标记为 view，除此之外，一个 view 修饰的例子如下
+1 2 3 4 5 6 7 pragma solidity &gt;=0.5.0 &lt;0.7.0; contract C { function f(uint a, uint b) public view returns (uint) { return a * (b &#43; 42) &#43; now; } } view 保证函数不修改状态，以下操作会被认为是修改状态
+修改状态变量。 产生事件。 创建其它合约。 使用 selfdestruct。 通过调用发送以太币。 调用任何没有标记为 view 或者 pure 的函数。 使用低级调用。 使用包含特定操作码的内联汇编。 4.2 pure 纯函数 pure 保证不读取也不修改状态，不修改的定义上面已经提到，下面的操作被认为是读取状态
+读取状态变量。 访问 address(this).balance 或者 .balance。 访问 block，tx， msg 中任意成员 （除 msg.sig 和 msg.data 之外）。 调用任何未标记为 pure 的函数。 使用包含某些操作码的内联汇编。 一个 pure 修饰的例子如下
+1 2 3 4 5 6 7 pragma solidity &gt;=0.5.0 &lt;0.7.0; contract C { function f(uint a, uint b) public pure returns (uint) { return a * (b &#43; 42); } } 5. 浮点数处理 首先声明，Solidity 中支持浮点数定义，但无法赋值和进行计算。文档中对其描述是「目前还不完全支持」，虽然这意味着以后可能会完全支持，但等不及了，下面记录几个可参考的资料。
+来自 ethereum stackexchange 中的回答，介绍了一些可用的库； ABDK Math Quad，包含两个合约库，一个支持定点数，一个支持浮点数； Mikhail Vladimirov 的 Math in Solidity 系列文章，介绍如何在 Solidity 中处理各种数学运算，写的非常棒。 6. 地址类型 在智能合约中显式传入地址类型时，可能会出现如下错误
+Address checksum
+This looks like an address but has an invalid checksum. If this is not used as an address, please prepend ‘00’.
+关于该问题的一个讨论见 https://github.com/ethereum/EIPs/issues/55
+这是因为合约中现在使用地址类型必须做一个转换，不是简单的全部大写字母或小写字母，而是遵循一定的规则，这个规则见 ethereum/EIPs#55
+但是网上提供的解决方案一般是使用JS库中的转换函数，在智能合约中无法直接解决，好在，web3提供了一个在线API接口，可以调用其checkAddressChecksum函数对地址进行转换，然后将转换后的结果直接用于合约代码。
+7. Gas limit问题 在搭建的以太坊私链上进行智能合约部署时，出现了以下问题
+1 2 INFO [03-21|13:50:11.690] Served eth_sendTransaction reqid=24 t=684.186µs err=&#34;exceeds block gas limit&#34; Error: exceeds block gas limit undefined 出现该错误的原因如错误描述，是当前合约所需的gas超过了区块的最大gas。这可能与参数gasLimit有关。在创世区块的配置文件中，我们使用了默认的配置值，为0x2fefd8，转换为10进制即3141592。
+注：在线转换工具">
+  <meta itemprop="datePublished" content="2020-05-04T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2020-05-04T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1189">
+  <meta itemprop="image" content="http://localhost:1313/logo.png">
+  <meta itemprop="keywords" content="区块链"><meta property="og:url" content="http://localhost:1313/2020/summary-of-smart-contract-knowledge-points/">
+  <meta property="og:site_name" content="songdehua blog">
+  <meta property="og:title" content="智能合约知识点总结">
+  <meta property="og:description" content="项目进行过程中知识点的总结
+1. 字符串比较 翻译自：Fravoll-String Equality Comparison
+比较两个给定字符串是否相等，是 Solidity 编程中最常见的一种情况，但语言本身并没有提供内置函数用于字符串比较，本文介绍两种可用方法并分析 Gas 消耗情况。
+1.1 StringUtils 库 第一种方法是使用 Ethereum 基金会提供的 StringUtils 库，它对每个字符进行成对比较，如果有一个字符对不匹配，则返回false。这种办法可以返回正确的结果，对于短字符串和字符不同发生在字符串前面的情况仅消耗少量 Gas。但是对于相等的字符串和长字符串，这种方法的 Gas 消耗较高，因为必须做很多比较才能得到正确结果。因此，字符串比较的两个可衡量的因素是字符串平均长度和正确率。
+1.2 哈希函数 作者提出使用哈希函数进行比较，同时检查所提供的字符串的长度，从一开始就剔除长度不匹配的字符串。其步骤如下
+检查两个字符串是否有相同长度，通过转换为 bytes 类型完成，因为 bytes 类型有内置长度函数。如果相同进入第2步，如果不相同返回结果； 使用 keccak256() 函数对两个字符串求哈希，然后比较计算得到的哈希值，从而确定是否相等。 一个示例代码如下
+1 2 3 4 5 6 7 8 # 这段代码未经安全审计，使用有风险 function hashCompareWithLengthCheck(string a, string b) internal returns (bool) { if(bytes(a).length != bytes(b).length) { return false; } else { return keccak256(abi.encodePacket(a)) == keccak256(abi.encodePacket(b)); } } abi.encodePacket(...) returns (bytes) 用于对给定参数执行紧打包编码，官方文档中不推荐使用 keccak256(...) 直接计算哈希，而是使用 keccak256(abi.encodePacked(...))
+1.3 Gas 消耗分析 在 Remix 编写代码测试了三种不同情况的字符串比较的 Gas 消耗
+比较哈希 比较每个字符，同时比较字符串长度 比较哈希，同时比较字符串长度 结果如下表所示，输入列为输入的待比较字符串，输出列的单位为 Wei
+Input A Input B Hash Character &#43; Length Hash &#43; Length abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz 1225 7062 1261 abcdefghijklmnopqrstuvwxyX abcdefghijklmnopqrstuvwxyz 1225 7012 1261 Xbcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz 1225 912 1261 aXcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz 1225 1156 1261 abXdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz 1225 1400 1261 abcdefghijkl abcdefghijklmnopqrstuvwxyz 1225 690 707 a a 1225 962 1261 ab ab 1225 1156 1261 abc abc 1225 1450 1261 可以看出，哈希&#43;字符串长度 的比较方式 Gas 消耗更加稳定，这种方式比较高效。
+2. 可见性与Getter函数 转自：Solidity 0.6.4 中文文档
+Solidity 有两种函数调用：内部调用（Internal Function Calls）和外部调用（External Function Calls）。前者指直接或递归地调用合约内部函数，不会产生实际的 EVM 调用，因此也被称为「消息嗲用」，后者指从合约外部调用合约中的函数，会产生一个 EVM 调用。
+2.1 可见性 因此，函数和状态变量有四种可见性。函数可以指定为 external，public，internal 或 private，对于状态变量， 默认是 internal 且不能设置为 external。
+external：外部函数作为合约接口的一部分，意味着我们可以从其他合约和交易中调用。 一个外部函数 f 不能从内部调用（即 f 不起作用，但 this.f()可以）。 当收到大量数据的时候，外部函数有时候会更有效率，因为数据不会从calldata复制到内存. public：public 函数是合约接口的一部分，可以在内部或通过消息调用。对于 public 状态变量， 会自动生成一个 getter 函数（见下面）。 internal：这些函数和状态变量只能是内部访问（即从当前合约内部或从它派生的合约访问），不使用 this 调用。 private：private 函数和状态变量仅在当前定义它们的合约中使用，并且不能被派生合约使用。 合约中的所有内容对外部观察者都是可见的。设置一些 private 类型只能阻止其他合约访问和修改这些信息， 但是对于区块链外的整个世界它仍然是可见的。
+可见性标识符的定义位置，对于状态变量来说是在类型后面，对于函数是在参数列表和返回关键字中间，如下例
+1 2 3 4 5 6 7 pragma solidity &gt;=0.4.16 &lt;0.7.0; contract C { function f(uint a) private pure returns (uint b) { return a &#43; 1; } function setData(uint a) internal { data = a; } uint public data; } 在下面的例子中，D 可以调用 c.getData（） 来获取状态存储中 data 的值，但不能调用 f 。 合约 E 继承自 C ，因此可以调用 compute。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 pragma solidity &gt;=0.4.0 &lt;0.7.0; contract C { uint private data; function f(uint a) private returns(uint b) { return a &#43; 1; } function setData(uint a) public { data = a; } function getData() public returns(uint) { return data; } function compute(uint a, uint b) internal returns (uint) { return a&#43;b; } } // 下面代码编译错误 contract D { function readData() public { C c = new C(); uint local = c.f(7); // 错误：成员 `f` 不可见 c.setData(3); local = c.getData(); local = c.compute(3, 5); // 错误：成员 `compute` 不可见 } } contract E is C { function g() public { C c = new C(); uint val = compute(3, 5); // 访问内部成员（从继承合约访问父合约成员） } } 2.2 Getter 函数 编译器自动为所有 public 状态变量创建 getter 函数。对于下面给出的合约，编译器会生成一个名为 data 的函数， 该函数没有参数，返回值是一个 uint 类型，即状态变量 data 的值。 状态变量的初始化可以在声明时完成。
+1 2 3 4 5 6 7 8 9 10 11 12 pragma solidity &gt;=0.4.0 &lt;0.7.0; contract C { uint public data = 42; } contract Caller { C c = new C(); function f() public { uint local = c.data(); } } getter 函数具有外部（external）可见性。如果在内部访问 getter（即没有 this. ），它被认为一个状态变量。 如果使用外部访问（即用 this. ），它被认作为一个函数。
+1 2 3 4 5 6 7 8 9 pragma solidity ^0.4.0 &lt;0.7.0; contract C { uint public data; function x() public { data = 3; // 内部访问 uint val = this.data(); // 外部访问 } } 如果你有一个数组类型的 public 状态变量，那么你只能通过生成的 getter 函数访问数组的单个元素。 这个机制以避免返回整个数组时的高成本gas。 可以使用如 data(0) 用于指定参数要返回的单个元素。 如果要在一次调用中返回整个数组，则需要写一个函数，例如：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 pragma solidity &gt;=0.4.0 &lt;0.7.0; contract arrayExample { // public state variable uint[] public myArray; // 指定生成的Getter 函数 /* function myArray(uint i) public view returns (uint) { return myArray[i]; } */ // 返回整个数组 function getArray() public view returns (uint[] memory) { return myArray; } } 现在可以使用 getArray() 获得整个数组，而 myArray(i) 是返回单个元素。
+下一个例子稍微复杂一些：
+1 2 3 4 5 6 7 8 9 10 pragma solidity ^0.4.0 &lt;0.7.0; contract Complex { struct Data { uint a; bytes3 b; mapping (uint =&gt; uint) map; } mapping (uint =&gt; mapping(bool =&gt; Data[])) public data; } 这将会生成以下形式的函数
+1 2 3 4 function data(uint arg1, bool arg2, uint arg3) public returns (uint a, bytes3 b) { a = data[arg1][arg2][arg3].a; b = data[arg1][arg2][arg3].b; } 请注意，因为没有好的方法来提供映射的键，所以结构中的映射被省略。
+3. 合约间调用 之前的实验合约间的调用没有成功，这次就仔细地研究一下合约间地调用机制。分为两种情况
+调用者和被调用者在一个sol文件中 调用者和被调用者在不同的sol文件中 本文提到的合约调用方法的实质是抽象合约的使用。
+3.1 同sol文件的智能合约调用 下面的智能合约中，Main和Add两个合约定义在一个Main.sol文件中，可以同时编译，然后逐个部署。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 pragma solidity ^0.5.0; contract Main { Add add; constructor(address _m) public { add = Add(_m); } function Addnumber() public view returns (uint) { return add.add5(10); } } contract Add { function add5(uint s) public pure returns (uint){ return 5&#43;s; } } 以使用Remix为例，点击编译按钮编译Main.sol文件，将会同时编译Main和Add两个合约。
+然后首先部署Add合约，因为Main合约的部署需要Add的合约地址作为参数。切换到部署和运行选项卡，选择Add合约，点击Deploy，成功部署后，复制合约地址。
+然后重新选择Main合约，填入Add合约地址作为参数，点击部署按钮。
+测试合约间调用，由合约内容可知，Main合约中的Addnumber函数调用了Add合约的add5函数，传入参数为10，得到的结果应为15。展开左侧的Deployed Contracts，点击Addnumber进行调用，结果如下。
+3.2 不同sol文件的智能合约调用 这一次我们测试不同sol文件的智能合约调用，来一个复杂一点的，两个合约分别是Add.sol和Main.sol。
+Add.sol使用了一个结构体来定义数值，并通过映射定义查找表来寻找这个值。文件中定义了两个函数，numRegister用来向表中添加数值，addValue用来将从表中查到的指定值&#43;5返回。之所以用这个结构是因为我们的项目里用到了，这里来测试一下可不可行。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 pragma solidity ^0.5.0; contract Add { struct Num{ uint value; } mapping(uint =&gt; Num) public lookupTable; function numRegister(uint key, uint _value) public { lookupTable[key].value = _value; } function addValue(uint key) public view returns (uint) { return lookupTable[key].value &#43; 5; } } Main.sol没有多大变化
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 pragma solidity ^0.5.0; contract Main { Add add; constructor(address _m) public { add = Add(_m); } function Addnumber() public view returns (uint) { return add.addValue(5); } } contract Add { function addValue(uint key) public view returns (uint); } 仍然是先编译部署Add合约，部署后调用numRegister函数写入数值5，并调用addValue函数测试返回。
+接着编译部署Main合约，复制Add合约地址作为初始化参数，部署后调用Addnumber函数测试
+3.3 总结 合约内的调用方法是相同的，都要先实例化，然后传入被调合约地址，接着才能调用。而写在不同sol文件中时，需要额外声明被调合约的抽象合约，有些文章中说使用call，callcode或delegatecall，但并不建议，因为这三个函数都是非常底层的函数，破坏了类型的安全，只能作为最后的手段使用。
+详细的解释参考了StackExchange-Calling function from deployed contract
+4. 函数修饰词pure和view 转自深入理解Solidity-函数
+这两个函数修饰词的作用是告诉编译器函数是否会读取/修改状态，view 表示保证不修改状态，pure 表示保证不读取也不修改状态。Solidity v0.4.17 之前没有这两个修饰词，而是使用 constant 关键字，和 view 的含义相同，不过在 v0.5.0 之后被移除，现在只能使用这两个 view 和 pure。
+4.1 view 视图函数 Getter 方法会被自动标记为 view，除此之外，一个 view 修饰的例子如下
+1 2 3 4 5 6 7 pragma solidity &gt;=0.5.0 &lt;0.7.0; contract C { function f(uint a, uint b) public view returns (uint) { return a * (b &#43; 42) &#43; now; } } view 保证函数不修改状态，以下操作会被认为是修改状态
+修改状态变量。 产生事件。 创建其它合约。 使用 selfdestruct。 通过调用发送以太币。 调用任何没有标记为 view 或者 pure 的函数。 使用低级调用。 使用包含特定操作码的内联汇编。 4.2 pure 纯函数 pure 保证不读取也不修改状态，不修改的定义上面已经提到，下面的操作被认为是读取状态
+读取状态变量。 访问 address(this).balance 或者 .balance。 访问 block，tx， msg 中任意成员 （除 msg.sig 和 msg.data 之外）。 调用任何未标记为 pure 的函数。 使用包含某些操作码的内联汇编。 一个 pure 修饰的例子如下
+1 2 3 4 5 6 7 pragma solidity &gt;=0.5.0 &lt;0.7.0; contract C { function f(uint a, uint b) public pure returns (uint) { return a * (b &#43; 42); } } 5. 浮点数处理 首先声明，Solidity 中支持浮点数定义，但无法赋值和进行计算。文档中对其描述是「目前还不完全支持」，虽然这意味着以后可能会完全支持，但等不及了，下面记录几个可参考的资料。
+来自 ethereum stackexchange 中的回答，介绍了一些可用的库； ABDK Math Quad，包含两个合约库，一个支持定点数，一个支持浮点数； Mikhail Vladimirov 的 Math in Solidity 系列文章，介绍如何在 Solidity 中处理各种数学运算，写的非常棒。 6. 地址类型 在智能合约中显式传入地址类型时，可能会出现如下错误
+Address checksum
+This looks like an address but has an invalid checksum. If this is not used as an address, please prepend ‘00’.
+关于该问题的一个讨论见 https://github.com/ethereum/EIPs/issues/55
+这是因为合约中现在使用地址类型必须做一个转换，不是简单的全部大写字母或小写字母，而是遵循一定的规则，这个规则见 ethereum/EIPs#55
+但是网上提供的解决方案一般是使用JS库中的转换函数，在智能合约中无法直接解决，好在，web3提供了一个在线API接口，可以调用其checkAddressChecksum函数对地址进行转换，然后将转换后的结果直接用于合约代码。
+7. Gas limit问题 在搭建的以太坊私链上进行智能合约部署时，出现了以下问题
+1 2 INFO [03-21|13:50:11.690] Served eth_sendTransaction reqid=24 t=684.186µs err=&#34;exceeds block gas limit&#34; Error: exceeds block gas limit undefined 出现该错误的原因如错误描述，是当前合约所需的gas超过了区块的最大gas。这可能与参数gasLimit有关。在创世区块的配置文件中，我们使用了默认的配置值，为0x2fefd8，转换为10进制即3141592。
+注：在线转换工具">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2020-05-04T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-05-04T00:00:00+00:00">
+    <meta property="article:tag" content="区块链">
+    <meta property="og:image" content="http://localhost:1313/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/logo.png">
+  <meta name="twitter:title" content="智能合约知识点总结">
+  <meta name="twitter:description" content="项目进行过程中知识点的总结
+1. 字符串比较 翻译自：Fravoll-String Equality Comparison
+比较两个给定字符串是否相等，是 Solidity 编程中最常见的一种情况，但语言本身并没有提供内置函数用于字符串比较，本文介绍两种可用方法并分析 Gas 消耗情况。
+1.1 StringUtils 库 第一种方法是使用 Ethereum 基金会提供的 StringUtils 库，它对每个字符进行成对比较，如果有一个字符对不匹配，则返回false。这种办法可以返回正确的结果，对于短字符串和字符不同发生在字符串前面的情况仅消耗少量 Gas。但是对于相等的字符串和长字符串，这种方法的 Gas 消耗较高，因为必须做很多比较才能得到正确结果。因此，字符串比较的两个可衡量的因素是字符串平均长度和正确率。
+1.2 哈希函数 作者提出使用哈希函数进行比较，同时检查所提供的字符串的长度，从一开始就剔除长度不匹配的字符串。其步骤如下
+检查两个字符串是否有相同长度，通过转换为 bytes 类型完成，因为 bytes 类型有内置长度函数。如果相同进入第2步，如果不相同返回结果； 使用 keccak256() 函数对两个字符串求哈希，然后比较计算得到的哈希值，从而确定是否相等。 一个示例代码如下
+1 2 3 4 5 6 7 8 # 这段代码未经安全审计，使用有风险 function hashCompareWithLengthCheck(string a, string b) internal returns (bool) { if(bytes(a).length != bytes(b).length) { return false; } else { return keccak256(abi.encodePacket(a)) == keccak256(abi.encodePacket(b)); } } abi.encodePacket(...) returns (bytes) 用于对给定参数执行紧打包编码，官方文档中不推荐使用 keccak256(...) 直接计算哈希，而是使用 keccak256(abi.encodePacked(...))
+1.3 Gas 消耗分析 在 Remix 编写代码测试了三种不同情况的字符串比较的 Gas 消耗
+比较哈希 比较每个字符，同时比较字符串长度 比较哈希，同时比较字符串长度 结果如下表所示，输入列为输入的待比较字符串，输出列的单位为 Wei
+Input A Input B Hash Character &#43; Length Hash &#43; Length abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz 1225 7062 1261 abcdefghijklmnopqrstuvwxyX abcdefghijklmnopqrstuvwxyz 1225 7012 1261 Xbcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz 1225 912 1261 aXcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz 1225 1156 1261 abXdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz 1225 1400 1261 abcdefghijkl abcdefghijklmnopqrstuvwxyz 1225 690 707 a a 1225 962 1261 ab ab 1225 1156 1261 abc abc 1225 1450 1261 可以看出，哈希&#43;字符串长度 的比较方式 Gas 消耗更加稳定，这种方式比较高效。
+2. 可见性与Getter函数 转自：Solidity 0.6.4 中文文档
+Solidity 有两种函数调用：内部调用（Internal Function Calls）和外部调用（External Function Calls）。前者指直接或递归地调用合约内部函数，不会产生实际的 EVM 调用，因此也被称为「消息嗲用」，后者指从合约外部调用合约中的函数，会产生一个 EVM 调用。
+2.1 可见性 因此，函数和状态变量有四种可见性。函数可以指定为 external，public，internal 或 private，对于状态变量， 默认是 internal 且不能设置为 external。
+external：外部函数作为合约接口的一部分，意味着我们可以从其他合约和交易中调用。 一个外部函数 f 不能从内部调用（即 f 不起作用，但 this.f()可以）。 当收到大量数据的时候，外部函数有时候会更有效率，因为数据不会从calldata复制到内存. public：public 函数是合约接口的一部分，可以在内部或通过消息调用。对于 public 状态变量， 会自动生成一个 getter 函数（见下面）。 internal：这些函数和状态变量只能是内部访问（即从当前合约内部或从它派生的合约访问），不使用 this 调用。 private：private 函数和状态变量仅在当前定义它们的合约中使用，并且不能被派生合约使用。 合约中的所有内容对外部观察者都是可见的。设置一些 private 类型只能阻止其他合约访问和修改这些信息， 但是对于区块链外的整个世界它仍然是可见的。
+可见性标识符的定义位置，对于状态变量来说是在类型后面，对于函数是在参数列表和返回关键字中间，如下例
+1 2 3 4 5 6 7 pragma solidity &gt;=0.4.16 &lt;0.7.0; contract C { function f(uint a) private pure returns (uint b) { return a &#43; 1; } function setData(uint a) internal { data = a; } uint public data; } 在下面的例子中，D 可以调用 c.getData（） 来获取状态存储中 data 的值，但不能调用 f 。 合约 E 继承自 C ，因此可以调用 compute。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 pragma solidity &gt;=0.4.0 &lt;0.7.0; contract C { uint private data; function f(uint a) private returns(uint b) { return a &#43; 1; } function setData(uint a) public { data = a; } function getData() public returns(uint) { return data; } function compute(uint a, uint b) internal returns (uint) { return a&#43;b; } } // 下面代码编译错误 contract D { function readData() public { C c = new C(); uint local = c.f(7); // 错误：成员 `f` 不可见 c.setData(3); local = c.getData(); local = c.compute(3, 5); // 错误：成员 `compute` 不可见 } } contract E is C { function g() public { C c = new C(); uint val = compute(3, 5); // 访问内部成员（从继承合约访问父合约成员） } } 2.2 Getter 函数 编译器自动为所有 public 状态变量创建 getter 函数。对于下面给出的合约，编译器会生成一个名为 data 的函数， 该函数没有参数，返回值是一个 uint 类型，即状态变量 data 的值。 状态变量的初始化可以在声明时完成。
+1 2 3 4 5 6 7 8 9 10 11 12 pragma solidity &gt;=0.4.0 &lt;0.7.0; contract C { uint public data = 42; } contract Caller { C c = new C(); function f() public { uint local = c.data(); } } getter 函数具有外部（external）可见性。如果在内部访问 getter（即没有 this. ），它被认为一个状态变量。 如果使用外部访问（即用 this. ），它被认作为一个函数。
+1 2 3 4 5 6 7 8 9 pragma solidity ^0.4.0 &lt;0.7.0; contract C { uint public data; function x() public { data = 3; // 内部访问 uint val = this.data(); // 外部访问 } } 如果你有一个数组类型的 public 状态变量，那么你只能通过生成的 getter 函数访问数组的单个元素。 这个机制以避免返回整个数组时的高成本gas。 可以使用如 data(0) 用于指定参数要返回的单个元素。 如果要在一次调用中返回整个数组，则需要写一个函数，例如：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 pragma solidity &gt;=0.4.0 &lt;0.7.0; contract arrayExample { // public state variable uint[] public myArray; // 指定生成的Getter 函数 /* function myArray(uint i) public view returns (uint) { return myArray[i]; } */ // 返回整个数组 function getArray() public view returns (uint[] memory) { return myArray; } } 现在可以使用 getArray() 获得整个数组，而 myArray(i) 是返回单个元素。
+下一个例子稍微复杂一些：
+1 2 3 4 5 6 7 8 9 10 pragma solidity ^0.4.0 &lt;0.7.0; contract Complex { struct Data { uint a; bytes3 b; mapping (uint =&gt; uint) map; } mapping (uint =&gt; mapping(bool =&gt; Data[])) public data; } 这将会生成以下形式的函数
+1 2 3 4 function data(uint arg1, bool arg2, uint arg3) public returns (uint a, bytes3 b) { a = data[arg1][arg2][arg3].a; b = data[arg1][arg2][arg3].b; } 请注意，因为没有好的方法来提供映射的键，所以结构中的映射被省略。
+3. 合约间调用 之前的实验合约间的调用没有成功，这次就仔细地研究一下合约间地调用机制。分为两种情况
+调用者和被调用者在一个sol文件中 调用者和被调用者在不同的sol文件中 本文提到的合约调用方法的实质是抽象合约的使用。
+3.1 同sol文件的智能合约调用 下面的智能合约中，Main和Add两个合约定义在一个Main.sol文件中，可以同时编译，然后逐个部署。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 pragma solidity ^0.5.0; contract Main { Add add; constructor(address _m) public { add = Add(_m); } function Addnumber() public view returns (uint) { return add.add5(10); } } contract Add { function add5(uint s) public pure returns (uint){ return 5&#43;s; } } 以使用Remix为例，点击编译按钮编译Main.sol文件，将会同时编译Main和Add两个合约。
+然后首先部署Add合约，因为Main合约的部署需要Add的合约地址作为参数。切换到部署和运行选项卡，选择Add合约，点击Deploy，成功部署后，复制合约地址。
+然后重新选择Main合约，填入Add合约地址作为参数，点击部署按钮。
+测试合约间调用，由合约内容可知，Main合约中的Addnumber函数调用了Add合约的add5函数，传入参数为10，得到的结果应为15。展开左侧的Deployed Contracts，点击Addnumber进行调用，结果如下。
+3.2 不同sol文件的智能合约调用 这一次我们测试不同sol文件的智能合约调用，来一个复杂一点的，两个合约分别是Add.sol和Main.sol。
+Add.sol使用了一个结构体来定义数值，并通过映射定义查找表来寻找这个值。文件中定义了两个函数，numRegister用来向表中添加数值，addValue用来将从表中查到的指定值&#43;5返回。之所以用这个结构是因为我们的项目里用到了，这里来测试一下可不可行。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 pragma solidity ^0.5.0; contract Add { struct Num{ uint value; } mapping(uint =&gt; Num) public lookupTable; function numRegister(uint key, uint _value) public { lookupTable[key].value = _value; } function addValue(uint key) public view returns (uint) { return lookupTable[key].value &#43; 5; } } Main.sol没有多大变化
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 pragma solidity ^0.5.0; contract Main { Add add; constructor(address _m) public { add = Add(_m); } function Addnumber() public view returns (uint) { return add.addValue(5); } } contract Add { function addValue(uint key) public view returns (uint); } 仍然是先编译部署Add合约，部署后调用numRegister函数写入数值5，并调用addValue函数测试返回。
+接着编译部署Main合约，复制Add合约地址作为初始化参数，部署后调用Addnumber函数测试
+3.3 总结 合约内的调用方法是相同的，都要先实例化，然后传入被调合约地址，接着才能调用。而写在不同sol文件中时，需要额外声明被调合约的抽象合约，有些文章中说使用call，callcode或delegatecall，但并不建议，因为这三个函数都是非常底层的函数，破坏了类型的安全，只能作为最后的手段使用。
+详细的解释参考了StackExchange-Calling function from deployed contract
+4. 函数修饰词pure和view 转自深入理解Solidity-函数
+这两个函数修饰词的作用是告诉编译器函数是否会读取/修改状态，view 表示保证不修改状态，pure 表示保证不读取也不修改状态。Solidity v0.4.17 之前没有这两个修饰词，而是使用 constant 关键字，和 view 的含义相同，不过在 v0.5.0 之后被移除，现在只能使用这两个 view 和 pure。
+4.1 view 视图函数 Getter 方法会被自动标记为 view，除此之外，一个 view 修饰的例子如下
+1 2 3 4 5 6 7 pragma solidity &gt;=0.5.0 &lt;0.7.0; contract C { function f(uint a, uint b) public view returns (uint) { return a * (b &#43; 42) &#43; now; } } view 保证函数不修改状态，以下操作会被认为是修改状态
+修改状态变量。 产生事件。 创建其它合约。 使用 selfdestruct。 通过调用发送以太币。 调用任何没有标记为 view 或者 pure 的函数。 使用低级调用。 使用包含特定操作码的内联汇编。 4.2 pure 纯函数 pure 保证不读取也不修改状态，不修改的定义上面已经提到，下面的操作被认为是读取状态
+读取状态变量。 访问 address(this).balance 或者 .balance。 访问 block，tx， msg 中任意成员 （除 msg.sig 和 msg.data 之外）。 调用任何未标记为 pure 的函数。 使用包含某些操作码的内联汇编。 一个 pure 修饰的例子如下
+1 2 3 4 5 6 7 pragma solidity &gt;=0.5.0 &lt;0.7.0; contract C { function f(uint a, uint b) public pure returns (uint) { return a * (b &#43; 42); } } 5. 浮点数处理 首先声明，Solidity 中支持浮点数定义，但无法赋值和进行计算。文档中对其描述是「目前还不完全支持」，虽然这意味着以后可能会完全支持，但等不及了，下面记录几个可参考的资料。
+来自 ethereum stackexchange 中的回答，介绍了一些可用的库； ABDK Math Quad，包含两个合约库，一个支持定点数，一个支持浮点数； Mikhail Vladimirov 的 Math in Solidity 系列文章，介绍如何在 Solidity 中处理各种数学运算，写的非常棒。 6. 地址类型 在智能合约中显式传入地址类型时，可能会出现如下错误
+Address checksum
+This looks like an address but has an invalid checksum. If this is not used as an address, please prepend ‘00’.
+关于该问题的一个讨论见 https://github.com/ethereum/EIPs/issues/55
+这是因为合约中现在使用地址类型必须做一个转换，不是简单的全部大写字母或小写字母，而是遵循一定的规则，这个规则见 ethereum/EIPs#55
+但是网上提供的解决方案一般是使用JS库中的转换函数，在智能合约中无法直接解决，好在，web3提供了一个在线API接口，可以调用其checkAddressChecksum函数对地址进行转换，然后将转换后的结果直接用于合约代码。
+7. Gas limit问题 在搭建的以太坊私链上进行智能合约部署时，出现了以下问题
+1 2 INFO [03-21|13:50:11.690] Served eth_sendTransaction reqid=24 t=684.186µs err=&#34;exceeds block gas limit&#34; Error: exceeds block gas limit undefined 出现该错误的原因如错误描述，是当前合约所需的gas超过了区块的最大gas。这可能与参数gasLimit有关。在创世区块的配置文件中，我们使用了默认的配置值，为0x2fefd8，转换为10进制即3141592。
+注：在线转换工具">
+<meta name="application-name" content="songdehua&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="songdehua&#39;s Blog"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/2020/summary-of-smart-contract-knowledge-points/" title="智能合约知识点总结 - songdehua blog" /><link rel="prev" type="text/html" href="http://localhost:1313/2020/algorithm-backtracking/" title="算法-回溯" /><link rel="next" type="text/html" href="http://localhost:1313/2020/golang-interact-with-mysql/" title="Golang数据库编程" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/2020/summary-of-smart-contract-knowledge-points/index.md" title="智能合约知识点总结 - songdehua blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "智能合约知识点总结",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/2020\/summary-of-smart-contract-knowledge-points\/"
+    },"genre": "posts","keywords": "区块链","wordcount":  1189 ,
+    "url": "http:\/\/localhost:1313\/2020\/summary-of-smart-contract-knowledge-points\/","datePublished": "2020-05-04T00:00:00+00:00","dateModified": "2020-05-04T00:00:00+00:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "Author"
+      },"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper" data-github-corner="right">
+    <div class="header-title">
+      <a href="/" title="songdehua blog"><img loading="lazy" src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/avatar.png" alt="songdehua blog" data-title="songdehua blog" width="26" height="26" class="logo" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span class="header-title-text">songdehua&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/collection/"
+                
+                
+              ><i class="fa-solid fa-bookmark fa-fw fa-sm" aria-hidden="true"></i> 集子</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="Search titles or contents ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="songdehua blog"><img loading="lazy" src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/avatar.png" alt="songdehua blog" data-title="songdehua blog" width="26" height="26" class="logo" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span class="header-title-text">songdehua&#39;s Blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="Search titles or contents ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/collection/"
+                  
+                  
+                ><i class="fa-solid fa-bookmark fa-fw fa-sm" aria-hidden="true"></i> 集子</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="Collections"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>智能合约知识点总结</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      Anonymous</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/" class="post-category" title="Category - 研究生的区块链学习之路"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 研究生的区块链学习之路</a></span></div><div class="post-meta-line"><span title="published on 2020-05-04 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2020-05-04">2020-05-04</time></span>&nbsp;<span title="1189 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1200 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>6 minutes</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-字符串比较">1. 字符串比较</a>
+      <ul>
+        <li><a href="#11-stringutils-库">1.1 StringUtils 库</a></li>
+        <li><a href="#12-哈希函数">1.2 哈希函数</a></li>
+        <li><a href="#13-gas-消耗分析">1.3 Gas 消耗分析</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-可见性与getter函数">2. 可见性与Getter函数</a>
+      <ul>
+        <li><a href="#21-可见性">2.1 可见性</a></li>
+        <li><a href="#22-getter-函数">2.2 Getter 函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-合约间调用">3. 合约间调用</a>
+      <ul>
+        <li><a href="#31-同sol文件的智能合约调用">3.1 同sol文件的智能合约调用</a></li>
+        <li><a href="#32-不同sol文件的智能合约调用">3.2 不同sol文件的智能合约调用</a></li>
+        <li><a href="#33-总结">3.3 总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-函数修饰词pure和view">4. 函数修饰词pure和view</a>
+      <ul>
+        <li><a href="#41-view-视图函数">4.1 view 视图函数</a></li>
+        <li><a href="#42-pure-纯函数">4.2 pure 纯函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-浮点数处理">5. 浮点数处理</a></li>
+    <li><a href="#6-地址类型">6. 地址类型</a></li>
+    <li><a href="#7-gas-limit问题">7. Gas limit问题</a>
+      <ul>
+        <li><a href="#原因查找">原因查找</a></li>
+        <li><a href="#解决办法">解决办法</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><div class="details admonition warning open">
+      <div class="details-summary admonition-title">
+        <i class="icon fa-solid fa-exclamation-triangle fa-fw" aria-hidden="true"></i>Warning<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i>
+      </div>
+      <div class="details-content">
+        <div class="admonition-content">This article was last updated on 2020-05-04, the content may be out of date.</div>
+      </div>
+    </div><p>项目进行过程中知识点的总结</p>
+<h2 id="1-字符串比较" class="heading-element"><span>1. 字符串比较</span>
+  <a href="#1-%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%af%94%e8%be%83" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>翻译自：<a href="https://fravoll.github.io/solidity-patterns/string_equality_comparison.html"target="_blank" rel="external nofollow noopener noreferrer">Fravoll-String Equality Comparison</a></p>
+<p>比较两个给定字符串是否相等，是 Solidity 编程中最常见的一种情况，但语言本身并没有提供内置函数用于字符串比较，本文介绍两种可用方法并分析 Gas 消耗情况。</p>
+<h3 id="11-stringutils-库" class="heading-element"><span>1.1 StringUtils 库</span>
+  <a href="#11-stringutils-%e5%ba%93" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>第一种方法是使用 Ethereum 基金会提供的 StringUtils 库，它对每个字符进行成对比较，如果有一个字符对不匹配，则返回false。这种办法可以返回正确的结果，对于短字符串和字符不同发生在字符串前面的情况仅消耗少量 Gas。但是对于相等的字符串和长字符串，这种方法的 Gas 消耗较高，因为必须做很多比较才能得到正确结果。因此，字符串比较的两个可衡量的因素是字符串平均长度和正确率。</p>
+<h3 id="12-哈希函数" class="heading-element"><span>1.2 哈希函数</span>
+  <a href="#12-%e5%93%88%e5%b8%8c%e5%87%bd%e6%95%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>作者提出使用哈希函数进行比较，同时检查所提供的字符串的长度，从一开始就剔除长度不匹配的字符串。其步骤如下</p>
+<ol>
+<li>检查两个字符串是否有相同长度，通过转换为 <code>bytes</code> 类型完成，因为 <code>bytes</code> 类型有内置长度函数。如果相同进入第2步，如果不相同返回结果；</li>
+<li>使用 <code>keccak256()</code> 函数对两个字符串求哈希，然后比较计算得到的哈希值，从而确定是否相等。</li>
+</ol>
+<p>一个示例代码如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="err">#</span> <span class="err">这段代码未经安全审计，使用有风险</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nf">hashCompareWithLengthCheck</span><span class="p">(</span><span class="kt">string</span> <span class="n">a</span><span class="p">,</span> <span class="kt">string</span> <span class="n">b</span><span class="p">)</span> <span class="k">internal</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span><span class="n">a</span><span class="p">).</span><span class="n">length</span> <span class="o">!=</span> <span class="kt">bytes</span><span class="p">(</span><span class="n">b</span><span class="p">).</span><span class="n">length</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">keccak256</span><span class="p">(</span><span class="nb">abi</span><span class="p">.</span><span class="n">encodePacket</span><span class="p">(</span><span class="n">a</span><span class="p">))</span> <span class="o">==</span> <span class="nb">keccak256</span><span class="p">(</span><span class="nb">abi</span><span class="p">.</span><span class="n">encodePacket</span><span class="p">(</span><span class="n">b</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>abi.encodePacket(...) returns (bytes)</code> 用于对给定参数执行<a href="https://solidity-cn.readthedocs.io/zh/develop/abi-spec.html#abi-packed-mode"target="_blank" rel="external nofollow noopener noreferrer">紧打包编码</a>，官方文档中不推荐使用 <code>keccak256(...)</code> 直接计算哈希，而是使用 <code>keccak256(abi.encodePacked(...))</code></p>
+<h3 id="13-gas-消耗分析" class="heading-element"><span>1.3 Gas 消耗分析</span>
+  <a href="#13-gas-%e6%b6%88%e8%80%97%e5%88%86%e6%9e%90" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>在 Remix 编写代码测试了三种不同情况的字符串比较的 Gas 消耗</p>
+<ol>
+<li>比较哈希</li>
+<li>比较每个字符，同时比较字符串长度</li>
+<li>比较哈希，同时比较字符串长度</li>
+</ol>
+<p>结果如下表所示，输入列为输入的待比较字符串，输出列的单位为 Wei</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Input A</th>
+          <th style="text-align: left">Input B</th>
+          <th style="text-align: right">Hash</th>
+          <th style="text-align: right">Character + Length</th>
+          <th style="text-align: right">Hash + Length</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">abcdefghijklmnopqrstuvwxyz</td>
+          <td style="text-align: left">abcdefghijklmnopqrstuvwxyz</td>
+          <td style="text-align: right">1225</td>
+          <td style="text-align: right">7062</td>
+          <td style="text-align: right">1261</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">abcdefghijklmnopqrstuvwxy<strong>X</strong></td>
+          <td style="text-align: left">abcdefghijklmnopqrstuvwxyz</td>
+          <td style="text-align: right">1225</td>
+          <td style="text-align: right">7012</td>
+          <td style="text-align: right">1261</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>X</strong>bcdefghijklmnopqrstuvwxyz</td>
+          <td style="text-align: left">abcdefghijklmnopqrstuvwxyz</td>
+          <td style="text-align: right">1225</td>
+          <td style="text-align: right">912</td>
+          <td style="text-align: right">1261</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">a<strong>X</strong>cdefghijklmnopqrstuvwxyz</td>
+          <td style="text-align: left">abcdefghijklmnopqrstuvwxyz</td>
+          <td style="text-align: right">1225</td>
+          <td style="text-align: right">1156</td>
+          <td style="text-align: right">1261</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ab<strong>X</strong>defghijklmnopqrstuvwxyz</td>
+          <td style="text-align: left">abcdefghijklmnopqrstuvwxyz</td>
+          <td style="text-align: right">1225</td>
+          <td style="text-align: right">1400</td>
+          <td style="text-align: right">1261</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">abcdefghijkl</td>
+          <td style="text-align: left">abcdefghijklmnopqrstuvwxyz</td>
+          <td style="text-align: right">1225</td>
+          <td style="text-align: right">690</td>
+          <td style="text-align: right">707</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">a</td>
+          <td style="text-align: left">a</td>
+          <td style="text-align: right">1225</td>
+          <td style="text-align: right">962</td>
+          <td style="text-align: right">1261</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ab</td>
+          <td style="text-align: left">ab</td>
+          <td style="text-align: right">1225</td>
+          <td style="text-align: right">1156</td>
+          <td style="text-align: right">1261</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">abc</td>
+          <td style="text-align: left">abc</td>
+          <td style="text-align: right">1225</td>
+          <td style="text-align: right">1450</td>
+          <td style="text-align: right">1261</td>
+      </tr>
+  </tbody>
+</table>
+<p>可以看出，哈希+字符串长度 的比较方式 Gas 消耗更加稳定，这种方式比较高效。</p>
+<h2 id="2-可见性与getter函数" class="heading-element"><span>2. 可见性与Getter函数</span>
+  <a href="#2-%e5%8f%af%e8%a7%81%e6%80%a7%e4%b8%8egetter%e5%87%bd%e6%95%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>转自：<a href="https://learnblockchain.cn/docs/solidity/contracts.html#getter"target="_blank" rel="external nofollow noopener noreferrer">Solidity 0.6.4 中文文档</a></p>
+<p>Solidity 有两种函数调用：内部调用（Internal Function Calls）和外部调用（External Function Calls）。前者指直接或递归地调用合约内部函数，不会产生实际的 EVM 调用，因此也被称为「消息嗲用」，后者指从合约外部调用合约中的函数，会产生一个 EVM 调用。</p>
+<h3 id="21-可见性" class="heading-element"><span>2.1 可见性</span>
+  <a href="#21-%e5%8f%af%e8%a7%81%e6%80%a7" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>因此，函数和状态变量有四种可见性。函数可以指定为 <code>external</code>，<code>public</code>，<code>internal</code> 或 <code>private</code>，对于状态变量， 默认是 <code>internal</code> 且不能设置为 <code>external</code>。</p>
+<ul>
+<li><code>external</code>：外部函数作为合约接口的一部分，意味着我们可以从其他合约和交易中调用。 一个外部函数 <code>f</code> 不能从内部调用（即 <code>f</code> 不起作用，但 <code>this.f()</code>可以）。 当收到大量数据的时候，外部函数有时候会更有效率，因为数据不会从calldata复制到内存.</li>
+<li><code>public</code>：public 函数是合约接口的一部分，可以在内部或通过消息调用。对于 public 状态变量， 会自动生成一个 getter 函数（见下面）。</li>
+<li><code>internal</code>：这些函数和状态变量只能是内部访问（即从当前合约内部或从它派生的合约访问），不使用 <code>this</code> 调用。</li>
+<li><code>private</code>：private 函数和状态变量仅在当前定义它们的合约中使用，并且不能被派生合约使用。</li>
+</ul>
+<blockquote>
+<p>合约中的所有内容对外部观察者都是可见的。设置一些 <code>private</code> 类型只能阻止其他合约访问和修改这些信息， 但是对于区块链外的整个世界它仍然是可见的。</p>
+</blockquote>
+<p>可见性标识符的定义位置，对于状态变量来说是在类型后面，对于函数是在参数列表和返回关键字中间，如下例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="k">pragma solidity</span>  <span class="o">&gt;=</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">16</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">C</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">f</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">)</span> <span class="k">private</span> <span class="k">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">setData</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">)</span> <span class="k">internal</span> <span class="p">{</span> <span class="nb">data</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">uint</span> <span class="k">public</span> <span class="nb">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>在下面的例子中，<code>D</code> 可以调用 <code>c.getData（）</code> 来获取状态存储中 <code>data</code> 的值，但不能调用 <code>f</code> 。 合约 <code>E</code> 继承自 <code>C</code> ，因此可以调用 <code>compute</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="k">pragma solidity</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">C</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">uint</span> <span class="k">private</span> <span class="nb">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">f</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">)</span> <span class="k">private</span> <span class="k">returns</span><span class="p">(</span><span class="kt">uint</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">setData</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">)</span> <span class="k">public</span> <span class="p">{</span> <span class="nb">data</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">getData</span><span class="p">()</span> <span class="k">public</span> <span class="k">returns</span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">data</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">compute</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">b</span><span class="p">)</span> <span class="k">internal</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 下面代码编译错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">contract</span> <span class="nc">D</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">readData</span><span class="p">()</span> <span class="k">public</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">C</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="n">C</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">uint</span> <span class="n">local</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">f</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span> <span class="c1">// 错误：成员 `f` 不可见
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">c</span><span class="p">.</span><span class="n">setData</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">local</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">getData</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">local</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">compute</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span> <span class="c1">// 错误：成员 `compute` 不可见
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">E</span> <span class="k">is</span> <span class="n">C</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">g</span><span class="p">()</span> <span class="k">public</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">C</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="n">C</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">uint</span> <span class="n">val</span> <span class="o">=</span> <span class="n">compute</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span> <span class="c1">// 访问内部成员（从继承合约访问父合约成员）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="22-getter-函数" class="heading-element"><span>2.2 Getter 函数</span>
+  <a href="#22-getter-%e5%87%bd%e6%95%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>编译器自动为所有 <strong>public</strong> 状态变量创建 getter 函数。对于下面给出的合约，编译器会生成一个名为 <code>data</code> 的函数， 该函数没有参数，返回值是一个 <code>uint</code> 类型，即状态变量 <code>data</code> 的值。 状态变量的初始化可以在声明时完成。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="k">pragma solidity</span>  <span class="o">&gt;=</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">C</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">uint</span> <span class="k">public</span> <span class="nb">data</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">Caller</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">C</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="n">C</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">f</span><span class="p">()</span> <span class="k">public</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">uint</span> <span class="n">local</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="nb">data</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>getter 函数具有外部（external）可见性。如果在内部访问 getter（即没有 <code>this.</code> ），它被认为一个状态变量。 如果使用外部访问（即用 <code>this.</code> ），它被认作为一个函数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="k">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">C</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">uint</span> <span class="k">public</span> <span class="nb">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">x</span><span class="p">()</span> <span class="k">public</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">data</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// 内部访问
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">uint</span> <span class="n">val</span> <span class="o">=</span> <span class="nb">this</span><span class="p">.</span><span class="nb">data</span><span class="p">();</span> <span class="c1">// 外部访问
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果你有一个数组类型的 <code>public</code> 状态变量，那么你只能通过生成的 getter 函数访问数组的单个元素。 这个机制以避免返回整个数组时的高成本gas。 可以使用如 <code>data(0)</code> 用于指定参数要返回的单个元素。 如果要在一次调用中返回整个数组，则需要写一个函数，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="k">pragma solidity</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">arrayExample</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// public state variable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">uint</span><span class="p">[]</span> <span class="k">public</span> <span class="n">myArray</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 指定生成的Getter 函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">  function myArray(uint i) public view returns (uint) {
+</span></span></span><span class="line"><span class="cl"><span class="cm">      return myArray[i];
+</span></span></span><span class="line"><span class="cl"><span class="cm">  }
+</span></span></span><span class="line"><span class="cl"><span class="cm">  */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 返回整个数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kd">function</span> <span class="nf">getArray</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">[]</span> <span class="k">memory</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">myArray</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>现在可以使用 <code>getArray()</code> 获得整个数组，而 <code>myArray(i)</code> 是返回单个元素。</p>
+<p>下一个例子稍微复杂一些：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="k">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">Complex</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">struct</span> <span class="nc">Data</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">uint</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">bytes3</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">mapping</span> <span class="p">(</span><span class="kt">uint</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="n">map</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">mapping</span> <span class="p">(</span><span class="kt">uint</span> <span class="o">=&gt;</span> <span class="kd">mapping</span><span class="p">(</span><span class="kt">bool</span> <span class="o">=&gt;</span> <span class="n">Data</span><span class="p">[]))</span> <span class="k">public</span> <span class="nb">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这将会生成以下形式的函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nf">data</span><span class="p">(</span><span class="kt">uint</span> <span class="n">arg1</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">arg2</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">arg3</span><span class="p">)</span> <span class="k">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">bytes3</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span> <span class="o">=</span> <span class="nb">data</span><span class="p">[</span><span class="n">arg1</span><span class="p">][</span><span class="n">arg2</span><span class="p">][</span><span class="n">arg3</span><span class="p">].</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">=</span> <span class="nb">data</span><span class="p">[</span><span class="n">arg1</span><span class="p">][</span><span class="n">arg2</span><span class="p">][</span><span class="n">arg3</span><span class="p">].</span><span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>请注意，因为没有好的方法来提供映射的键，所以结构中的映射被省略。</p>
+<h2 id="3-合约间调用" class="heading-element"><span>3. 合约间调用</span>
+  <a href="#3-%e5%90%88%e7%ba%a6%e9%97%b4%e8%b0%83%e7%94%a8" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>之前的实验合约间的调用没有成功，这次就仔细地研究一下合约间地调用机制。分为两种情况</p>
+<ol>
+<li>调用者和被调用者在一个sol文件中</li>
+<li>调用者和被调用者在不同的sol文件中</li>
+</ol>
+<p>本文提到的合约调用方法的实质是抽象合约的使用。</p>
+<h3 id="31-同sol文件的智能合约调用" class="heading-element"><span>3.1 同sol文件的智能合约调用</span>
+  <a href="#31-%e5%90%8csol%e6%96%87%e4%bb%b6%e7%9a%84%e6%99%ba%e8%83%bd%e5%90%88%e7%ba%a6%e8%b0%83%e7%94%a8" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>下面的智能合约中，Main和Add两个合约定义在一个Main.sol文件中，可以同时编译，然后逐个部署。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">pragma</span> <span class="nx">solidity</span> <span class="o">^</span><span class="mf">0.5</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">contract</span> <span class="nx">Main</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">Add</span> <span class="nx">add</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">address</span> <span class="nx">_m</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="nx">add</span> <span class="o">=</span> <span class="nx">Add</span><span class="p">(</span><span class="nx">_m</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">Addnumber</span><span class="p">()</span> <span class="kr">public</span> <span class="nx">view</span> <span class="nx">returns</span> <span class="p">(</span><span class="nx">uint</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">add</span><span class="p">.</span><span class="nx">add5</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">contract</span> <span class="nx">Add</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">add5</span><span class="p">(</span><span class="nx">uint</span> <span class="nx">s</span><span class="p">)</span> <span class="kr">public</span> <span class="nx">pure</span> <span class="nx">returns</span> <span class="p">(</span><span class="nx">uint</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="mi">5</span><span class="o">+</span><span class="nx">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>以使用Remix为例，点击编译按钮编译Main.sol文件，将会同时编译Main和Add两个合约。</p>
+<p><img loading="lazy" src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472178-e6294d00-025a-11ea-8b4b-41a53b471c18.png" alt="编译" srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472178-e6294d00-025a-11ea-8b4b-41a53b471c18.png?size=small, https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472178-e6294d00-025a-11ea-8b4b-41a53b471c18.png?size=medium 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472178-e6294d00-025a-11ea-8b4b-41a53b471c18.png?size=large 2x" data-title="编译" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后首先部署Add合约，因为Main合约的部署需要Add的合约地址作为参数。切换到部署和运行选项卡，选择Add合约，点击<code>Deploy</code>，成功部署后，复制合约地址。</p>
+<p><img loading="lazy" src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472256-0e18b080-025b-11ea-9a24-e324c82cd7b5.png" alt="deploy simple Add" srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472256-0e18b080-025b-11ea-9a24-e324c82cd7b5.png?size=small, https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472256-0e18b080-025b-11ea-9a24-e324c82cd7b5.png?size=medium 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472256-0e18b080-025b-11ea-9a24-e324c82cd7b5.png?size=large 2x" data-title="deploy simple Add" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>然后重新选择Main合约，填入Add合约地址作为参数，点击部署按钮。</p>
+<p><img loading="lazy" src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472285-1a047280-025b-11ea-8bb5-a1fb5c65574e.png" alt="deploy simple Main" srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472285-1a047280-025b-11ea-8bb5-a1fb5c65574e.png?size=small, https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472285-1a047280-025b-11ea-8bb5-a1fb5c65574e.png?size=medium 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472285-1a047280-025b-11ea-8bb5-a1fb5c65574e.png?size=large 2x" data-title="deploy simple Main" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>测试合约间调用，由合约内容可知，Main合约中的Addnumber函数调用了Add合约的add5函数，传入参数为10，得到的结果应为15。展开左侧的<code>Deployed Contracts</code>，点击Addnumber进行调用，结果如下。</p>
+<p><img loading="lazy" src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472220-f5a89600-025a-11ea-9d2a-b39c8e39a810.png" alt="call test" srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472220-f5a89600-025a-11ea-9d2a-b39c8e39a810.png?size=small, https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472220-f5a89600-025a-11ea-9d2a-b39c8e39a810.png?size=medium 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472220-f5a89600-025a-11ea-9d2a-b39c8e39a810.png?size=large 2x" data-title="call test" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="32-不同sol文件的智能合约调用" class="heading-element"><span>3.2 不同sol文件的智能合约调用</span>
+  <a href="#32-%e4%b8%8d%e5%90%8csol%e6%96%87%e4%bb%b6%e7%9a%84%e6%99%ba%e8%83%bd%e5%90%88%e7%ba%a6%e8%b0%83%e7%94%a8" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>这一次我们测试不同sol文件的智能合约调用，来一个复杂一点的，两个合约分别是Add.sol和Main.sol。</p>
+<p>Add.sol使用了一个结构体来定义数值，并通过映射定义查找表来寻找这个值。文件中定义了两个函数，numRegister用来向表中添加数值，addValue用来将从表中查到的指定值+5返回。之所以用这个结构是因为我们的项目里用到了，这里来测试一下可不可行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">pragma</span> <span class="nx">solidity</span> <span class="o">^</span><span class="mf">0.5</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">contract</span> <span class="nx">Add</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">struct</span> <span class="nx">Num</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">uint</span> <span class="nx">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mapping</span><span class="p">(</span><span class="nx">uint</span> <span class="p">=&gt;</span> <span class="nx">Num</span><span class="p">)</span> <span class="kr">public</span> <span class="nx">lookupTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nx">numRegister</span><span class="p">(</span><span class="nx">uint</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">uint</span> <span class="nx">_value</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">lookupTable</span><span class="p">[</span><span class="nx">key</span><span class="p">].</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">_value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nx">addValue</span><span class="p">(</span><span class="nx">uint</span> <span class="nx">key</span><span class="p">)</span> <span class="kr">public</span> <span class="nx">view</span> <span class="nx">returns</span> <span class="p">(</span><span class="nx">uint</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">lookupTable</span><span class="p">[</span><span class="nx">key</span><span class="p">].</span><span class="nx">value</span> <span class="o">+</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Main.sol没有多大变化</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">pragma</span> <span class="nx">solidity</span> <span class="o">^</span><span class="mf">0.5</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">contract</span> <span class="nx">Main</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">Add</span> <span class="nx">add</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">address</span> <span class="nx">_m</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="nx">add</span> <span class="o">=</span> <span class="nx">Add</span><span class="p">(</span><span class="nx">_m</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">Addnumber</span><span class="p">()</span> <span class="kr">public</span> <span class="nx">view</span> <span class="nx">returns</span> <span class="p">(</span><span class="nx">uint</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">add</span><span class="p">.</span><span class="nx">addValue</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">contract</span> <span class="nx">Add</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">function</span> <span class="nx">addValue</span><span class="p">(</span><span class="nx">uint</span> <span class="nx">key</span><span class="p">)</span> <span class="kr">public</span> <span class="nx">view</span> <span class="nx">returns</span> <span class="p">(</span><span class="nx">uint</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>仍然是先编译部署Add合约，部署后调用numRegister函数写入数值5，并调用addValue函数测试返回。</p>
+<p><img loading="lazy" src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472316-2d174280-025b-11ea-96a6-51af8dd4fd4c.png" alt="deploy comlex Add" srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472316-2d174280-025b-11ea-96a6-51af8dd4fd4c.png?size=small, https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472316-2d174280-025b-11ea-96a6-51af8dd4fd4c.png?size=medium 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472316-2d174280-025b-11ea-96a6-51af8dd4fd4c.png?size=large 2x" data-title="deploy comlex Add" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>接着编译部署Main合约，复制Add合约地址作为初始化参数，部署后调用Addnumber函数测试</p>
+<p><img loading="lazy" src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472331-399b9b00-025b-11ea-933f-8c03ff95c55a.png" alt="deploy comlex Main" srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472331-399b9b00-025b-11ea-933f-8c03ff95c55a.png?size=small, https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472331-399b9b00-025b-11ea-933f-8c03ff95c55a.png?size=medium 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472331-399b9b00-025b-11ea-933f-8c03ff95c55a.png?size=large 2x" data-title="deploy comlex Main" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<h3 id="33-总结" class="heading-element"><span>3.3 总结</span>
+  <a href="#33-%e6%80%bb%e7%bb%93" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>合约内的调用方法是相同的，都要先实例化，然后传入被调合约地址，接着才能调用。而写在不同sol文件中时，需要额外声明被调合约的抽象合约，有些文章中说使用<code>call</code>，<code>callcode</code>或<code>delegatecall</code>，但并不建议，因为这三个函数都是非常底层的函数，破坏了类型的安全，只能作为最后的手段使用。</p>
+<p>详细的解释参考了<a href="https://ethereum.stackexchange.com/questions/9733/calling-function-from-deployed-contract"target="_blank" rel="external nofollow noopener noreferrer">StackExchange-Calling function from deployed contract</a></p>
+<h2 id="4-函数修饰词pure和view" class="heading-element"><span>4. 函数修饰词pure和view</span>
+  <a href="#4-%e5%87%bd%e6%95%b0%e4%bf%ae%e9%a5%b0%e8%af%8dpure%e5%92%8cview" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>转自<a href="https://learnblockchain.cn/docs/solidity/contracts.html#view"target="_blank" rel="external nofollow noopener noreferrer">深入理解Solidity-函数</a></p>
+<p>这两个函数修饰词的作用是告诉编译器函数是否会读取/修改状态，view 表示保证不修改状态，pure 表示保证不读取也不修改状态。Solidity v0.4.17 之前没有这两个修饰词，而是使用 constant 关键字，和 view 的含义相同，不过在 v0.5.0 之后被移除，现在只能使用这两个 view 和 pure。</p>
+<h3 id="41-view-视图函数" class="heading-element"><span>4.1 view 视图函数</span>
+  <a href="#41-view-%e8%a7%86%e5%9b%be%e5%87%bd%e6%95%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>Getter 方法会被自动标记为 <code>view</code>，除此之外，一个 view 修饰的例子如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="k">pragma solidity</span>  <span class="o">&gt;=</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">C</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">f</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">b</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="p">(</span><span class="n">b</span> <span class="o">+</span> <span class="mi">42</span><span class="p">)</span> <span class="o">+</span> <span class="nb">now</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>view 保证函数不修改状态，以下操作会被认为是修改状态</p>
+<ol>
+<li>修改状态变量。</li>
+<li>产生事件。</li>
+<li>创建其它合约。</li>
+<li>使用 <code>selfdestruct</code>。</li>
+<li>通过调用发送以太币。</li>
+<li>调用任何没有标记为 <code>view</code> 或者 <code>pure</code> 的函数。</li>
+<li>使用低级调用。</li>
+<li>使用包含特定操作码的内联汇编。</li>
+</ol>
+<h3 id="42-pure-纯函数" class="heading-element"><span>4.2 pure 纯函数</span>
+  <a href="#42-pure-%e7%ba%af%e5%87%bd%e6%95%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>pure 保证不读取也不修改状态，不修改的定义上面已经提到，下面的操作被认为是读取状态</p>
+<ol>
+<li>读取状态变量。</li>
+<li>访问 <code>address(this).balance</code> 或者 <code>.balance</code>。</li>
+<li>访问 <code>block</code>，<code>tx</code>， <code>msg</code> 中任意成员 （除 <code>msg.sig</code> 和 <code>msg.data</code> 之外）。</li>
+<li>调用任何未标记为 <code>pure</code> 的函数。</li>
+<li>使用包含某些操作码的内联汇编。</li>
+</ol>
+<p>一个 pure 修饰的例子如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="k">pragma solidity</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">C</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">f</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">b</span><span class="p">)</span> <span class="k">public</span> <span class="k">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="p">(</span><span class="n">b</span> <span class="o">+</span> <span class="mi">42</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="5-浮点数处理" class="heading-element"><span>5. 浮点数处理</span>
+  <a href="#5-%e6%b5%ae%e7%82%b9%e6%95%b0%e5%a4%84%e7%90%86" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>首先声明，Solidity 中支持浮点数定义，但无法赋值和进行计算。文档中对其描述是「目前还不完全支持」，虽然这意味着以后可能会完全支持，但等不及了，下面记录几个可参考的资料。</p>
+<ol>
+<li>来自 <a href="https://ethereum.stackexchange.com/questions/83785/what-fixed-or-float-point-math-libraries-are-available-in-solidity"target="_blank" rel="external nofollow noopener noreferrer">ethereum stackexchange</a> 中的回答，介绍了一些可用的库；</li>
+<li><a href="https://github.com/abdk-consulting/abdk-libraries-solidity/blob/master/ABDKMathQuad.md"target="_blank" rel="external nofollow noopener noreferrer">ABDK Math Quad</a>，包含两个合约库，一个支持定点数，一个支持浮点数；</li>
+<li>Mikhail Vladimirov 的 <a href="https://medium.com/coinmonks/math-in-solidity-part-1-numbers-384c8377f26d"target="_blank" rel="external nofollow noopener noreferrer">Math in Solidity</a> 系列文章，介绍如何在 Solidity 中处理各种数学运算，写的非常棒。</li>
+</ol>
+<h2 id="6-地址类型" class="heading-element"><span>6. 地址类型</span>
+  <a href="#6-%e5%9c%b0%e5%9d%80%e7%b1%bb%e5%9e%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>在智能合约中显式传入地址类型时，可能会出现如下错误</p>
+<blockquote>
+<p>Address checksum</p>
+<p>This looks like an address but has an invalid checksum. If this is not used as an address, please prepend &lsquo;00&rsquo;.</p>
+</blockquote>
+<p>关于该问题的一个讨论见 <a href="https://github.com/ethereum/EIPs/issues/55"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/ethereum/EIPs/issues/55</a></p>
+<p>这是因为合约中现在使用地址类型必须做一个转换，不是简单的全部大写字母或小写字母，而是遵循一定的规则，这个规则见 <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-55.md"target="_blank" rel="external nofollow noopener noreferrer">ethereum/EIPs#55</a></p>
+<p>但是网上提供的解决方案一般是使用JS库中的转换函数，在智能合约中无法直接解决，好在，web3提供了一个<a href="https://web3-tools.netlify.com/"target="_blank" rel="external nofollow noopener noreferrer">在线API接口</a>，可以调用其<code>checkAddressChecksum</code>函数对地址进行转换，然后将转换后的结果直接用于合约代码。</p>
+<h2 id="7-gas-limit问题" class="heading-element"><span>7. Gas limit问题</span>
+  <a href="#7-gas-limit%e9%97%ae%e9%a2%98" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>在搭建的以太坊私链上进行智能合约部署时，出现了以下问题</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">INFO</span> <span class="p">[</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span><span class="o">|</span><span class="mi">13</span><span class="o">:</span><span class="mi">50</span><span class="o">:</span><span class="mf">11.690</span><span class="p">]</span> <span class="nx">Served</span> <span class="nx">eth_sendTransaction</span>               <span class="nx">reqid</span><span class="o">=</span><span class="mi">24</span> <span class="nx">t</span><span class="o">=</span><span class="mf">684.186</span><span class="nx">µs</span>    <span class="nx">err</span><span class="o">=</span><span class="s2">&#34;exceeds block gas limit&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Error</span><span class="o">:</span> <span class="nx">exceeds</span> <span class="nx">block</span> <span class="nx">gas</span> <span class="nx">limit</span> <span class="kc">undefined</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>出现该错误的原因如错误描述，是当前合约所需的gas超过了区块的最大gas。这可能与参数gasLimit有关。在创世区块的配置文件中，我们使用了默认的配置值，为<code>0x2fefd8</code>，转换为10进制即<code>3141592</code>。</p>
+<p>注：<a href="http://tool.oschina.net/hexconvert/"target="_blank" rel="external nofollow noopener noreferrer">在线转换工具</a></p>
+<h3 id="原因查找" class="heading-element"><span>原因查找</span>
+  <a href="#%e5%8e%9f%e5%9b%a0%e6%9f%a5%e6%89%be" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>因为部署智能合约之前已经进行过挖矿，区块链中已有数个区块，我们查询目前的gasLimit值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&gt;</span><span class="nx">eth</span><span class="p">.</span><span class="nx">getBlock</span><span class="p">(</span><span class="nx">eth</span><span class="p">.</span><span class="nx">blockNumber</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">difficulty</span><span class="o">:</span> <span class="mi">131072</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">extraData</span><span class="o">:</span> <span class="s2">&#34;0xd683010900846765746886676f312e3132856c696e7578&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">gasLimit</span><span class="o">:</span> <span class="mi">3147727</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">gasUsed</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">hash</span><span class="o">:</span> <span class="s2">&#34;0x7e03472bcad02f6e85a3cdb21cfba856da58a4955dd2b6d21e3b8561446ae390&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">logsBloom</span><span class="o">:</span> <span class="s2">&#34;0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">miner</span><span class="o">:</span> <span class="s2">&#34;0x79b43b2196723fff1485999aba45fda3e8b4df58&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mixHash</span><span class="o">:</span> <span class="s2">&#34;0x10a5130f4ea573f1f1599c11b8ade9ac3feb256c0414db1a277b7b63e8343d48&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">nonce</span><span class="o">:</span> <span class="s2">&#34;0x6bba1166a347ba0f&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">number</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">parentHash</span><span class="o">:</span> <span class="s2">&#34;0xed8c7febfc1ab5e4e388bd886be1182635e77b0047f530c93af4eb31f898bd7c&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">receiptsRoot</span><span class="o">:</span> <span class="s2">&#34;0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">sha3Uncles</span><span class="o">:</span> <span class="s2">&#34;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">size</span><span class="o">:</span> <span class="mi">534</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">stateRoot</span><span class="o">:</span> <span class="s2">&#34;0x741c086895803cc3f85c8e7fb738acfb42aa03a12a03edf246b1c14055123b78&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">timestamp</span><span class="o">:</span> <span class="mi">1552396507</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">totalDifficulty</span><span class="o">:</span> <span class="mi">263168</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">transactions</span><span class="o">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">transactionsRoot</span><span class="o">:</span> <span class="s2">&#34;0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">uncles</span><span class="o">:</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现此时区块的gasLimit值为<code>3147727</code>。</p>
+<p>查找我们部署的合约web3代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">testContract</span> <span class="o">=</span> <span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">contract</span><span class="p">([{</span><span class="s2">&#34;constant&#34;</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span><span class="s2">&#34;inputs&#34;</span><span class="o">:</span><span class="p">[{</span><span class="s2">&#34;name&#34;</span><span class="o">:</span><span class="s2">&#34;a&#34;</span><span class="p">,</span><span class="s2">&#34;type&#34;</span><span class="o">:</span><span class="s2">&#34;uint256&#34;</span><span class="p">}],</span><span class="s2">&#34;name&#34;</span><span class="o">:</span><span class="s2">&#34;multiply&#34;</span><span class="p">,</span><span class="s2">&#34;outputs&#34;</span><span class="o">:</span><span class="p">[{</span><span class="s2">&#34;name&#34;</span><span class="o">:</span><span class="s2">&#34;d&#34;</span><span class="p">,</span><span class="s2">&#34;type&#34;</span><span class="o">:</span><span class="s2">&#34;uint256&#34;</span><span class="p">}],</span><span class="s2">&#34;payable&#34;</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="s2">&#34;stateMutability&#34;</span><span class="o">:</span><span class="s2">&#34;pure&#34;</span><span class="p">,</span><span class="s2">&#34;type&#34;</span><span class="o">:</span><span class="s2">&#34;function&#34;</span><span class="p">}]);</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">test</span> <span class="o">=</span> <span class="nx">testContract</span><span class="p">.</span><span class="k">new</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">   <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="nx">from</span><span class="o">:</span> <span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">accounts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+</span></span><span class="line"><span class="cl">     <span class="nx">data</span><span class="o">:</span> <span class="s1">&#39;0x6080604052348015600f57600080fd5b5060a58061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063c6888fa114602d575b600080fd5b605660048036036020811015604157600080fd5b8101908080359060200190929190505050606c565b6040518082815260200191505060405180910390f35b600060078202905091905056fea165627a7a72305820028fd57d2fec4df9170b559fe84245ed4f81bc40f3cad3c185c8035501bdb3220029&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">     <span class="nx">gas</span><span class="o">:</span> <span class="s1">&#39;4700000&#39;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">contract</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">contract</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">contract</span><span class="p">.</span><span class="nx">address</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Contract mined! address: &#39;</span> <span class="o">+</span> <span class="nx">contract</span><span class="p">.</span><span class="nx">address</span> <span class="o">+</span> <span class="s1">&#39; transactionHash: &#39;</span> <span class="o">+</span> <span class="nx">contract</span><span class="p">.</span><span class="nx">transactionHash</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="p">})</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现合约所需gas为<code>4700000</code>，比gasLimit值高，所以部署失败，出现了<code>Error: exceeds block gas limit undefined</code>的错误</p>
+<h3 id="解决办法" class="heading-element"><span>解决办法</span>
+  <a href="#%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>第一种解决办法是修改<code>genesis.json</code>中的gasLimit参数，设置一个更大的值。但这样做需要重新构建网络，极为繁琐。</p>
+<p>另一种解决办法是通过geth命令的<code>--targetgaslimit</code>参数来调整gasLimit值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&gt;</span> <span class="o">--</span><span class="nx">targetgaslimit</span> <span class="mi">4712388</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里没有调整成功，提示原因是端口在运行，可能和docker有关，不知道怎么解决。</p>
+<p>该问题最后是通过调整web3中的gaslimit值解决的，因为这个简单的智能合约怎么看都不像能消耗4700000gas的样子，果然查询之后发现只消耗100000左右，于是将web3代码中的gaslimit调整到120000，重新部署，果然成功。</p>
+<p>一个关于gaslimit的解释见：<a href="https://tinycalf.github.io/2018/07/02/20180702-%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%9D%97gas%E4%B8%8A%E9%99%90%E5%8A%A8%E6%80%81%E8%B0%83%E6%95%B4%E7%A0%94%E7%A9%B6/"target="_blank" rel="external nofollow noopener noreferrer">以太坊Block Gaslimit动态调整机制分析</a></p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2020-05-04 00:00:00">Updated on 2020-05-04&nbsp;</span>
+      </div><div class="post-info-license">
+            <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+          </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="/2020/summary-of-smart-contract-knowledge-points/index.md" title="Read Markdown" class="link-to-markdown">Read Markdown</a></span></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Share on Pocket" data-sharer="pocket" data-url="http://localhost:1313/2020/summary-of-smart-contract-knowledge-points/"><i class="fa-brands fa-get-pocket fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/2020/summary-of-smart-contract-knowledge-points/" data-title="智能合约知识点总结"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" class="post-tag" title="Tags - 区块链">区块链</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/2020/algorithm-backtracking/" class="post-nav-item" rel="prev" title="算法-回溯"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>算法-回溯</a><a href="/2020/golang-interact-with-mysql/" class="post-nav-item" rel="next" title="Golang数据库编程">Golang数据库编程<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div class="post-reward">
+    <div class="comment"></div>
+    <input type="checkbox" class="reward-input" name="reward" id="fi-reward" hidden />
+    <label class="reward-button" for="fi-reward"><i class="fa-solid fa-qrcode fa-fw" aria-hidden="true"></i>Donate</label>
+    <div class="reward-ways" data-mode="static"><div><img loading="lazy" src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/alipay.png" alt="Alipay" data-title="Alipay" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span>Alipay</span>
+          </div><div><img loading="lazy" src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/wechatpay.png" alt="WeChat Pay" data-title="WeChat Pay" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span>WeChat Pay</span>
+          </div></div>
+  </div></article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contents"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.13"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2018 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><a href="https://github.com/songdehuacool/songdehuacool.github.io" title="View source on GitHub"target="_blank" rel="external nofollow" class="github-corner right d-none-mobile"><svg viewBox="0 0 250 250" aria-hidden="true" width="56" height="56"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
+    <div class="noscript-warning">This website works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="preload" href="/lib/katex/katex.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/twemoji/twemoji.min.js" defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"enable":false},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"No results found","snippetLength":30,"threshold":0.3,"useExtendedSearch":false},"twemoji":true,"version":"v0.3.13"};console.log('Page config:', window.config);</script><script src="/js/theme.min.js" defer></script></body>
+</html>
