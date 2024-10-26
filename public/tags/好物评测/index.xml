@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>好物评测 on songdehua blog</title>
+    <title>好物评测 - Tag - songdehua blog</title>
     <link>http://localhost:1313/tags/%E5%A5%BD%E7%89%A9%E8%AF%84%E6%B5%8B/</link>
-    <description>Recent content in 好物评测 on songdehua blog</description>
-    <generator>Hugo</generator>
+    <description>书藏的个人博客，记录学习，记录生活</description>
+    <generator>Hugo 0.135.0 &amp; FixIt v0.3.13</generator>
     <language>en</language>
     <lastBuildDate>Fri, 18 Jun 2021 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/%E5%A5%BD%E7%89%A9%E8%AF%84%E6%B5%8B/index.xml" rel="self" type="application/rss+xml" />
@@ -13,6 +13,7 @@
       <link>http://localhost:1313/2021/mi-selfie-stick/</link>
       <pubDate>Fri, 18 Jun 2021 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2021/mi-selfie-stick/</guid>
+      <category domain="http://localhost:1313/categories/%E6%88%91%E6%89%80%E7%83%AD%E7%88%B1%E7%9A%84%E7%94%9F%E6%B4%BB%E5%95%8A/">我所热爱的生活啊</category>
       <description>&lt;p&gt;:shopping_cart: 入手渠道：京东&lt;/p&gt;&#xA;&lt;p&gt;:moneybag: 参考价格：50.81 元&lt;/p&gt;&#xA;&lt;hr&gt;</description>
     </item>
     <item>
@@ -20,6 +21,7 @@
       <link>http://localhost:1313/2021/gauss-87g-dual-mode-mechanical-keyboard/</link>
       <pubDate>Sun, 06 Jun 2021 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2021/gauss-87g-dual-mode-mechanical-keyboard/</guid>
+      <category domain="http://localhost:1313/categories/%E6%88%91%E6%89%80%E7%83%AD%E7%88%B1%E7%9A%84%E7%94%9F%E6%B4%BB%E5%95%8A/">我所热爱的生活啊</category>
       <description>&lt;p&gt;:shopping_cart: 入手渠道：京东&lt;/p&gt;&#xA;&lt;p&gt;:moneybag: 参考价格：380元&lt;/p&gt;&#xA;&lt;hr&gt;</description>
     </item>
     <item>
@@ -27,6 +29,7 @@
       <link>http://localhost:1313/2021/mg-gray-transparent-mesh-pencil-case/</link>
       <pubDate>Wed, 02 Jun 2021 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2021/mg-gray-transparent-mesh-pencil-case/</guid>
+      <category domain="http://localhost:1313/categories/%E6%88%91%E6%89%80%E7%83%AD%E7%88%B1%E7%9A%84%E7%94%9F%E6%B4%BB%E5%95%8A/">我所热爱的生活啊</category>
       <description>&lt;p&gt;:shopping_cart: 入手渠道：京东&lt;/p&gt;&#xA;&lt;p&gt;:moneybag: 参考价格：5.5 元&lt;/p&gt;&#xA;&lt;hr&gt;</description>
     </item>
     <item>
@@ -34,6 +37,7 @@
       <link>http://localhost:1313/2021/keep-bracelet-b2-member-version-review/</link>
       <pubDate>Mon, 26 Apr 2021 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2021/keep-bracelet-b2-member-version-review/</guid>
+      <category domain="http://localhost:1313/categories/%E6%88%91%E6%89%80%E7%83%AD%E7%88%B1%E7%9A%84%E7%94%9F%E6%B4%BB%E5%95%8A/">我所热爱的生活啊</category>
       <description>&lt;p&gt;:shopping_cart: 入手渠道：Keep商城&lt;/p&gt;&#xA;&lt;p&gt;:moneybag: 参考价格：108 元（手环独立售价 99 元 + 首月会员 9 元）&lt;/p&gt;&#xA;&lt;hr&gt;</description>
     </item>
   </channel>

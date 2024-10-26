@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>写作 on songdehua blog</title>
+    <title>写作 - Tag - songdehua blog</title>
     <link>http://localhost:1313/tags/%E5%86%99%E4%BD%9C/</link>
-    <description>Recent content in 写作 on songdehua blog</description>
-    <generator>Hugo</generator>
+    <description>书藏的个人博客，记录学习，记录生活</description>
+    <generator>Hugo 0.135.0 &amp; FixIt v0.3.13</generator>
     <language>en</language>
     <lastBuildDate>Fri, 29 Jan 2021 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/%E5%86%99%E4%BD%9C/index.xml" rel="self" type="application/rss+xml" />
@@ -13,6 +13,7 @@
       <link>http://localhost:1313/2021/some-writing-skills-in-sspai/</link>
       <pubDate>Fri, 29 Jan 2021 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2021/some-writing-skills-in-sspai/</guid>
+      <category domain="http://localhost:1313/categories/%E6%88%91%E6%89%80%E7%83%AD%E7%88%B1%E7%9A%84%E7%94%9F%E6%B4%BB%E5%95%8A/">我所热爱的生活啊</category>
       <description>&lt;p&gt;记录一些写作和排版时的小技巧，不止用于少数派，博客里也可以用到，一般都是阅读的适合从别人的文章里发现的。&lt;/p&gt;</description>
     </item>
   </channel>

@@ -172,7 +172,7 @@ enableEmoji = true
     [params.header.title]
       # URL of the LOGO
       # logo = "/images/avatar.png"
-      logo = "https://picped-1301226557.cos.ap-beijing.myqcloud.com/avatar.png"
+      logo = "/images/avatar.png"
       # title name
       name = "songdehua's Blog"
       # you can add extra information before the name (HTML format is supported), such as icons
@@ -380,7 +380,7 @@ enableEmoji = true
     Douyin = ""
     TikTok = ""
     Phone = ""
-    Email = "liuyang8443@qq.com"
+    Email = "200637086@qq.com"
     RSS = true
 
   # FixIt 0.2.0 | CHANGED Page config
@@ -499,8 +499,8 @@ enableEmoji = true
       # FixIt 0.2.18 | NEW display mode of QR code images, optional values: ["static", "fixed"], default: `static`
       mode = "static"
       [params.page.reward.ways]
-        wechatpay = "https://picped-1301226557.cos.ap-beijing.myqcloud.com/wechatpay.png"
-        alipay = "https://picped-1301226557.cos.ap-beijing.myqcloud.com/alipay.png"
+        wechatpay = ""
+        alipay = ""
         # wechatpay = "/images/wechatpay.png"
         # alipay = "/images/alipay.png"
         # paypal = "/images/paypal.png"
@@ -903,7 +903,7 @@ enableEmoji = true
   email = "liuyang8443@qq.com"
   link = ""
   # avatar = "/images/avatar.png" # FixIt 0.2.18 | 新增
-  avatar = "https://picped-1301226557.cos.ap-beijing.myqcloud.com/avatar.png"
+  avatar = "/images/avatar.png"
 
 # 网站地图配置
 [sitemap]

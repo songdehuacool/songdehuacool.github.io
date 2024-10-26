@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>新知识学习 on songdehua blog</title>
+    <title>新知识学习 - Tag - songdehua blog</title>
     <link>http://localhost:1313/tags/%E6%96%B0%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/</link>
-    <description>Recent content in 新知识学习 on songdehua blog</description>
-    <generator>Hugo</generator>
+    <description>书藏的个人博客，记录学习，记录生活</description>
+    <generator>Hugo 0.135.0 &amp; FixIt v0.3.13</generator>
     <language>en</language>
     <lastBuildDate>Sat, 27 Apr 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/%E6%96%B0%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
@@ -13,6 +13,7 @@
       <link>http://localhost:1313/2024/macro-economy/</link>
       <pubDate>Sat, 27 Apr 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2024/macro-economy/</guid>
+      <category domain="http://localhost:1313/categories/%E6%88%91%E5%AF%B9%E4%B8%96%E7%95%8C%E7%9A%84%E5%A5%BD%E5%A5%87%E5%BF%83%E5%91%90/">我对世界的好奇心呐</category>
       <description>&lt;p&gt;宏观经济的学习笔记，包括财政政策、货币政策、各国经济史。&lt;/p&gt;</description>
     </item>
     <item>
@@ -20,6 +21,7 @@
       <link>http://localhost:1313/2021/basic-knowledge-of-cooking-seasoning/</link>
       <pubDate>Mon, 26 Apr 2021 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2021/basic-knowledge-of-cooking-seasoning/</guid>
+      <category domain="http://localhost:1313/categories/%E6%88%91%E5%AF%B9%E4%B8%96%E7%95%8C%E7%9A%84%E5%A5%BD%E5%A5%87%E5%BF%83%E5%91%90/">我对世界的好奇心呐</category>
       <description>&lt;p&gt;主要目的是学会如何描述食用某种食物时自己的感觉，因此学习的重点主要在味觉、嗅觉、食物口感具体有些什么，使用的书籍是中国纺织出版社的《烹饪调味学》，作者为毛羽扬。&lt;/p&gt;</description>
     </item>
     <item>
@@ -27,6 +29,7 @@
       <link>http://localhost:1313/2021/picture-knowledge/</link>
       <pubDate>Tue, 23 Mar 2021 15:32:00 +0800</pubDate>
       <guid>http://localhost:1313/2021/picture-knowledge/</guid>
+      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
       <description>&lt;p&gt;由于博客的原因，每周都需要进行图片处理，所以这里对相关知识做一个总结，包括图片格式、图片压缩的原理、水印、工具、最合适的大小等等。&lt;/p&gt;</description>
     </item>
     <item>
@@ -34,6 +37,7 @@
       <link>http://localhost:1313/2020/basic-knowledge-of-colorology/</link>
       <pubDate>Wed, 02 Dec 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/basic-knowledge-of-colorology/</guid>
+      <category domain="http://localhost:1313/categories/%E6%88%91%E5%AF%B9%E4%B8%96%E7%95%8C%E7%9A%84%E5%A5%BD%E5%A5%87%E5%BF%83%E5%91%90/">我对世界的好奇心呐</category>
       <description>&lt;p&gt;电影、室内设计、服装搭配等等，色彩在我们的生活中实在是再寻常不过了，学习一些色彩学的基础知识相信在以后的生活中会非常有用。&lt;/p&gt;</description>
     </item>
     <item>
@@ -41,6 +45,7 @@
       <link>http://localhost:1313/2020/basic-concepts-of-photography/</link>
       <pubDate>Mon, 09 Nov 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/basic-concepts-of-photography/</guid>
+      <category domain="http://localhost:1313/categories/%E6%88%91%E5%AF%B9%E4%B8%96%E7%95%8C%E7%9A%84%E5%A5%BD%E5%A5%87%E5%BF%83%E5%91%90/">我对世界的好奇心呐</category>
       <description>&lt;p&gt;有时候走在路上，突然就想把某个看到的画面记录下来，物品整理的时候，也希望能拍摄一张好的静物照，还有和朋友、家人在一起的时候，比如元宵夜，拍一张黑咕隆咚的照片总归让人不开心，这三点就是我想学习手机摄影的主要原因。因为刚入门，看的书是电子工业出版社的《手机摄影必修课》，本篇先学一些摄影的基本概念。&lt;/p&gt;</description>
     </item>
   </channel>
