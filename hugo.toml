@@ -274,13 +274,13 @@ enableEmoji = true
       gravatarEmail = ""
       # URL of avatar shown in home page
       # avatarURL = "/images/avatar.png"
-      avatarURL = "https://picped-1301226557.cos.ap-beijing.myqcloud.com/avatar.png"
+      avatarURL = "/images/avatar.png"
       # FixIt 0.2.17 | NEW identifier of avatar menu link
       avatarMenu = ""
       # FixIt 0.2.7 | CHANGED title shown in home page (HTML format is supported)
       title = ""
       # subtitle shown in home page
-      subtitle = "随心所向，素履以往"
+      subtitle = "看山是山，看水是水；看山不是山，看水不是水；看山还是山，看水还是水；"
       # whether to use typeit animation for subtitle
       typeit = true
       # whether to show social links
