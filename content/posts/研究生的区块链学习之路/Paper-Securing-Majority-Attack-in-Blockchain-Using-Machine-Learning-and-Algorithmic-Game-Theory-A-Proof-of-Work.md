@@ -3,6 +3,7 @@ title: Securing Majority-Attack in Blockchain Using Machine Learning
 date: 2019-10-10
 tags: [论文笔记]
 categories: [研究生的区块链学习之路]
+draft: true
 ---
 
 Dey S. A Proof of Work: Securing Majority-Attack in Blockchain Using Machine Learning and Algorithmic Game Theory[J]. International Journal of Wireless and Microwave Technologies, 2018, 8(5): 1-9.

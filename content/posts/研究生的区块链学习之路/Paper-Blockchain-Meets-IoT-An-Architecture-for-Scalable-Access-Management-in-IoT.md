@@ -3,7 +3,8 @@ title: Blockchain Meets IoT：An Architecture for Scalable Access Management in 
 date: 2018-12-28T15:42:00+08:00
 lastmod: 2020-02-20
 tags: [论文笔记]
-categories: [研究生的区块链学习之路] 
+categories: [研究生的区块链学习之路]
+draft: true
 ---
 
 Novo O. Blockchain Meets IoT: An Architecture for Scalable Access Management in IoT[J]. IEEE Internet of Things Journal, 2018, 5(2): 1184-1195.

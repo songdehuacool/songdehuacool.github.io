@@ -165,7 +165,16 @@
     </a><a href="mailto:200637086@qq.com" title="Email"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a><a href="/index.xml" title="RSS"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/summary-of-problems-and-optimization-considerations-about-prototype-system/">研究记录8-原始论文问题总结及优化考虑</a>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/use-truffle-develop-ethereum-project/">以太坊开发8-Truffle框架安装使用</a>
+  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-11-06 00:00:00'>published on <time datetime="2019-11-06">2019-11-06</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/" class="post-category" title="Category - 研究生的区块链学习之路"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 研究生的区块链学习之路</a></span></div><div class="content"><p>Truffle和Ganache的安装使用</p>
+<h4 id="1-安装truffle" class="heading-element"><span>1. 安装Truffle</span>
+  <a href="#1-%e5%ae%89%e8%a3%85truffle" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>在Ubuntu18.04 下安装运行，要求Node.js版本高于v8.9.4</p></div><div class="post-footer">
+    <a href="/2019/use-truffle-develop-ethereum-project/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/' class="post-tag">区块链</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/summary-of-problems-and-optimization-considerations-about-prototype-system/">研究记录8-原始论文问题总结及优化考虑</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-10-31 00:00:00'>published on <time datetime="2019-10-31">2019-10-31</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/" class="post-category" title="Category - 研究生的区块链学习之路"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 研究生的区块链学习之路</a></span></div><div class="content"><p>本文介绍在论文复现过程中发现的一些问题和自己产生的一些想法。与原论文<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>设计架构的对比可以查看本文最后的对比表，<a href="#%e6%80%bb%e7%bb%93">点这里</a> 直接跳转。</p>
 <h3 id="1-应用场景思考" class="heading-element"><span>1. 应用场景思考</span>
@@ -174,10 +183,6 @@
   </a>
 </h3><p>考虑一个高层次的抽象结构，IBFT 共识最初是应对银行场景提出的，具有更高的可管理性和吞吐量，更低的延迟和最终一致性，但没有考虑验证者的可扩展性，而且 Quorum 是基于以太坊开发的并支持智能合约，这些特性是适合于工业场景的。</p></div><div class="post-footer">
     <a href="/2019/summary-of-problems-and-optimization-considerations-about-prototype-system/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95/' class="post-tag">科研记录</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/golang-syntax-4-operators-and-flow-control/">Golang语法基础4-运算符与流程控制</a>
-  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-10-29 00:00:00'>published on <time datetime="2019-10-29">2019-10-29</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/" class="post-category" title="Category - 爱编程爱技术的孩子"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 爱编程爱技术的孩子</a></span></div><div class="content"><p>本文介绍 Golang 中的运算符和流程控制</p></div><div class="post-footer">
-    <a href="/2019/golang-syntax-4-operators-and-flow-control/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/golang/' class="post-tag">Golang</a></div></div>
 </article><ul class="pagination"><li class="page-item">
           <span class="page-link">
             <a href="/">1</a>
@@ -208,7 +213,7 @@
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item">
           <span class="page-link">
-            <a href="/page/173/">173</a>
+            <a href="/page/174/">174</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.13"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>

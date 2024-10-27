@@ -2,7 +2,8 @@
 title: A Blockchain-Based Solution for Enhancing Security and Privacy in Smart Factory
 date: 2019-05-24T21:18:00
 tags: [论文笔记]
-categories: [研究生的区块链学习之路] 
+categories: [研究生的区块链学习之路]
+draft: true
 ---
 
 Wan J, Li J, Imran M, et al. A Blockchain-Based Solution for Enhancing Security and Privacy in Smart Factory[J]. IEEE Transactions on Industrial Informatics, 2019.

@@ -2,7 +2,8 @@
 title: Block Chain based Intelligent Industrial Network (DSDIN)
 date: 2018-12-14T08:37:00+08:00
 tags: [论文笔记]
-categories: [研究生的区块链学习之路] 
+categories: [研究生的区块链学习之路]
+draft: true
 ---
 
 Author：Barco You, Matthias Hub, Mengzhe You, Bo Xu, Mingzhi Yu and Ican Uemlianin

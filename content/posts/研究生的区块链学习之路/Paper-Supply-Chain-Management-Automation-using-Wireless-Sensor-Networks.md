@@ -2,7 +2,8 @@
 title: Supply Chain Management Automation using Wireless Sensor Networks
 date: 2020-04-20
 tags: [论文笔记]
-categories: [研究生的区块链学习之路] 
+categories: [研究生的区块链学习之路]
+draft: true
 ---
 
 L. Evers and P. Havinga, “Supply Chain Management Automation using Wireless Sensor Networks,” in *2007 IEEE Internatonal Conference on Mobile Adhoc and Sensor Systems*, Pisa, Italy, Oct. 2007, pp. 1–3, doi: [10.1109/MOBHOC.2007.4428689](https://doi.org/10.1109/MOBHOC.2007.4428689).

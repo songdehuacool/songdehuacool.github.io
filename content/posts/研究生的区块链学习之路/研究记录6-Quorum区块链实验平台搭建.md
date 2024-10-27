@@ -4,7 +4,8 @@ date: 2019-10-02
 lastmod: 2020-11-24
 tags: [科研记录]
 categories: [研究生的区块链学习之路]
-slug: build Quorum private blockchain network 
+slug: build Quorum private blockchain network
+draft: true
 ---
 
 上篇文章已经确定了使用 Quorum 区块链，本文记录搭建 Quorum 私有区块链网络的过程。值得一提的是，相比于之前区块链平台搭建的尝试，本篇所述内容已经是一个完整无冗余的方案，后续对区块链平台搭建过程的优化，更多的是根据具体情况进行取舍，以及使用新出的一些更好用的工具。

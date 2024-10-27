@@ -2,7 +2,8 @@
 title: SEC-BlockEdge Security Threats in Blockchain-Edge based IIoT Network
 date: 2019-10-24
 tags: [论文笔记]
-categories: [研究生的区块链学习之路] 
+categories: [研究生的区块链学习之路]
+draft: true
 ---
 
 Kumar, Tanesh & Braeken, An & Ramani, Vidhya & Ahmad, Ijaz & Harjula, Erkki & Ylianttila, Mika. (2019). SEC-BlockEdge: Security Threats in Blockchain-Edge based Industrial IoT Networks.

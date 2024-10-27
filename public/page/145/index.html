@@ -165,7 +165,16 @@
     </a><a href="mailto:200637086@qq.com" title="Email"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a><a href="/index.xml" title="RSS"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/geth-console-command/">以太坊开发4-Geth Console命令</a>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/the-way-to-connect-to-the-network-about-ethereum-node/">以太坊开发5-以太坊节点连接到网络的几种方式</a>
+  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-03-12 08:33:00'>published on <time datetime="2019-03-12">2019-03-12</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/" class="post-category" title="Category - 研究生的区块链学习之路"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 研究生的区块链学习之路</a></span></div><div class="content"><p>文章翻译自：<a href="https://github.com/ethereum/go-ethereum/wiki/Connecting-to-the-network"target="_blank" rel="external nofollow noopener noreferrer">Connecting to the network</a></p>
+<h3 id="如何寻找对等节点" class="heading-element"><span>如何寻找对等节点</span>
+  <a href="#%e5%a6%82%e4%bd%95%e5%af%bb%e6%89%be%e5%af%b9%e7%ad%89%e8%8a%82%e7%82%b9" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>在初始化时，geth会使用一组记录在源码中的bootstrap节点来连接。要指定这些节点，只需使用<code>--bootnodes</code>选项，并使用逗号分隔参数，举例如下：</p></div><div class="post-footer">
+    <a href="/2019/the-way-to-connect-to-the-network-about-ethereum-node/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/' class="post-tag">区块链</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/geth-console-command/">以太坊开发4-Geth Console命令</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-03-08 10:27:00'>published on <time datetime="2019-03-08">2019-03-08</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/" class="post-category" title="Category - 研究生的区块链学习之路"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 研究生的区块链学习之路</a></span></div><div class="content"><p>Geth Console是一个交互式的JavaScript执行环境，其中<code>&gt;</code>是命令提示符。在这个环境里也内置了一些用来操作以太坊的JavaScript对象，可以直接使用这些对象。这些对象主要包括：</p>
 <ul>
@@ -178,42 +187,6 @@
 <li>web3：包含了以上对象，还包含一些单位换算的方法。</li>
 </ul></div><div class="post-footer">
     <a href="/2019/geth-console-command/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/' class="post-tag">区块链</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/geth-client-use/">以太坊开发3-Geth客户端命令</a>
-  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-03-08 09:26:00'>published on <time datetime="2019-03-08">2019-03-08</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/" class="post-category" title="Category - 研究生的区块链学习之路"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 研究生的区块链学习之路</a></span></div><div class="content"><p>Geth是以太坊智能合约开发工具，是一个命令行工具，所以熟悉其命令参数有助于提高开发效率。本文是geth help的翻译，基于geth 1.8.11-stable版本。</p>
-<p>github的项目wiki也有一份命令说明：<a href="https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options"target="_blank" rel="external nofollow noopener noreferrer">Command Line Options</a></p>
-<h3 id="参数详解" class="heading-element"><span>参数详解</span>
-  <a href="#%e5%8f%82%e6%95%b0%e8%af%a6%e8%a7%a3" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h3><h4 id="命令用法" class="heading-element"><span>命令用法</span>
-  <a href="#%e5%91%bd%e4%bb%a4%e7%94%a8%e6%b3%95" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">geth <span class="o">[</span>选项<span class="o">]</span> 命令 <span class="o">[</span>命令选项<span class="o">]</span> <span class="o">[</span>参数…<span class="o">]</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="版本" class="heading-element"><span>版本</span>
-  <a href="#%e7%89%88%e6%9c%ac" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">1.8.11-stable</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="命令" class="heading-element"><span>命令</span>
-  <a href="#%e5%91%bd%e4%bb%a4" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h4><p>即“命令用法”部分<code>命令</code>字段的内容，是geth的主体功能</p></div><div class="post-footer">
-    <a href="/2019/geth-client-use/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/' class="post-tag">区块链</a></div></div>
 </article><ul class="pagination"><li class="page-item">
           <span class="page-link">
             <a href="/">1</a>
@@ -244,7 +217,7 @@
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item">
           <span class="page-link">
-            <a href="/page/173/">173</a>
+            <a href="/page/174/">174</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.13"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>

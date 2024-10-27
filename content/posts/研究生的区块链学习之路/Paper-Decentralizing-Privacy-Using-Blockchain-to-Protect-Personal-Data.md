@@ -2,7 +2,8 @@
 title: Decentralizing Privacy：Using Blockchain to Protect Personal Data
 date: 2019-02-14T09:50:00+08:00
 tags: [论文笔记]
-categories: [研究生的区块链学习之路] 
+categories: [研究生的区块链学习之路]
+draft: true
 ---
 
 Zyskind G, Nathan O, Pentland A, et al. Decentralizing Privacy: Using Blockchain to Protect Personal Data[C]. ieee symposium on security and privacy, 2015: 180-184.

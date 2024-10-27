@@ -5,6 +5,7 @@ lastmod: 2020-03-13
 tags: [科研记录]
 categories: [研究生的区块链学习之路] 
 slug: introduction to zotero
+draft: true
 ---
 
 在文献管理方面的需求包括：

@@ -2,7 +2,8 @@
 title: Bubbles of Trust：a decentralized Blockchain-based authentication system for IoT
 date: 2019-01-03T19:26:00+08:00
 tags: [论文笔记]
-categories: [研究生的区块链学习之路] 
+categories: [研究生的区块链学习之路]
+draft: true
 ---
 
 Author：Mohamed Tahar Hammi, Badis Hammi, Patrick Bellot, Ahmed Serhrouchni

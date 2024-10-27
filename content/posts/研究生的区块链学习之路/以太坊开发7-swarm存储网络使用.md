@@ -5,6 +5,7 @@ lastmod: 2020-11-11
 tags: [区块链]
 categories: [研究生的区块链学习之路]
 slug: swarm storage network using
+draft: true
 ---
 
 说实话，swarm的资料比较难找，倒是IPFS的比较多一点。最后只在[Medium](http://medium.com/)找到了一些，本篇文章就是在实践其中的一些项目，并通过这样来学习swarm。

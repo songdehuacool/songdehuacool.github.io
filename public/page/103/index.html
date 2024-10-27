@@ -165,7 +165,16 @@
     </a><a href="mailto:200637086@qq.com" title="Email"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a><a href="/index.xml" title="RSS"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/">Linux系统时间同步</a>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/golang-syntax-11-error-and-panic/">Golang语法基础11-错误处理</a>
+  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-12-20 00:00:00'>published on <time datetime="2019-12-20">2019-12-20</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/" class="post-category" title="Category - 爱编程爱技术的孩子"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 爱编程爱技术的孩子</a></span></div><div class="content"><p>Go中有两套错误处理的方式</p>
+<ul>
+<li>普通错误： 在函数和方法中返回错误对象作为它们的唯一或最后一个返回值 ，如果返回nil，表示没有错误</li>
+<li>异常：使用panic和recover</li>
+</ul>
+<p>主调函数总是应该检查收到的错误，不要忽略，否则可能导致严重的后果。</p></div><div class="post-footer">
+    <a href="/2019/golang-syntax-11-error-and-panic/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/golang/' class="post-tag">Golang</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/">Linux系统时间同步</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-12-20 00:00:00'>published on <time datetime="2019-12-20">2019-12-20</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/" class="post-category" title="Category - 爱编程爱技术的孩子"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 爱编程爱技术的孩子</a></span></div><div class="content"><p>虚拟机长时间不开机，系统时间和当前时间不同步，导致很多操作被拒绝，这里记录如何主动同步系统的时间和网络时间</p>
 <h3 id="正文" class="heading-element"><span>正文</span>
@@ -174,18 +183,6 @@
   </a>
 </h3><p>设置系统时区</p></div><div class="post-footer">
     <a href="/2019/linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/linux/' class="post-tag">Linux</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/golang-syntax-10-goroutine-and-channel/">Golang语法基础10-协程与通道</a>
-  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-12-16 00:00:00'>published on <time datetime="2019-12-16">2019-12-16</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/" class="post-category" title="Category - 爱编程爱技术的孩子"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 爱编程爱技术的孩子</a></span></div><div class="content"><p>首先来回顾在操作系统中学过的一些概念。进程(processes)是程序执行的基本单位，运行在一个独立的内存地址空间中；一个进程由多个线程(threads)组成，线程的存在是为了能够同时执行多个任务，最大化利用时间，防止产生等待，线程间是共享内存地址空间的。从windows资源管理器看这一点能看的很明白，如下，每个应用程序是一个进程，Typora程序下有两个线程在同时运行。</p>
-<p><img loading="lazy" src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20191216_3EkjsJ.png" alt="进程与线程" srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20191216_3EkjsJ.png?size=small, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20191216_3EkjsJ.png?size=medium 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20191216_3EkjsJ.png?size=large 2x" data-title="进程与线程" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
-<p>并发是建立在多线程之上的概念，将CPU的执行时间划分为许多很小的间隔，多个线程不断地切换执行，从上层看起来就像在同时执行一样，但本质上依然是线性的。并行则是程序在某个特定的事件同时运行在多个CPU上，多核处理器为并行提供了可能。因此，并发也可能是并行的。</p>
-<p>操作系统课程中一个最主要的问题就是多线程对共享内存空间的访问，我们学到的解决方式是通过加互斥锁来实现，但在设计实现上是一个复杂的过程，非常容易出错，鉴于操作系统考试的惨痛经历，现在完全不想回忆。Go中的标准库<code>sync</code>中有一些工具可以用来实现互斥锁的相关操作，但它显然没有Go自身支持的Goroutines高效。</p>
-<h3 id="1-goroutines" class="heading-element"><span>1. Goroutines</span>
-  <a href="#1-goroutines" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h3><p>Go原生支持并发，依靠的是协程(goroutine)和通道(channel)两个概念。goroutines的概念是为了和processes、threads、coroutines等概念区别。其中coroutines也叫做协程，而且这才是常规意义下的协程，goroutines只在Go中有效。</p></div><div class="post-footer">
-    <a href="/2019/golang-syntax-10-goroutine-and-channel/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/golang/' class="post-tag">Golang</a></div></div>
 </article><ul class="pagination"><li class="page-item">
           <span class="page-link">
             <a href="/">1</a>
@@ -216,7 +213,7 @@
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item">
           <span class="page-link">
-            <a href="/page/173/">173</a>
+            <a href="/page/174/">174</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.13"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>

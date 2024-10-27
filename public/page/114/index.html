@@ -165,7 +165,11 @@
     </a><a href="mailto:200637086@qq.com" title="Email"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a><a href="/index.xml" title="RSS"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/ibft-consensus/">区块链学习6-IBFT共识</a>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/golang-syntax-4-operators-and-flow-control/">Golang语法基础4-运算符与流程控制</a>
+  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-10-29 00:00:00'>published on <time datetime="2019-10-29">2019-10-29</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/" class="post-category" title="Category - 爱编程爱技术的孩子"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 爱编程爱技术的孩子</a></span></div><div class="content"><p>本文介绍 Golang 中的运算符和流程控制</p></div><div class="post-footer">
+    <a href="/2019/golang-syntax-4-operators-and-flow-control/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/golang/' class="post-tag">Golang</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/ibft-consensus/">区块链学习6-IBFT共识</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-10-29 00:00:00'>published on <time datetime="2019-10-29">2019-10-29</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/" class="post-category" title="Category - 研究生的区块链学习之路"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 研究生的区块链学习之路</a></span></div><div class="content"><p>AMIS公司提出的 Istanbul Byzantine Fault Tolerance Consensus（简称IBFT或Istanbul BFT），是一个基于PBFT的交易一致性的共识。因为要考虑可能发生的异常，对共识的原始文档作一次通读，仔细理解一下。原始文档位于github <a href="https://github.com/ethereum/EIPs/issues/650"target="_blank" rel="external nofollow noopener noreferrer">ethereum/EIPs#650</a>，以下一边翻译一边阅读。</p>
 <p>注：EIP，即Ethereum Improvement Proposal，以太坊改进建议</p>
@@ -192,16 +196,6 @@
   </a>
 </h3><p>Istanbul BFT基于 <a href="http://pmg.csail.mit.edu/papers/osdi99.pdf"target="_blank" rel="external nofollow noopener noreferrer">PBFT</a> 算法，然而，原始的PBFT需要做一些调整来适应区块链。首先，没有具体的发送请求和等待结果的<code>client</code>的概念，所有的 validator 都可以视作<code>clients</code>。其次，为了保证区块链的运行，需要在每一轮共识中持续不断的选举出 proposer 来打包新的区块，同样，每轮共识的结果是一个可验证的区块而不是文件系统的一组读写操作。</p></div><div class="post-footer">
     <a href="/2019/ibft-consensus/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/' class="post-tag">区块链</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/sec-blockedge-security-threats-in-blockchain-edge-based-iiot-network/">SEC-BlockEdge Security Threats in Blockchain-Edge Based IIoT Network</a>
-  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-10-24 00:00:00'>published on <time datetime="2019-10-24">2019-10-24</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/" class="post-category" title="Category - 研究生的区块链学习之路"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 研究生的区块链学习之路</a></span></div><div class="content"><p>Kumar, Tanesh &amp; Braeken, An &amp; Ramani, Vidhya &amp; Ahmad, Ijaz &amp; Harjula, Erkki &amp; Ylianttila, Mika. (2019). SEC-BlockEdge: Security Threats in Blockchain-Edge based Industrial IoT Networks.</p>
-<p>以一个木屋建造场景作为IIoT用例，简要介绍了一个区块链-边缘计算框架。然后以此为基础讨论了关键的安全需求，每个层次中可能出现的安全威胁和解决方案。</p>
-<h3 id="木屋建造场景" class="heading-element"><span>木屋建造场景</span>
-  <a href="#%e6%9c%a8%e5%b1%8b%e5%bb%ba%e9%80%a0%e5%9c%ba%e6%99%af" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h3><p>作者使用的木屋用例包含了一些关键的工业流程。以下是该用例的6个主要阶段。</p></div><div class="post-footer">
-    <a href="/2019/sec-blockedge-security-threats-in-blockchain-edge-based-iiot-network/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/' class="post-tag">论文笔记</a></div></div>
 </article><ul class="pagination"><li class="page-item">
           <span class="page-link">
             <a href="/">1</a>
@@ -232,7 +226,7 @@
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item">
           <span class="page-link">
-            <a href="/page/173/">173</a>
+            <a href="/page/174/">174</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.13"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>

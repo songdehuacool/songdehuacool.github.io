@@ -3,7 +3,8 @@ title: A Novel Attribute-Based Access Control Scheme Using Blockchain for IoT
 date: 2019-06-03T15:51:00+08:00
 lastmod: 2020-03-27
 tags: [论文笔记]
-categories: [研究生的区块链学习之路] 
+categories: [研究生的区块链学习之路]
+draft: true
 ---
 
 Ding, Sheng, et al. "A Novel Attribute-Based Access Control Scheme Using Blockchain for IoT." *IEEE Access* 7 (2019): 38431-38441.

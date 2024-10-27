@@ -165,7 +165,34 @@
     </a><a href="mailto:200637086@qq.com" title="Email"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a><a href="/index.xml" title="RSS"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/smart-contract-based-access-control-for-the-internet-of-things/">Smart Contract-Based Access Control for the Internet of Things</a>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/hugo-blog-article-write/">Hugo搭建个人博客2-文章写作</a>
+  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-05-15 00:00:00'>published on <time datetime="2019-05-15">2019-05-15</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/" class="post-category" title="Category - 爱编程爱技术的孩子"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 爱编程爱技术的孩子</a></span></div><div class="content"><p>本文是 Hugo 使用记录的第二篇，介绍关于文章写作的一些问题，包括分类管理、排版技巧、特殊语法等，所有语法基于 LoveIt 主题。</p>
+<p>Hugo支持的文章格式为<code>.md</code>，即用markdown语言编辑的文章。所有的文章都放在<code>content/posts</code>目录下，支持级联目录，即在<code>posts</code>目录下按分类建立多个子文件夹放置文章，比如本博客的文章按分类放在四个子文件夹下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls posts
+</span></span><span class="line"><span class="cl">爱编程爱技术的孩子/  我所热爱的生活啊/
+</span></span><span class="line"><span class="cl">平日里的白日梦/      研究生的区块链学习之路/</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面是三条方便清晰管理和生成文章的目录结构建议:</p>
+<ul>
+<li>保持博客文章存放在 <code>content/posts</code> 目录, 例如: <code>content/posts/我的第一篇文章.md</code></li>
+<li>保持简单的静态页面存放在 <code>content</code> 目录, 例如: <code>content/about.md</code></li>
+<li>保持图片之类的媒体资源存放在 <code>static</code> 目录, 例如: <code>static/images/screenshot.png</code></li>
+</ul>
+<h3 id="1-前置参数" class="heading-element"><span>1. 前置参数</span>
+  <a href="#1-%e5%89%8d%e7%bd%ae%e5%8f%82%e6%95%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>Hugo 允许在文章内容前面添加 <code>yaml</code>, <code>toml</code> 或者 <code>json</code> 格式的前置参数，LoveIt 默认文章模板提供的前置参数有</p></div><div class="post-footer">
+    <a href="/2019/hugo-blog-article-write/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/' class="post-tag">博客搭建</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/smart-contract-based-access-control-for-the-internet-of-things/">Smart Contract-Based Access Control for the Internet of Things</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-05-14 19:10:00'>published on <time datetime="2019-05-14">2019-05-14</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/" class="post-category" title="Category - 研究生的区块链学习之路"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 研究生的区块链学习之路</a></span></div><div class="content"><p>Zhang Y, Kasahara S, Shen Y, et al. Smart contract-based access control for the internet of things[J]. IEEE Internet of Things Journal, 2018.</p>
 <p>被引：35次</p>
@@ -175,12 +202,6 @@
   </a>
 </h3><p>该论文调查了物联网中的访问控制问题。提出了一个基于智能合约的访问控制框架，该框架包括多个访问控制合约（access control contracts, ACCs），一个判决合约(Judge contract, JC)，一个注册合约（register contract, RC），来实现物联网中分布式和可信任的访问控制。每个ACC为一个subject-object提供一个访问控制方法，并通过检测subject行为实现基于预定义策略的静态访问权验证和动态的访问权验证。JC则通过接收来自ACC的恶意行为汇款，进行行为判决并返回相应的处罚策略，从而实现ACCs的动态验证。RC记录ACC和恶意行为判决方法信息，并提供管理这些方法的相关功能，如注册、更新和删除。最后使用一台台式机，一台笔记本，两台树莓派，基于以太坊智能合约实现了该架构。</p></div><div class="post-footer">
     <a href="/2019/smart-contract-based-access-control-for-the-internet-of-things/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/' class="post-tag">论文笔记</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/authentication-and-authorization-for-the-internet-of-things/">Authentication and Authorization for the Internet of Things</a>
-  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-05-14 15:14:00'>published on <time datetime="2019-05-14">2019-05-14</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/" class="post-category" title="Category - 研究生的区块链学习之路"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 研究生的区块链学习之路</a></span></div><div class="content"><p>Kim H, Lee E A. Authentication and Authorization for the Internet of Things[J]. IT Professional, 2017, 19(5): 27-33.</p>
-<p>核心：locally centralized, globally distributed的认证与授权</p>
-<p>引入：由2016年DNS服务商Dyn受到的DDoS攻击说明物联网带来的安全挑战。由2015年乌克兰电网受到的攻击说明物联网遭受攻击的后果更具破坏性。这两者反映的是，物联网设备缺乏相应的访问控制机制，导致面对攻击不够健壮。</p></div><div class="post-footer">
-    <a href="/2019/authentication-and-authorization-for-the-internet-of-things/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/' class="post-tag">论文笔记</a></div></div>
 </article><ul class="pagination"><li class="page-item">
           <span class="page-link">
             <a href="/">1</a>
@@ -211,7 +232,7 @@
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item">
           <span class="page-link">
-            <a href="/page/173/">173</a>
+            <a href="/page/174/">174</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.13"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>

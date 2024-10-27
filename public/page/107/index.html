@@ -165,14 +165,21 @@
     </a><a href="mailto:200637086@qq.com" title="Email"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a><a href="/index.xml" title="RSS"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/golang-syntax-8-struct-and-method/">Golang语法基础8-结构体与方法</a>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/blockchain-based-access-control-for-iot/">研究记录9-区块链用于物联网访问控制梳理</a>
+  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-11-29 00:00:00'>published on <time datetime="2019-11-29">2019-11-29</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/" class="post-category" title="Category - 研究生的区块链学习之路"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 研究生的区块链学习之路</a></span></div><div class="content"><p>这篇文章是关于区块链用于物联网访问控制的总结，有两个目的，一是梳理脑子里的思路，指导接下来的研究方向，二是作为之后要完成的小论文的参考。</p>
+<p>在开始正文前，我们首先需要来定一个基调：区块链和智能合约只是一种实现访问控制的手段，我们可以用它来实现 ACL，也可以用它来实现 RBAC、ABAC、CapBAC 等其它任何访问控制模型。研究过程中遇到的很多问题，比如属性和策略的定义方法、属性发现机制、策略挖掘机制、策略冲突解决机制等，说到底，都是传统领域中研究这些模型已经出现过的问题，通常已有成熟的解决方案，直接拿来用就好，但不应当作为一个创新点来讨论；另外，这些模型间自身的区别，比如 RBAC 比 ACL 好在哪里、ABAC 又解决了什么问题、CapBAC 解决了什么特殊领域的问题，依然是传统方向已经深入讨论的问题，甚至是这些模型的开创者就在论文中详细阐述过的，我们没有必要继续阐述，当然也不能作为自己的创新或优势，不能说我将 ABAC 与区块链结合，就比你的 RBAC 和区块链结合好，它们都有各自的适用场景。我们真正应该关心的，是区块链用于实现物联网访问控制有哪些好处，我们设计的方案如何充分发挥了这种结合的优势，又如何解决了它们结合所产生的问题，这才是创新点应当所在之处。</p>
+<p>还有一个需要明确的问题，是我在研究过程中逐渐意识到的一点：再小的一个方案，涉及到的方向都很多，有些是我们必须解决的，有些不是，对于那些必须解决的问题，如果不是我们关注的重点，可以直接使用别人的设计或方法，这是不可避免的，人的精力也是有限的， 不可能在每个方向都有突破，但是，我们需要重点突出自己所做的改进，解决了什么问题，相比别人的方案有什么优点，这就是创新点，这种点，有2-3个就够了。举个例子，物联网和区块链结合，在吞吐量、存储、结合方式等太多方面有可做的事了，有些比如 PoW 对资源的需求和物联网设备的有限能力的冲突，是所有人都要面对的，但如果不是我们当前方案重点解决的问题，那么直接用别人设计好的方法就行，把精力放在自己重点关注的问题上。</p>
+<h3 id="1-背景" class="heading-element"><span>1. 背景</span>
+  <a href="#1-%e8%83%8c%e6%99%af" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>毫无疑问，物联网已经走进了我们工作和生活的方方面面，智能工厂、医院、车联网、智慧城市、智能电网、家里的智能家居，甚至我们身上的可穿戴设备，然而，物联网的快速增长带来了巨大的安全隐患。</p></div><div class="post-footer">
+    <a href="/2019/blockchain-based-access-control-for-iot/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95/' class="post-tag">科研记录</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/golang-syntax-8-struct-and-method/">Golang语法基础8-结构体与方法</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-11-26 00:00:00'>published on <time datetime="2019-11-26">2019-11-26</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/" class="post-category" title="Category - 爱编程爱技术的孩子"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 爱编程爱技术的孩子</a></span></div><div class="content"><p>结构体是一种非常重要的结构，用到的地方非常多，在 Go 中，结构体还是实现面向对象编程的基础。</p></div><div class="post-footer">
     <a href="/2019/golang-syntax-8-struct-and-method/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/golang/' class="post-tag">Golang</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/golang-syntax-9-interface-and-reflect/">Golang语法基础9-接口与反射</a>
-  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-11-26 00:00:00'>published on <time datetime="2019-11-26">2019-11-26</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/" class="post-category" title="Category - 爱编程爱技术的孩子"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 爱编程爱技术的孩子</a></span></div><div class="content"><p>本篇介绍 Golang 中的接口与反射。</p></div><div class="post-footer">
-    <a href="/2019/golang-syntax-9-interface-and-reflect/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/golang/' class="post-tag">Golang</a></div></div>
 </article><ul class="pagination"><li class="page-item">
           <span class="page-link">
             <a href="/">1</a>
@@ -203,7 +210,7 @@
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item">
           <span class="page-link">
-            <a href="/page/173/">173</a>
+            <a href="/page/174/">174</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.13"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>

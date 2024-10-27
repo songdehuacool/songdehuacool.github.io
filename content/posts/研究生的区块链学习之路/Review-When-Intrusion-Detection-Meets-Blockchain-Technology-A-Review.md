@@ -2,7 +2,8 @@
 title: When Intrusion Detection Meets Blockchain Technology A Review
 date: 2019-10-03
 tags: [论文笔记]
-categories: [研究生的区块链学习之路] 
+categories: [研究生的区块链学习之路]
+draft: true
 ---
 
 Meng W, Tischhauser E, Wang Q, et al. When Intrusion Detection Meets Blockchain Technology: A Review[J]. IEEE Access, 2018: 10179-10188.

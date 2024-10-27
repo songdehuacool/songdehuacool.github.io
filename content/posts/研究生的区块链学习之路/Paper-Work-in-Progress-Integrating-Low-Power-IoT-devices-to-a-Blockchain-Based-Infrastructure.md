@@ -3,6 +3,7 @@ title: Work-in-Progress Integrating Low-Power IoT devices to
 date: 2018-10-23T11:22:00+08:00
 tags: [论文笔记]
 categories: [研究生的区块链学习之路]
+draft: true
 ---
 
 Özyılmaz, Kazım Rıfat, and Arda Yurdakul. "Work-in-Progress: Integrating low-power IoT devices to a blockchain-based infrastructure." 2017 International Conference on Embedded Software (EMSOFT). IEEE, 2017.

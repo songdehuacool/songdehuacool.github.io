@@ -3,7 +3,8 @@ title: An ABAC  Model in RFID Systems Based on DApp for Healthcare Environments
 date: 2019-11-11
 lastmod: 2020-04-17
 tags: [论文笔记]
-categories: [研究生的区块链学习之路] 
+categories: [研究生的区块链学习之路]
+draft: true
 ---
 
 Figueroa, Añorga, and Arrizabalaga, “An Attribute-Based Access Control  Model in RFID Systems Based on Blockchain Decentralized Applications for Healthcare Environments,” *Computers*, vol. 8, no. 3, p. 57, Jul. 2019, doi: [10.3390/computers8030057](https://doi.org/10.3390/computers8030057).

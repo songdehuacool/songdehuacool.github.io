@@ -4,6 +4,7 @@ date: 2019-10-29
 tags: [区块链]
 categories: [研究生的区块链学习之路] 
 slug: IBFT consensus
+draft: true
 ---
 
 AMIS公司提出的 Istanbul Byzantine Fault Tolerance Consensus（简称IBFT或Istanbul BFT），是一个基于PBFT的交易一致性的共识。因为要考虑可能发生的异常，对共识的原始文档作一次通读，仔细理解一下。原始文档位于github [ethereum/EIPs#650](https://github.com/ethereum/EIPs/issues/650)，以下一边翻译一边阅读。

@@ -2,7 +2,8 @@
 title: Consortium Blockchain for Secure Energy Trading in Industrial Internet of Things
 date: 2018-12-13T17:14:00+08:00
 tags: [论文笔记]
-categories: [研究生的区块链学习之路] 
+categories: [研究生的区块链学习之路]
+draft: true
 ---
 
 **主题**：用联盟链解决工业物联网的能量交易问题

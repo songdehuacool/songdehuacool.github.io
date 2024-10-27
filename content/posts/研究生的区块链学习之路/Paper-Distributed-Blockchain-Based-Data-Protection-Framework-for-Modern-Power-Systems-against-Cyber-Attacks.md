@@ -3,6 +3,7 @@ title: Distributed Blockchain-Based Data Protection Framework for Modern Power S
 date: 2019-04-01T11:16:00+08:00
 tags: [论文笔记]
 categories: [研究生的区块链学习之路]
+draft: true
 ---
 
 Author：Gaoqi Liang , Steven R. Weller, Fengji Luo , Junhua Zhao, Zhao Yang Dong

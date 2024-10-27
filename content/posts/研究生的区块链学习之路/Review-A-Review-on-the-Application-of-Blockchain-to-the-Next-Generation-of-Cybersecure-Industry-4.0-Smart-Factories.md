@@ -2,7 +2,8 @@
 title: A Review on the Application of Blockchain to the Next Generation
 date: 2019-05-23T17:11:00+08:00
 tags: [论文笔记]
-categories: [研究生的区块链学习之路] 
+categories: [研究生的区块链学习之路]
+draft: true
 ---
 
 Fernández-Caramés T M, Fraga-Lamas P. A Review on the Application of Blockchain for the Next Generation of Cybersecure Industry 4.0 Smart Factories[J]. arXiv preprint arXiv:1902.09604, 2019.
