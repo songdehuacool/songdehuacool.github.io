@@ -356,7 +356,7 @@ enableEmoji = true
     Gitea = ""
     XMPP = ""
     Matrix = ""
-    Bilibili = "15452558"
+    Bilibili = "315118628"
     ORCID = ""
     Liberapay = ""
     Ko-Fi = ""
@@ -900,7 +900,7 @@ enableEmoji = true
 # 作者配置
 [author]
   name = "songdehua"
-  email = "liuyang8443@qq.com"
+  email = "200637086@qq.com"
   link = ""
   # avatar = "/images/avatar.png" # FixIt 0.2.18 | 新增
   avatar = "/images/avatar.png"
