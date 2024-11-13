@@ -13,7 +13,7 @@
       <link>http://localhost:1313/2020/regular-expression-basic-syntax/</link>
       <pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/regular-expression-basic-syntax/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;正则表达式在字符串处理时使用的非常普遍，这次来学习正则的相关知识，分别结束通配符、正则及它们的区别。&lt;/p&gt;</description>
     </item>
     <item>
@@ -21,7 +21,7 @@
       <link>http://localhost:1313/2020/bash-script-grammer/</link>
       <pubDate>Tue, 18 Aug 2020 11:37:00 +0800</pubDate>
       <guid>http://localhost:1313/2020/bash-script-grammer/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;很多时候都要求能使用 Shell 脚本进行编程，本文是根据阮一峰大神的 &lt;a href=&#34;https://wangdoc.com/bash/intro.html&#34;target=&#34;_blank&#34; rel=&#34;external nofollow noopener noreferrer&#34;&gt;系列教程&lt;/a&gt; 总结的基本知识。&lt;/p&gt;</description>
     </item>
     <item>
@@ -29,7 +29,7 @@
       <link>http://localhost:1313/2020/ubuntu%E4%B8%AD%E6%97%A0%E6%B3%95%E8%8E%B7%E5%BE%97%E9%94%81%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
       <pubDate>Fri, 03 Jan 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/ubuntu%E4%B8%AD%E6%97%A0%E6%B3%95%E8%8E%B7%E5%BE%97%E9%94%81%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;Ubuntu环境下，Unable to acquire the lock这类问题时有发生，本文对该问题的解决方案做一个总结&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;E: Could not get lock /var/lib/dpkg/lock-frontend - open (11: Resource temporarily unavailable)&lt;br&gt;&#xA;E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), is another process using it?&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;第一种情况&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;第一种情况&lt;/span&gt;&#xA;  &lt;a href=&#34;#%e7%ac%ac%e4%b8%80%e7%a7%8d%e6%83%85%e5%86%b5&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;进程中存在与apt相关的正在运行的进程，首先检查是否在运行apt,apt-get相关的进程&lt;/p&gt;</description>
     </item>
     <item>
@@ -37,7 +37,7 @@
       <link>http://localhost:1313/2019/linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/</link>
       <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2019/linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;虚拟机长时间不开机，系统时间和当前时间不同步，导致很多操作被拒绝，这里记录如何主动同步系统的时间和网络时间&lt;/p&gt;&#xA;&lt;h2 id=&#34;正文&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;正文&lt;/span&gt;&#xA;  &lt;a href=&#34;#%e6%ad%a3%e6%96%87&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;设置系统时区&lt;/p&gt;</description>
     </item>
     <item>
@@ -45,7 +45,7 @@
       <link>http://localhost:1313/2019/vmware-usage/</link>
       <pubDate>Fri, 06 Sep 2019 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2019/vmware-usage/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;双系统时常折腾容易坏电脑，因此一般是在虚拟机中使用Linux系统，常用的虚拟机为VMware，本文对VMware的相关知识以及使用过程中的一些问题做介绍。&lt;/p&gt;&#xA;&lt;h2 id=&#34;三种网络模式辨析&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;三种网络模式辨析&lt;/span&gt;&#xA;  &lt;a href=&#34;#%e4%b8%89%e7%a7%8d%e7%bd%91%e7%bb%9c%e6%a8%a1%e5%bc%8f%e8%be%a8%e6%9e%90&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;VMware有三种网络模式，分别是桥接模式、NAT模式和主机模式&lt;/p&gt;</description>
     </item>
     <item>
@@ -53,7 +53,7 @@
       <link>http://localhost:1313/2018/migration-related-knowledge/</link>
       <pubDate>Wed, 11 Apr 2018 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2018/migration-related-knowledge/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;h2 id=&#34;1-linux-操作系统组成&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1. Linux 操作系统组成&lt;/span&gt;&#xA;  &lt;a href=&#34;#1-linux-%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%bb%84%e6%88%90&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Linux 操作系统由 Linux 内核、shell 命令解释器和应用程序3部分构成&lt;/p&gt;</description>
     </item>
     <item>
@@ -61,7 +61,7 @@
       <link>http://localhost:1313/2018/migration-of-debian-system/</link>
       <pubDate>Wed, 11 Apr 2018 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2018/migration-of-debian-system/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;Debian 系统的移植总分四部分：u-boot的编译与烧录，Linux内核的编译与烧录，Debian 基本根文件系统的制作、配置与烧录，开发板设置。&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-u-boot的编译&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1. u-boot的编译&lt;/span&gt;&#xA;  &lt;a href=&#34;#1-u-boot%e7%9a%84%e7%bc%96%e8%af%91&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;对应于EMSYM的blurr开发板的u-boot项目使用GitHub进行开源维护，&lt;a href=&#34;https://github.com/EMSYM/U-boot&#34;target=&#34;_blank&#34; rel=&#34;external nofollow noopener noreferrer&#34;&gt;下载地址&lt;/a&gt;，我的编译环境为Ubuntu16.04 LTS系统&lt;/p&gt;</description>
     </item>
     <item>
@@ -69,7 +69,7 @@
       <link>http://localhost:1313/2018/android-system-migration/</link>
       <pubDate>Wed, 11 Apr 2018 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2018/android-system-migration/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;采用Android6.0（棉花糖），编译环境为Ubuntu14.04和opoenjdk-7-jdk&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-获取源码&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1. 获取源码&lt;/span&gt;&#xA;  &lt;a href=&#34;#1-%e8%8e%b7%e5%8f%96%e6%ba%90%e7%a0%81&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;首先参阅Android网站&lt;a href=&#34;http://source.android.com/source/initializing.html&#34;target=&#34;_blank&#34; rel=&#34;external nofollow noopener noreferrer&#34;&gt;source.android.com/source/initializing.html&lt;/a&gt;安装依赖&lt;/p&gt;</description>
     </item>
     <item>
@@ -77,7 +77,7 @@
       <link>http://localhost:1313/2018/linux-lernel-configuration/</link>
       <pubDate>Wed, 11 Apr 2018 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2018/linux-lernel-configuration/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;内核配置的目的主要是裁剪掉不必要的文件和目录，获得一个最适用的操作系统。可通过执行下面的命令进入配置窗口&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ make menuconfig&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;p&gt;执行完毕后显示一个基于文本的图形化终端配置菜单，这是是使用最广的配置方法，如果一个.config文件已经存在，它将使用该文件设置那些默认值&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-启动内核配置窗口&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1. 启动内核配置窗口&lt;/span&gt;&#xA;  &lt;a href=&#34;#1-%e5%90%af%e5%8a%a8%e5%86%85%e6%a0%b8%e9%85%8d%e7%bd%ae%e7%aa%97%e5%8f%a3&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;进入需要被配置的内核的根目录，使用 &lt;code&gt;make menuconfig&lt;/code&gt; 命令启动内核配置窗口，如下图&lt;/p&gt;</description>
     </item>
   </channel>

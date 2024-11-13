@@ -13,7 +13,7 @@
       <link>http://localhost:1313/2020/algorithm-time-and-space-complexity/</link>
       <pubDate>Fri, 18 Sep 2020 20:37:00 +0800</pubDate>
       <guid>http://localhost:1313/2020/algorithm-time-and-space-complexity/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;时间和空间复杂度的分析是编制程序的一个基本能力，不过平时基本都是脑子里简单的估计，本篇文章打算回忆一下大 O 表示法和具体的时间复杂度的推导过程。&lt;/p&gt;</description>
     </item>
     <item>
@@ -21,7 +21,7 @@
       <link>http://localhost:1313/2020/algorithm-stings/</link>
       <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/algorithm-stings/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;做 Leetcode 每日一题的时候遇到了子串判断类的问题，想起一直没仔细的去看过 KMP 等字符串常用的算法，所以这里学习一下。&lt;/p&gt;&#xA;&lt;!---more--&gt;&#xA;&lt;h2 id=&#34;1-重复的子字符串&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1. 重复的子字符串&lt;/span&gt;&#xA;  &lt;a href=&#34;#1-%e9%87%8d%e5%a4%8d%e7%9a%84%e5%ad%90%e5%ad%97%e7%ac%a6%e4%b8%b2&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;这就是今天遇到的题目，题目描述为&lt;/p&gt;</description>
     </item>
     <item>
@@ -29,7 +29,7 @@
       <link>http://localhost:1313/2020/algorithm-knapsack-problem/</link>
       <pubDate>Thu, 06 Aug 2020 10:22:00 +0800</pubDate>
       <guid>http://localhost:1313/2020/algorithm-knapsack-problem/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;奇安信的笔试遇到了完全背包问题，结果写的时候按 0-1 背包写的贪心，最后没 AC，因此本篇对所有的背包问题做一次整理。&lt;/p&gt;</description>
     </item>
     <item>
@@ -37,7 +37,7 @@
       <link>http://localhost:1313/2020/algorithm-branch-and-bound/</link>
       <pubDate>Thu, 23 Jul 2020 10:07:00 +0800</pubDate>
       <guid>http://localhost:1313/2020/algorithm-branch-and-bound/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;分支限界和回溯都是有效搜索解空间树的方法，不同的是，分支限界使用广度优先或最小耗费/最大效益优先的方式。&lt;/p&gt;</description>
     </item>
     <item>
@@ -45,7 +45,7 @@
       <link>http://localhost:1313/2020/algorithm-backtracking/</link>
       <pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/algorithm-backtracking/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;在真实的世界中，很多问题是不存在快速解法的，只能穷尽搜索，因此一个高效的搜索技术非常重要。回溯（Backtracking）和分支限界（Branch&amp;amp;Bound）就是两种减小搜索空间大小的技术。&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-回溯的基本思想&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1. 回溯的基本思想&lt;/span&gt;&#xA;  &lt;a href=&#34;#1-%e5%9b%9e%e6%ba%af%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%80%9d%e6%83%b3&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;h3 id=&#34;11-解空间树&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1.1 解空间树&lt;/span&gt;&#xA;  &lt;a href=&#34;#11-%e8%a7%a3%e7%a9%ba%e9%97%b4%e6%a0%91&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;假设可以用一个 n 元组 $X=(x_1,x_2,……,x_n)$ 来表示所求问题的解，其中 $x_i$ 的取值范围为某个有穷集合 S。我们把 $X=(x_1,x_2,……,x_n)$ 所有可能取值的组合称作问题的解空间。&lt;/p&gt;</description>
     </item>
     <item>
@@ -53,7 +53,7 @@
       <link>http://localhost:1313/2020/algorithm-greedu/</link>
       <pubDate>Sun, 03 May 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/algorithm-greedu/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;贪心是一种策略，是一种总是寻求当前最优的策略。因为贪心只关心局部的最优，因此不是总能得到全局的最优解，所以我们选择贪心解决问题时必须保证状态的独立性，即当前最优值只与当前状态有关，不会影响以后的状态。&lt;/p&gt;</description>
     </item>
     <item>
@@ -61,7 +61,7 @@
       <link>http://localhost:1313/2020/algorithm-dynamic-programming/</link>
       <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/algorithm-dynamic-programming/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;动态规划策略通常用于求解最优化问题。在这类问题中，可能会有许多可行解，每个解对应一个值，我们希望找到具有最优值的那个解，也就是最优解。当题目中涉及「最大」「最小」等词时，很有可能就是这类问题，要考虑是否可用动态规划求解。&lt;/p&gt;</description>
     </item>
     <item>
@@ -69,7 +69,7 @@
       <link>http://localhost:1313/2020/algorithm-divide-and-conquer/</link>
       <pubDate>Mon, 13 Apr 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/algorithm-divide-and-conquer/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;分治，字面意思就是分而治之，意思就是把一个复杂的问题分成两个或更多个相同或相似的子问题，解决子问题后再进行合并。典型的如归并排序和快排，都是以分治为基础的。&lt;/p&gt;&#xA;&lt;p&gt;我们以 &lt;strong&gt;归并排序&lt;/strong&gt; 来说明一个典型的分治算法的思路&lt;/p&gt;&#xA;&lt;p&gt;分治算法可以分三步走：分解 -&amp;gt; 解决 -&amp;gt; 合并&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;分解原问题为结构相同的子问题。&lt;/li&gt;&#xA;&lt;li&gt;分解到某个容易求解的边界之后，进行递归求解。&lt;/li&gt;&#xA;&lt;li&gt;将子问题的解合并成原问题的解。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;归并排序，我们就叫这个函数 &lt;code&gt;merge_sort&lt;/code&gt; 吧，按照我们上面说的，要明确该函数的职责，即 &lt;strong&gt;对传入的一个数组排序&lt;/strong&gt; 。OK，那么这个问题能不能分解呢？当然可以！给一个数组排序，不就等于给该数组的两半分别排序，然后合并就完事了。&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;merge_sort&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;一个数组&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;可以很容易处理&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;merge_sort&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;左半个数组&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;merge_sort&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;右半个数组&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;merge&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;左半个数组&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;右半个数组&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;p&gt;好了，这个算法也就这样了，完全没有任何难度。记住之前说的，相信函数的能力，传给它半个数组，那么这半个数组就已经被排好了。而且你会发现这不就是个二叉树遍历模板吗？为什么是后序遍历？因为我们分治算法的套路是 &lt;strong&gt;分解 -&amp;gt; 解决（触底）-&amp;gt; 合并（回溯）&lt;/strong&gt; 啊，先左右分解，再处理合并，回溯就是在退栈，就相当于后序遍历了。至于 &lt;code&gt;merge&lt;/code&gt; 函数，参考两个有序链表的合并，简直一模一样。&lt;/p&gt;</description>
     </item>
     <item>
@@ -77,7 +77,7 @@
       <link>http://localhost:1313/2020/algorithm-recursive/</link>
       <pubDate>Sun, 12 Apr 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/algorithm-recursive/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;首先简单阐述一下递归、分治、动态规划和贪心这几个东西的区别和联系。&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;递归是一种编程技巧，一种解决问题的思维方式；&lt;/li&gt;&#xA;&lt;li&gt;分治和动态规划是建立在递归基础上的，解决更具体问题的两类算法思想（实现动态规划大都不是递归的，但是过程和思想是）；&lt;/li&gt;&#xA;&lt;li&gt;贪心是动态规划的一个子集，可以更高效解决一部分更特殊的问题。&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
     </item>
     <item>
@@ -85,7 +85,7 @@
       <link>http://localhost:1313/2020/algorithm-sort/</link>
       <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/algorithm-sort/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;排序算法分为&lt;strong&gt;内部排序&lt;/strong&gt;（待排序记录存放在内存中进行的排序过程）和&lt;strong&gt;外部排序&lt;/strong&gt;（由于待排序记录数量大，以致内存一次不能容纳全部记录，在排序过程中需要对外存进行访问）。我们一般提到的基本都属于内部排序，一共可以分为5大类、8小类，如下&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;插入排序：直接插入排序、希尔排序&lt;/li&gt;&#xA;&lt;li&gt;选择排序：简单选择排序、堆排序&lt;/li&gt;&#xA;&lt;li&gt;交换排序：冒泡排序、快速排序&lt;/li&gt;&#xA;&lt;li&gt;归并排序&lt;/li&gt;&#xA;&lt;li&gt;基数排序&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;这篇文章对这 8 类排序算法进行详细说明，不过在此之前，先介绍排序稳定性的概念，因为时间复杂度、空间复杂度和排序稳定性是排序算法的三个重要度量。&lt;/p&gt;&#xA;&lt;p&gt;排序稳定性其实就是相同的两个数在排序前后的先后位置是否发生了变化，具体的数学定义如下&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;假设 $r_i = r_j(1 \le i \le n, 1 \le j \le n, i \ne j)$，且在排序前的序列中 $r_i$ 领先于 $r_j$ （即 $i \le j$）。如果排序后 $r_i$ 仍领先于 $r_j$ ，则称所用的排序方法是稳定的；反之，若可能使得排序后的序列中 $r_j$ 领先于 $r_i$，则称所用的排序方法是不稳定的。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;注意，下面我们所有的讨论都是基于递增排序的&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-直接插入排序&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1. 直接插入排序&lt;/span&gt;&#xA;  &lt;a href=&#34;#1-%e7%9b%b4%e6%8e%a5%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;核心思想是：将序列的第一个记录看成是一个有序的子序列，然后从第二个记录开始逐个进行插入，直至整个序列有序为止。&lt;/p&gt;</description>
     </item>
     <item>
@@ -93,7 +93,7 @@
       <link>http://localhost:1313/2020/algorithm-search/</link>
       <pubDate>Sun, 29 Mar 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/algorithm-search/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;搜索是最常用的算法之一，但线性的搜索进行介绍没有太大的意义，本文介绍搜索中一种广为使用的方法：二分查找。&lt;/p&gt;</description>
     </item>
     <item>
@@ -101,7 +101,7 @@
       <link>http://localhost:1313/2020/algorithm-array/</link>
       <pubDate>Fri, 20 Mar 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/algorithm-array/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;数组的访问时间为 $O(1)$，这是它最大的优势，但限于数组固定的大小，平常使用最多的是动态数组。在 Golang 中，其实就是[切片]^(slice)，动态数组的初始化、访问、修改、迭代、添加、删除等都是 Golang 语法的内容，这里不再介绍。事实上，一维数组的大部分问题都很好解决，我们在本文中仅介绍二维数组的一些典型问题，更多维的数组思路是相似，而且由于其复杂性，实际上很少出现。&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-方向转换&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1. 方向转换&lt;/span&gt;&#xA;  &lt;a href=&#34;#1-%e6%96%b9%e5%90%91%e8%bd%ac%e6%8d%a2&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;下面是一个叫做「对角线遍历」的例子，在这个例子中，我们可以理解如何在二维数组中转换前进方向，这是一个很有用的技巧。&lt;/p&gt;</description>
     </item>
     <item>
@@ -109,7 +109,7 @@
       <link>http://localhost:1313/2020/data-structure-union-find-set/</link>
       <pubDate>Wed, 18 Mar 2020 18:44:00 +0800</pubDate>
       <guid>http://localhost:1313/2020/data-structure-union-find-set/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;并查集是一种特别而实用的结构，主要作用是进行不相交集合的合并和判断两个元素是否在同一集合，时间复杂度为常数级。常见用途包括 Kruskal 算法和求最近公共祖先，本篇文章介绍该数据结构。&lt;/p&gt;</description>
     </item>
     <item>
@@ -117,7 +117,7 @@
       <link>http://localhost:1313/2020/data-structure-b-tree-and-red-black-tree/</link>
       <pubDate>Wed, 18 Mar 2020 09:21:00 +0800</pubDate>
       <guid>http://localhost:1313/2020/data-structure-b-tree-and-red-black-tree/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;本篇介绍B树（B-树），B+树和红黑树，参考自陈小玉，《趣学数据结构》。&lt;/p&gt;</description>
     </item>
     <item>
@@ -125,7 +125,7 @@
       <link>http://localhost:1313/2020/data-structure-graph/</link>
       <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/data-structure-graph/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;链表是一种一对一的关系，树是一种一对多的关系，图则是一种多对多的关系。实际上，我们可以将链表和树都看作图的一部分。&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-图的定义&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1. 图的定义&lt;/span&gt;&#xA;  &lt;a href=&#34;#1-%e5%9b%be%e7%9a%84%e5%ae%9a%e4%b9%89&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;用 V(Vertex) 表示顶点的集合，用 E(Edge) 表示边的集合，则图可以看作由一个非空的有限顶点集合 V 和一个有限边的集合 E 组成，记作G(V, E)。其中&lt;/p&gt;</description>
     </item>
     <item>
@@ -133,7 +133,7 @@
       <link>http://localhost:1313/2020/data-structure-heap/</link>
       <pubDate>Wed, 11 Mar 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/data-structure-heap/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;普通的队列是一种先进先出的数据结构，在此基础上，还有一种叫做 &lt;strong&gt;优先队列&lt;/strong&gt; 的结构。顾名思义，优先队列就是具有优先级的队列，其中，元素被赋予优先级，具有最高优先级的元素将最先被访问。&lt;/p&gt;</description>
     </item>
     <item>
@@ -141,7 +141,7 @@
       <link>http://localhost:1313/2020/data-structure-binary-search-tree/</link>
       <pubDate>Tue, 03 Mar 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/data-structure-binary-search-tree/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;二叉搜索树是二叉树的一种特殊形式，由于它对查找的良好特性，使用较为广泛，本篇文章我们对其进行介绍，同时也包括二叉搜索树的各种进阶，比如二叉平衡树。&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-二叉搜索树&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1. 二叉搜索树&lt;/span&gt;&#xA;  &lt;a href=&#34;#1-%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;h3 id=&#34;11-定义&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1.1 定义&lt;/span&gt;&#xA;  &lt;a href=&#34;#11-%e5%ae%9a%e4%b9%89&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;二叉搜索树（BST，Binary Search Tree），也称二叉排序树或二叉查找树。其定义如下&lt;/p&gt;</description>
     </item>
     <item>
@@ -149,7 +149,7 @@
       <link>http://localhost:1313/2020/data-structure-tree-and-binary-tree/</link>
       <pubDate>Mon, 24 Feb 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/data-structure-tree-and-binary-tree/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;树是反映事物之间层次关系的一种结构，比如家谱树、硬盘目录结构树等。&lt;/p&gt;&#xA;&lt;p&gt;使用树的原因是这种层次结构在管理上有更高的效率，以查找为例，顺序查找的时间复杂度是O(n)，而二分查找的时间复杂度是O(log&lt;sub&gt;2&lt;/sub&gt;n)，可以看到查找效率得到了很大的提高，这是因为二分查找本质上是对一颗树的查找。&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-树&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1. 树&lt;/span&gt;&#xA;  &lt;a href=&#34;#1-%e6%a0%91&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;h3 id=&#34;11-定义&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1.1 定义&lt;/span&gt;&#xA;  &lt;a href=&#34;#11-%e5%ae%9a%e4%b9%89&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;树（Tree）是由 n（n$\geq$0）个结点构成的有限集合，当 n=0 时，称为空树，而对于任一颗非空树（n&amp;gt;0），它具有如下性质：&lt;/p&gt;</description>
     </item>
     <item>
@@ -157,7 +157,7 @@
       <link>http://localhost:1313/2020/data-structure-queue-and-stack/</link>
       <pubDate>Sat, 22 Feb 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/data-structure-queue-and-stack/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;队列与栈是最常使用的两种数据结构，其中，队列的核心特征是先入先出，栈的核心特征是后入先出，只要符合这两个特征，就属于队列（栈），不因实现形式的不同（数组或链表）而有差别，可以根据具体情况选择使用起来更方便的实现形式。&lt;/p&gt;&#xA;&lt;p&gt;在本文中，我们对队列与栈的核心功能，循环队列这种特殊结构，以及队列和栈的主要应用，尤其是广度优先搜索和深度优先搜索进行介绍。&lt;/p&gt;</description>
     </item>
     <item>
@@ -165,7 +165,7 @@
       <link>http://localhost:1313/2020/data-structure-linkedlist/</link>
       <pubDate>Thu, 20 Feb 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/data-structure-linkedlist/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;链表是一种最为基础的数据结构，由一系列结点组成，每个结点不仅包含值，还包含指向下一个结点（有时也包括上一个结点）的指针。相比于数组，在链表中访问指定的元素则需要$O(N)$的复杂度，但进行插入和删除操作只需要$O(1)$的复杂度&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-单链表&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1. 单链表&lt;/span&gt;&#xA;  &lt;a href=&#34;#1-%e5%8d%95%e9%93%be%e8%a1%a8&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;一个单链表的例子如下，蓝色箭头显示链表中的结点是如何相连的&lt;/p&gt;</description>
     </item>
   </channel>

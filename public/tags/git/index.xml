@@ -13,7 +13,7 @@
       <link>http://localhost:1313/2019/git-learning-deep-into/</link>
       <pubDate>Mon, 30 Sep 2019 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2019/git-learning-deep-into/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;学习一些更高级或更有趣的 Git 用法，包括子模块、徽章、开源协议选择等。&lt;/p&gt;</description>
     </item>
     <item>
@@ -21,7 +21,7 @@
       <link>http://localhost:1313/2018/git-learning-improvement/</link>
       <pubDate>Sun, 22 Apr 2018 10:21:16 +0800</pubDate>
       <guid>http://localhost:1313/2018/git-learning-improvement/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;上一篇我们学习了Git的基本知识，包括仓库创建，提交、修改、推送、回退等等操作，本篇学习一些高级的功能。转自 &lt;a href=&#34;https://www.liaoxuefeng.com/wiki/896043488029600&#34;target=&#34;_blank&#34; rel=&#34;external nofollow noopener noreferrer&#34;&gt;廖雪峰的官方网站-git教程&lt;/a&gt;。&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-分支管理&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1. 分支管理&lt;/span&gt;&#xA;  &lt;a href=&#34;#1-%e5%88%86%e6%94%af%e7%ae%a1%e7%90%86&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;每个仓库都可能有几条不同的分支，比如master分支，比如用于开发的dev分支。分支操作的实质是对指针的操作&lt;/p&gt;</description>
     </item>
     <item>
@@ -29,7 +29,7 @@
       <link>http://localhost:1313/2018/git-learning-getting-started/</link>
       <pubDate>Fri, 20 Apr 2018 19:06:20 +0800</pubDate>
       <guid>http://localhost:1313/2018/git-learning-getting-started/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;版本控制系统在代码开发过程中必不可缺，本系列学习 Git 的使用，版本托管服务则是 Github。以廖雪峰大神 &lt;a href=&#34;https://www.liaoxuefeng.com/wiki/896043488029600&#34;target=&#34;_blank&#34; rel=&#34;external nofollow noopener noreferrer&#34;&gt;git教程&lt;/a&gt; 为主体，辅以使用过程中遇到的问题和心得。&lt;/p&gt;</description>
     </item>
   </channel>

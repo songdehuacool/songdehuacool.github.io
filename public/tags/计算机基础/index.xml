@@ -13,7 +13,7 @@
       <link>http://localhost:1313/2020/storage-of-reals-in-computers/</link>
       <pubDate>Sun, 18 Oct 2020 10:16:00 +0800</pubDate>
       <guid>http://localhost:1313/2020/storage-of-reals-in-computers/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;最近在智能合约中实现信誉算法，但是 Solidity 不支持浮点数赋值和运算，好在有人写了一个库实现了 IEEE 754 浮点数标准，只不过输入输出都是二进制，所以回过头来仔细理解一下实数在计算机中的存储。&lt;/p&gt;</description>
     </item>
     <item>
@@ -21,7 +21,7 @@
       <link>http://localhost:1313/2020/windows-linux-unix-and-macos/</link>
       <pubDate>Wed, 02 Sep 2020 21:15:00 +0800</pubDate>
       <guid>http://localhost:1313/2020/windows-linux-unix-and-macos/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;目前主流的操作系统就是 Windows、Linux 和 macOS，有时候我们也常听到 Unix。今天查一下资料看一看它们的区别。&lt;/p&gt;</description>
     </item>
     <item>
@@ -29,7 +29,7 @@
       <link>http://localhost:1313/2020/operate-system-6-file-management/</link>
       <pubDate>Tue, 18 Aug 2020 08:18:00 +0800</pubDate>
       <guid>http://localhost:1313/2020/operate-system-6-file-management/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;本篇介绍文件管理相关的内容。包括硬盘结构、文件和目录的概念，以及一个文件系统涉及的其它知识。&lt;/p&gt;</description>
     </item>
     <item>
@@ -37,7 +37,7 @@
       <link>http://localhost:1313/2020/operate-system-5-device-management/</link>
       <pubDate>Mon, 17 Aug 2020 19:25:00 +0800</pubDate>
       <guid>http://localhost:1313/2020/operate-system-5-device-management/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;本篇介绍设备管理的相关内容。最近发现本科用的教材内容非常陈旧，而且不是那么浅显易懂，于是找了一本国外的教材《操作系统导论》，主要根据这个来学习。&lt;/p&gt;</description>
     </item>
     <item>
@@ -45,7 +45,7 @@
       <link>http://localhost:1313/2020/operate-system-4-memory-management/</link>
       <pubDate>Thu, 13 Aug 2020 11:04:00 +0800</pubDate>
       <guid>http://localhost:1313/2020/operate-system-4-memory-management/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;本文介绍操作系统另一个重要功能：存储管理。包括存储管理的基本功能，以及分区、页式、段式与段页式三种存储管理方法的具体细节。&lt;/p&gt;</description>
     </item>
     <item>
@@ -53,7 +53,7 @@
       <link>http://localhost:1313/2020/operate-system-3-process-management/</link>
       <pubDate>Mon, 10 Aug 2020 08:06:00 +0800</pubDate>
       <guid>http://localhost:1313/2020/operate-system-3-process-management/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;本文介绍操作系统最重要的一部分功能之一：进程管理，从进程的概念到进程的通信，再到死锁问题，最后结束进程的调度。&lt;/p&gt;</description>
     </item>
     <item>
@@ -61,7 +61,7 @@
       <link>http://localhost:1313/2020/operate-system-2-user-interface/</link>
       <pubDate>Sun, 09 Aug 2020 17:16:00 +0800</pubDate>
       <guid>http://localhost:1313/2020/operate-system-2-user-interface/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;本文介绍操作系统的一个重要功能：提供用户接口。&lt;/p&gt;</description>
     </item>
     <item>
@@ -69,7 +69,7 @@
       <link>http://localhost:1313/2020/operate-system-1-overview/</link>
       <pubDate>Sun, 09 Aug 2020 10:27:00 +0800</pubDate>
       <guid>http://localhost:1313/2020/operate-system-1-overview/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;本文介绍操作系统的概念、历史、分类、功能及理解这些功能的必备基础知识。&lt;/p&gt;</description>
     </item>
     <item>
@@ -77,7 +77,7 @@
       <link>http://localhost:1313/2018/internet-control-message-protocol/</link>
       <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2018/internet-control-message-protocol/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;网络层除了主要的 IP 协议外，还有 ICMP（Internet Control Message Protocol） 协议，ping 和 traceroute 都会用到它，本文进行介绍。&lt;/p&gt;</description>
     </item>
     <item>
@@ -85,7 +85,7 @@
       <link>http://localhost:1313/2018/http-method/</link>
       <pubDate>Mon, 20 Aug 2018 19:38:00 +0800</pubDate>
       <guid>http://localhost:1313/2018/http-method/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;理解不同的 HTTP 方法的区别，主要参考 &lt;a href=&#34;https://tools.ietf.org/html/rfc7231#section-4.3&#34;target=&#34;_blank&#34; rel=&#34;external nofollow noopener noreferrer&#34;&gt;RFC 7231&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
@@ -93,7 +93,7 @@
       <link>http://localhost:1313/2018/http-and-https/</link>
       <pubDate>Thu, 09 Aug 2018 20:43:00 +0800</pubDate>
       <guid>http://localhost:1313/2018/http-and-https/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;HTTP 和 HTTPS 是最常用的两个协议，本篇对它们进行介绍。&lt;/p&gt;</description>
     </item>
     <item>
@@ -101,7 +101,7 @@
       <link>http://localhost:1313/2018/transmission-control-protocol-and-user-datagram-protocol/</link>
       <pubDate>Tue, 07 Aug 2018 21:16:00 +0800</pubDate>
       <guid>http://localhost:1313/2018/transmission-control-protocol-and-user-datagram-protocol/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;本篇介绍计算机网络运输层的的 TCP 和 UDP 协议，主要是过一遍，加深理解，以及方便以后查看，毕竟不是每次都带着书。&lt;/p&gt;</description>
     </item>
     <item>
@@ -109,7 +109,7 @@
       <link>http://localhost:1313/2018/data-link-layer/</link>
       <pubDate>Thu, 19 Jul 2018 20:25:00 +0800</pubDate>
       <guid>http://localhost:1313/2018/data-link-layer/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;两台主机间的数据传输，通常不是直达的，而是分成一段一段的链路。两个相邻节点间如何传输数据，是数据链路层关心的事情。&lt;/p&gt;</description>
     </item>
     <item>
@@ -117,7 +117,7 @@
       <link>http://localhost:1313/2018/physical-layer/</link>
       <pubDate>Thu, 19 Jul 2018 20:08:00 +0800</pubDate>
       <guid>http://localhost:1313/2018/physical-layer/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;物理层是 OSI 体系最下面的一层，涉及的多数是关于传输媒体和数据通信的知识，概念居多，本篇不详细解释，仅分辨物理层的主要任务。&lt;/p&gt;&#xA;&lt;p&gt;物理层考虑的问题是如何传输比特流，它要负责向数据链路层屏蔽掉传输媒体和通信手段的差异，从而使上层能专注自己的协议和服务。&lt;/p&gt;</description>
     </item>
   </channel>

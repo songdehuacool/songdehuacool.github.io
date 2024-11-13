@@ -13,7 +13,7 @@
       <link>http://localhost:1313/2021/clear-usb-falsh-disk-read-only-status/</link>
       <pubDate>Thu, 05 Aug 2021 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2021/clear-usb-falsh-disk-read-only-status/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;U盘变只读是经常出现的情况，以前都是使用写保护开关，一旦没有开关就毫无办法，今天又遇到这种情况，解决问题后这里总结一下解决办法。&lt;/p&gt;</description>
     </item>
     <item>
@@ -21,7 +21,7 @@
       <link>http://localhost:1313/2020/efficient-use-of-win10-7-windows-terminal-and-winget/</link>
       <pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/efficient-use-of-win10-7-windows-terminal-and-winget/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;Windows terminal 的安装配置和 winget 的基本使用，主要原因是 Powershell 不好看。&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-windows-terminal&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1. Windows terminal&lt;/span&gt;&#xA;  &lt;a href=&#34;#1-windows-terminal&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;界面友好的终端应用，凡是命令行程序都可以用它启动，可以将 win10 下的 cmd、Powershell 和 git bash 都集中在一起，当然，最重要的是好看。&lt;/p&gt;</description>
     </item>
     <item>
@@ -29,7 +29,7 @@
       <link>http://localhost:1313/2020/efficient-use-of-win10-7-automation/</link>
       <pubDate>Sat, 08 Aug 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/efficient-use-of-win10-7-automation/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;win10 一些重复操作的自动化，主要利用 Powershell 和windows任务计划程序，运行环境为 Windows 10 和 PowerShell 7.1，低版本 PowerShell 可能有中文路径无法识别问题。&lt;/p&gt;</description>
     </item>
     <item>
@@ -37,7 +37,7 @@
       <link>http://localhost:1313/2020/efficient-use-of-win10-5-system-function-use/</link>
       <pubDate>Sun, 19 Jan 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/efficient-use-of-win10-5-system-function-use/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;作为一款成熟的商业系统，windows提供了大量实用的功能，尤其是到了win10后，很多功能的体验变得越来越好，本篇对这些功能做总结。&lt;/p&gt;&#xA;&lt;p&gt;值得注意的是，很多功能其实只需要设置一次就不需要再理会，或者干脆微软默认已经进行了最佳设置，这对于我们追求效率和极简是一件非常棒的事。&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-搜索&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1. 搜索&lt;/span&gt;&#xA;  &lt;a href=&#34;#1-%e6%90%9c%e7%b4%a2&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;首先介绍win10的搜索功能。win10系统出现以来，Cortana就一直是任务栏的常驻功能，在响应语音的同时，也兼职文件搜索，不过并不好用。直到1903版本之后，Cortana和搜索功能拆分，新的搜索可以搜索电脑中的文档、照片、邮件、应用、系统设置、文件夹等等，并且提升了视觉效果，使用体验高了一倍不止。除此之外，在设置中也增加了「搜索」板块，可以排除不查看的文件夹，缩短搜索时间。&lt;/p&gt;</description>
     </item>
     <item>
@@ -45,7 +45,7 @@
       <link>http://localhost:1313/2020/efficient-use-of-win10-6-software-collection/</link>
       <pubDate>Sun, 19 Jan 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/efficient-use-of-win10-6-software-collection/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;对win10中使用的软件体系进行整理，在满足需要的同时，选择每一类软件中最适合的一种，同时尽量减少安装的软件数量。&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-系统管理&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1. 系统管理&lt;/span&gt;&#xA;  &lt;a href=&#34;#1-%e7%b3%bb%e7%bb%9f%e7%ae%a1%e7%90%86&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;h3 id=&#34;11-火绒&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1.1 火绒&lt;/span&gt;&#xA;  &lt;a href=&#34;#11-%e7%81%ab%e7%bb%92&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&lt;p&gt;抛弃腾讯和360的全家桶，火绒简单易用，只保留必需的功能，在后台默默工作，没有需要甚至意识不到它的存在。火绒的弹窗拦截功能也非常好用。&lt;a href=&#34;https://www.huorong.cn/&#34;target=&#34;_blank&#34; rel=&#34;external nofollow noopener noreferrer&#34;&gt;下载地址&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
@@ -53,7 +53,7 @@
       <link>http://localhost:1313/2020/efficient-use-of-win10-4-file-management/</link>
       <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2020/efficient-use-of-win10-4-file-management/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;文件管理是效率提升、电子资料极简化的重要部分，本文探索如何有效的对win10中的文件进行管理，核心包括三部分：分类、命名和备份。&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-分类&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1. 分类&lt;/span&gt;&#xA;  &lt;a href=&#34;#1-%e5%88%86%e7%b1%bb&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;win10中，最大的分类是磁盘。我的电脑有两块硬盘，划分情况如下&lt;/p&gt;</description>
     </item>
     <item>
@@ -61,7 +61,7 @@
       <link>http://localhost:1313/2019/efficient-use-of-win10-3-desktop-management/</link>
       <pubDate>Wed, 23 Oct 2019 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2019/efficient-use-of-win10-3-desktop-management/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;对任何系统来讲，桌面的整理都是重中之重。有些人喜欢文件触手可及，所有东西都放在桌面。有些人喜欢极简美观，桌面一尘不染，全部通过快速搜索完成。也有人做了折衷，桌面只放常用的文件并使用一些整理工具管理。没有对错，没有优劣，这种事情全看个人喜好，自己用着舒服就行。&lt;/p&gt;&#xA;&lt;p&gt;至于我自己，大概属于第二种吧。以下也按我的习惯来介绍，主要分三部分：壁纸，桌面，任务栏。&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-壁纸&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1. 壁纸&lt;/span&gt;&#xA;  &lt;a href=&#34;#1-%e5%a3%81%e7%ba%b8&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;无论个人喜好，壁纸的选择都应以不影响使用为原则，过于花里胡哨的壁纸将严重影响对应用和文件的识别，即使桌面干净的用户，复杂的图片也绝对挑战着人的观感和耐心。因此，挑选壁纸不仅要注意分辨率的大小，还要注意构图尽可能简单，最好拥有1/3以上的邻近色区域。以下两张图片就是一个鲜明的对比。&lt;/p&gt;</description>
     </item>
     <item>
@@ -69,7 +69,7 @@
       <link>http://localhost:1313/2019/efficient-use-of-win10-1-overview/</link>
       <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2019/efficient-use-of-win10-1-overview/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;得益于苹果的生态，MacOS上的优秀软件不少，因此网上存在大量介绍如何利用Mac有效率的学习、工作和生活的文章。但对于Win10来说，这方面的文章就乏善可陈了，但Win10作为一款消费级操作系统，拥有最大的市场占比，更在不断迭代优化，其软件数量也远远超过Mac，因此我相信它是有改善我们学习或工作模式的潜力的。&lt;/p&gt;&#xA;&lt;p&gt;我想要收集一些信息，并结合自身的使用经验，做一次这方面的总结，给自己一个备份，也给其他人一些借鉴。相信不论出于何种原因身处Win10的阵营，一颗追求效率和极简的心想必依然是有的。&lt;/p&gt;&#xA;&lt;p&gt;我们遵循极简和效率的理念来使用Win10，也以同样的理念安排这一个系列的文章。不过，有别于Mac，在Win10领域有一个庞大的社区是关于美化的，好的视觉效果能让人心情愉快，美观也是我们追求的目标，但这一目标位于效率和极简之后，意思是，美化不应当造成任何操作上的不便。这就是我使用Win10的三原则。&lt;/p&gt;&#xA;&lt;p&gt;先来一次头脑风暴，将会涉及的方面包括：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;锁屏&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;桌面：包括壁纸、桌面管理、任务栏。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;文件管理&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;文件资源管理器的初始界面&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;磁盘划分&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;文件归档&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;文件命名&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;文件同步和设备间文件互传&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;系统功能：包括截图、连接、投影、夜间模式、搜索、时间线、VPN、热点等等。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;软件管理&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;软件安装和卸载工具：IObit Uninstaller, Chocolatey&lt;/li&gt;&#xA;&lt;li&gt;通信：QQ, 微信&lt;/li&gt;&#xA;&lt;li&gt;压缩解压工具：7zip&lt;/li&gt;&#xA;&lt;li&gt;浏览器：Edge dev&lt;/li&gt;&#xA;&lt;li&gt;安全软件，应包括磁盘扫描，垃圾清理，漏洞修复，火绒&lt;/li&gt;&#xA;&lt;li&gt;编程IDE和其它编程相关：VScode, Github&lt;/li&gt;&#xA;&lt;li&gt;文献管理：Zotero&lt;/li&gt;&#xA;&lt;li&gt;文档编辑：Typora&lt;/li&gt;&#xA;&lt;li&gt;音乐、视频播放软件：网易云，迅雷影音&lt;/li&gt;&#xA;&lt;li&gt;邮件和日程管理&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
@@ -77,7 +77,7 @@
       <link>http://localhost:1313/2019/efficient-use-of-win10-2-lockscreen-and-login/</link>
       <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/2019/efficient-use-of-win10-2-lockscreen-and-login/</guid>
-      <category domain="http://localhost:1313/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/">爱编程爱技术的孩子</category>
+      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
       <description>&lt;p&gt;Win10 系统中，锁屏是我们登录系统前看到的一个界面。它的作用是当我们暂时离开电脑时阻止别人操作，但早晨当我们打开电脑时，第一眼看到也是锁屏界面，因此它可以影响我们的心情，所以要选择好的图片作为锁屏背景。微软提供了一些关于锁屏的有用的功能，包括：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;自定义锁屏背景图片&lt;/li&gt;&#xA;&lt;li&gt;在锁屏界面显示当前时间和日期&lt;/li&gt;&#xA;&lt;li&gt;在锁屏界面显示日历中日程信息和软件通知&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;所有的设置基本都位于个性化设置中的锁屏界面设置。以下我们就来介绍如何定制一个合适的锁屏界面。&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-锁屏背景&#34; class=&#34;heading-element&#34;&gt;&lt;span&gt;1. 锁屏背景&lt;/span&gt;&#xA;  &lt;a href=&#34;#1-%e9%94%81%e5%b1%8f%e8%83%8c%e6%99%af&#34; class=&#34;heading-mark&#34;&gt;&#xA;    &lt;svg class=&#34;octicon octicon-link&#34; viewBox=&#34;0 0 16 16&#34; version=&#34;1.1&#34; width=&#34;16&#34; height=&#34;16&#34; aria-hidden=&#34;true&#34;&gt;&lt;path d=&#34;m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&lt;p&gt;Win10 允许我们以三种方式设置锁屏背景： Windows 聚焦，图片和幻灯片放映。具体的设置方式为&lt;/p&gt;</description>
     </item>
   </channel>
