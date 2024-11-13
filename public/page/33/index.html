@@ -12,8 +12,8 @@
 <meta name="description" content="书藏的个人博客，记录学习，记录生活"><meta name="keywords" content='Blog, Blockchain, Book, Movie, Life, Journey'>
   <meta itemprop="name" content="songdehua blog">
   <meta itemprop="description" content="书藏的个人博客，记录学习，记录生活">
-  <meta itemprop="datePublished" content="2024-09-26T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2024-09-26T00:00:00+00:00">
+  <meta itemprop="datePublished" content="2024-09-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-09-16T00:00:00+00:00">
   <meta itemprop="image" content="http://localhost:1313/logo.png"><meta property="og:url" content="http://localhost:1313/">
   <meta property="og:site_name" content="songdehua blog">
   <meta property="og:title" content="songdehua blog">
@@ -165,15 +165,22 @@
     </a><a href="mailto:200637086@qq.com" title="Email"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a><a href="/index.xml" title="RSS"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2021/life-monthly-3/">书藏的生活月刊第 3 期 (202107)</a>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/golang-syntax-10-goroutine-and-channel/">Golang语法基础10-协程与通道</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2021-07-31 20:31:00'>published on <time datetime="2021-07-31">2021-07-31</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E6%97%A5%E7%A8%8B%E5%8F%8A%E5%91%A8%E5%88%8A/" class="post-category" title="Category - 日程及周刊"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 日程及周刊</a></span></div><div class="content"><p>本月刊的目的是记录生活，发现生活中的美好，当前为第三期月刊。</p></div><div class="post-footer">
-    <a href="/2021/life-monthly-3/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E4%B9%A6%E8%97%8F%E7%9A%84%E7%94%9F%E6%B4%BB%E5%91%A8%E5%88%8A/' class="post-tag">书藏的生活周刊</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2021/shandong-one-mountain-one-water-one-saint/">济南、曲阜及泰安（毕业旅行）</a>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-12-16 00:00:00'>published on <time datetime="2019-12-16">2019-12-16</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><p>首先来回顾在操作系统中学过的一些概念。进程(processes)是程序执行的基本单位，运行在一个独立的内存地址空间中；一个进程由多个线程(threads)组成，线程的存在是为了能够同时执行多个任务，最大化利用时间，防止产生等待，线程间是共享内存地址空间的。从windows资源管理器看这一点能看的很明白，如下，每个应用程序是一个进程，Typora程序下有两个线程在同时运行。</p>
+<p><img loading="lazy" src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20191216_3EkjsJ.png" alt="进程与线程" srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20191216_3EkjsJ.png?size=small, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20191216_3EkjsJ.png?size=medium 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20191216_3EkjsJ.png?size=large 2x" data-title="进程与线程" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<p>并发是建立在多线程之上的概念，将CPU的执行时间划分为许多很小的间隔，多个线程不断地切换执行，从上层看起来就像在同时执行一样，但本质上依然是线性的。并行则是程序在某个特定的事件同时运行在多个CPU上，多核处理器为并行提供了可能。因此，并发也可能是并行的。</p>
+<p>操作系统课程中一个最主要的问题就是多线程对共享内存空间的访问，我们学到的解决方式是通过加互斥锁来实现，但在设计实现上是一个复杂的过程，非常容易出错，鉴于操作系统考试的惨痛经历，现在完全不想回忆。Go中的标准库<code>sync</code>中有一些工具可以用来实现互斥锁的相关操作，但它显然没有Go自身支持的Goroutines高效。</p>
+<h3 id="1-goroutines" class="heading-element"><span>1. Goroutines</span>
+  <a href="#1-goroutines" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>Go原生支持并发，依靠的是协程(goroutine)和通道(channel)两个概念。goroutines的概念是为了和processes、threads、coroutines等概念区别。其中coroutines也叫做协程，而且这才是常规意义下的协程，goroutines只在Go中有效。</p></div><div class="post-footer">
+    <a href="/2019/golang-syntax-10-goroutine-and-channel/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/golang/' class="post-tag">Golang</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/golang-syntax-8-struct-and-method/">Golang语法基础8-结构体与方法</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2021-07-19 00:00:00'>published on <time datetime="2021-07-19">2021-07-19</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E6%88%91%E6%89%80%E7%83%AD%E7%88%B1%E7%9A%84%E7%94%9F%E6%B4%BB%E5%95%8A/" class="post-category" title="Category - 我所热爱的生活啊"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 我所热爱的生活啊</a></span></div><div class="content"><p>首先想说，这篇文章不算游记，也不算攻略，大概算一个人的碎碎念吧，只是这次旅行太难得，想给一个纪念。</p>
-<p>本科毕业的时候，当时的舍友来了一次毕业旅行，从沈阳开始绕了大半个中国回到重庆，然后激动的和我们分享他的经历，当时我就动了心，但那时候我已经回到家，而且身上也没什么钱，只能就此作罢，不过这个念头却就此种下，再也无法消散。这一次硕士毕业，攒了大概 3000 块钱，在结束了学校的各项事情后，开始我的毕业旅行。</p></div><div class="post-footer">
-    <a href="/2021/shandong-one-mountain-one-water-one-saint/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E6%97%85%E8%A1%8C%E8%AE%B0%E5%BD%95/' class="post-tag">旅行记录</a></div></div>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-11-26 00:00:00'>published on <time datetime="2019-11-26">2019-11-26</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><p>结构体是一种非常重要的结构，用到的地方非常多，在 Go 中，结构体还是实现面向对象编程的基础。</p></div><div class="post-footer">
+    <a href="/2019/golang-syntax-8-struct-and-method/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/golang/' class="post-tag">Golang</a></div></div>
 </article><ul class="pagination"><li class="page-item">
           <span class="page-link">
             <a href="/">1</a>
@@ -204,7 +211,7 @@
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item">
           <span class="page-link">
-            <a href="/page/174/">174</a>
+            <a href="/page/53/">53</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.13"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>

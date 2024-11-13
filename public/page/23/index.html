@@ -12,8 +12,8 @@
 <meta name="description" content="书藏的个人博客，记录学习，记录生活"><meta name="keywords" content='Blog, Blockchain, Book, Movie, Life, Journey'>
   <meta itemprop="name" content="songdehua blog">
   <meta itemprop="description" content="书藏的个人博客，记录学习，记录生活">
-  <meta itemprop="datePublished" content="2024-09-26T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2024-09-26T00:00:00+00:00">
+  <meta itemprop="datePublished" content="2024-09-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-09-16T00:00:00+00:00">
   <meta itemprop="image" content="http://localhost:1313/logo.png"><meta property="og:url" content="http://localhost:1313/">
   <meta property="og:site_name" content="songdehua blog">
   <meta property="og:title" content="songdehua blog">
@@ -165,14 +165,45 @@
     </a><a href="mailto:200637086@qq.com" title="Email"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a><a href="/index.xml" title="RSS"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2022/shopping-process/">购物流程</a>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2020/algorithm-divide-and-conquer/">算法-分治</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2022-01-04 00:00:00'>published on <time datetime="2022-01-04">2022-01-04</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E5%B9%B3%E6%97%A5%E9%87%8C%E7%9A%84%E7%99%BD%E6%97%A5%E6%A2%A6/" class="post-category" title="Category - 平日里的白日梦"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 平日里的白日梦</a></span></div><div class="content"><p>每次买东西纠结个半天，最后买回来还不一定合心意，所以打算梳理一下购物的流程，希望能提供一些参考，给以后的购物节省一些时间，同时减小冲动消费的概率。</p></div><div class="post-footer">
-    <a href="/2022/shopping-process/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E6%9D%82%E8%B0%88/' class="post-tag">杂谈</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2021/life-monthly-8/">书藏的生活月刊第 8 期 (202112)</a>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2020-04-13 00:00:00'>published on <time datetime="2020-04-13">2020-04-13</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><p>分治，字面意思就是分而治之，意思就是把一个复杂的问题分成两个或更多个相同或相似的子问题，解决子问题后再进行合并。典型的如归并排序和快排，都是以分治为基础的。</p>
+<p>我们以 <strong>归并排序</strong> 来说明一个典型的分治算法的思路</p>
+<p>分治算法可以分三步走：分解 -&gt; 解决 -&gt; 合并</p>
+<ol>
+<li>分解原问题为结构相同的子问题。</li>
+<li>分解到某个容易求解的边界之后，进行递归求解。</li>
+<li>将子问题的解合并成原问题的解。</li>
+</ol>
+<p>归并排序，我们就叫这个函数 <code>merge_sort</code> 吧，按照我们上面说的，要明确该函数的职责，即 <strong>对传入的一个数组排序</strong> 。OK，那么这个问题能不能分解呢？当然可以！给一个数组排序，不就等于给该数组的两半分别排序，然后合并就完事了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="err">一个数组</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="err">可以很容易处理</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">merge_sort</span><span class="p">(</span><span class="err">左半个数组</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">merge_sort</span><span class="p">(</span><span class="err">右半个数组</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">merge</span><span class="p">(</span><span class="err">左半个数组</span><span class="p">,</span> <span class="err">右半个数组</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>好了，这个算法也就这样了，完全没有任何难度。记住之前说的，相信函数的能力，传给它半个数组，那么这半个数组就已经被排好了。而且你会发现这不就是个二叉树遍历模板吗？为什么是后序遍历？因为我们分治算法的套路是 <strong>分解 -&gt; 解决（触底）-&gt; 合并（回溯）</strong> 啊，先左右分解，再处理合并，回溯就是在退栈，就相当于后序遍历了。至于 <code>merge</code> 函数，参考两个有序链表的合并，简直一模一样。</p></div><div class="post-footer">
+    <a href="/2020/algorithm-divide-and-conquer/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/' class="post-tag">数据结构与算法</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2020/algorithm-recursive/">算法-递归</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2021-12-31 19:51:00'>published on <time datetime="2021-12-31">2021-12-31</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E6%97%A5%E7%A8%8B%E5%8F%8A%E5%91%A8%E5%88%8A/" class="post-category" title="Category - 日程及周刊"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 日程及周刊</a></span></div><div class="content"><p>本月刊的目的是记录生活，发现生活中的美好，当前为第八期月刊，2021 年 12 月。</p></div><div class="post-footer">
-    <a href="/2021/life-monthly-8/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E4%B9%A6%E8%97%8F%E7%9A%84%E7%94%9F%E6%B4%BB%E5%91%A8%E5%88%8A/' class="post-tag">书藏的生活周刊</a></div></div>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2020-04-12 00:00:00'>published on <time datetime="2020-04-12">2020-04-12</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><p>首先简单阐述一下递归、分治、动态规划和贪心这几个东西的区别和联系。</p>
+<ol>
+<li>递归是一种编程技巧，一种解决问题的思维方式；</li>
+<li>分治和动态规划是建立在递归基础上的，解决更具体问题的两类算法思想（实现动态规划大都不是递归的，但是过程和思想是）；</li>
+<li>贪心是动态规划的一个子集，可以更高效解决一部分更特殊的问题。</li>
+</ol></div><div class="post-footer">
+    <a href="/2020/algorithm-recursive/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/' class="post-tag">数据结构与算法</a></div></div>
 </article><ul class="pagination"><li class="page-item">
           <span class="page-link">
             <a href="/">1</a>
@@ -203,7 +234,7 @@
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item">
           <span class="page-link">
-            <a href="/page/174/">174</a>
+            <a href="/page/53/">53</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.13"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>

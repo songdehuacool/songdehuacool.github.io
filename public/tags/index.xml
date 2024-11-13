@@ -6,43 +6,8 @@
     <description>书藏的个人博客，记录学习，记录生活</description>
     <generator>Hugo 0.135.0 &amp; FixIt v0.3.13</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 26 Sep 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 14 Dec 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>杂谈</title>
-      <link>http://localhost:1313/tags/%E6%9D%82%E8%B0%88/</link>
-      <pubDate>Thu, 26 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E6%9D%82%E8%B0%88/</guid>
-      <description>杂谈</description>
-    </item>
-    <item>
-      <title>个人财务体系</title>
-      <link>http://localhost:1313/tags/%E4%B8%AA%E4%BA%BA%E8%B4%A2%E5%8A%A1%E4%BD%93%E7%B3%BB/</link>
-      <pubDate>Sun, 30 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E4%B8%AA%E4%BA%BA%E8%B4%A2%E5%8A%A1%E4%BD%93%E7%B3%BB/</guid>
-      <description>个人财务体系</description>
-    </item>
-    <item>
-      <title>新知识学习</title>
-      <link>http://localhost:1313/tags/%E6%96%B0%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/</link>
-      <pubDate>Sat, 27 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E6%96%B0%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/</guid>
-      <description>新知识学习</description>
-    </item>
-    <item>
-      <title>旅行记录</title>
-      <link>http://localhost:1313/tags/%E6%97%85%E8%A1%8C%E8%AE%B0%E5%BD%95/</link>
-      <pubDate>Fri, 23 Feb 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E6%97%85%E8%A1%8C%E8%AE%B0%E5%BD%95/</guid>
-      <description>旅行记录</description>
-    </item>
-    <item>
-      <title>日程</title>
-      <link>http://localhost:1313/tags/%E6%97%A5%E7%A8%8B/</link>
-      <pubDate>Sun, 31 Dec 2023 16:08:00 +0800</pubDate>
-      <guid>http://localhost:1313/tags/%E6%97%A5%E7%A8%8B/</guid>
-      <description>日程</description>
-    </item>
     <item>
       <title>博客搭建</title>
       <link>http://localhost:1313/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
@@ -51,53 +16,11 @@
       <description>博客搭建</description>
     </item>
     <item>
-      <title>厨艺</title>
-      <link>http://localhost:1313/tags/%E5%8E%A8%E8%89%BA/</link>
+      <title>杂谈</title>
+      <link>http://localhost:1313/tags/%E6%9D%82%E8%B0%88/</link>
       <pubDate>Sat, 27 May 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E5%8E%A8%E8%89%BA/</guid>
-      <description>厨艺</description>
-    </item>
-    <item>
-      <title>文摘</title>
-      <link>http://localhost:1313/tags/%E6%96%87%E6%91%98/</link>
-      <pubDate>Sat, 27 May 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E6%96%87%E6%91%98/</guid>
-      <description>文摘</description>
-    </item>
-    <item>
-      <title>国网</title>
-      <link>http://localhost:1313/tags/%E5%9B%BD%E7%BD%91/</link>
-      <pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E5%9B%BD%E7%BD%91/</guid>
-      <description>国网</description>
-    </item>
-    <item>
-      <title>医药健康</title>
-      <link>http://localhost:1313/tags/%E5%8C%BB%E8%8D%AF%E5%81%A5%E5%BA%B7/</link>
-      <pubDate>Sun, 04 Dec 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E5%8C%BB%E8%8D%AF%E5%81%A5%E5%BA%B7/</guid>
-      <description>医药健康</description>
-    </item>
-    <item>
-      <title>书藏的生活周刊</title>
-      <link>http://localhost:1313/tags/%E4%B9%A6%E8%97%8F%E7%9A%84%E7%94%9F%E6%B4%BB%E5%91%A8%E5%88%8A/</link>
-      <pubDate>Wed, 30 Nov 2022 19:51:00 +0800</pubDate>
-      <guid>http://localhost:1313/tags/%E4%B9%A6%E8%97%8F%E7%9A%84%E7%94%9F%E6%B4%BB%E5%91%A8%E5%88%8A/</guid>
-      <description>书藏的生活周刊</description>
-    </item>
-    <item>
-      <title>读书笔记</title>
-      <link>http://localhost:1313/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Wed, 08 Jun 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
-      <description>读书笔记</description>
-    </item>
-    <item>
-      <title>安全感建立</title>
-      <link>http://localhost:1313/tags/%E5%AE%89%E5%85%A8%E6%84%9F%E5%BB%BA%E7%AB%8B/</link>
-      <pubDate>Sat, 04 Sep 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E5%AE%89%E5%85%A8%E6%84%9F%E5%BB%BA%E7%AB%8B/</guid>
-      <description>安全感建立</description>
+      <guid>http://localhost:1313/tags/%E6%9D%82%E8%B0%88/</guid>
+      <description>杂谈</description>
     </item>
     <item>
       <title>Win10</title>
@@ -114,53 +37,11 @@
       <description>Golang</description>
     </item>
     <item>
-      <title>区块链</title>
-      <link>http://localhost:1313/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</link>
-      <pubDate>Mon, 05 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</guid>
-      <description>区块链</description>
-    </item>
-    <item>
-      <title>好物评测</title>
-      <link>http://localhost:1313/tags/%E5%A5%BD%E7%89%A9%E8%AF%84%E6%B5%8B/</link>
-      <pubDate>Fri, 18 Jun 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E5%A5%BD%E7%89%A9%E8%AF%84%E6%B5%8B/</guid>
-      <description>好物评测</description>
-    </item>
-    <item>
-      <title>穿搭整理</title>
-      <link>http://localhost:1313/tags/%E7%A9%BF%E6%90%AD%E6%95%B4%E7%90%86/</link>
-      <pubDate>Mon, 03 May 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E7%A9%BF%E6%90%AD%E6%95%B4%E7%90%86/</guid>
-      <description>穿搭整理</description>
-    </item>
-    <item>
-      <title>科研记录</title>
-      <link>http://localhost:1313/tags/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95/</link>
-      <pubDate>Thu, 22 Apr 2021 09:06:00 +0800</pubDate>
-      <guid>http://localhost:1313/tags/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95/</guid>
-      <description>科研记录</description>
-    </item>
-    <item>
-      <title>健身</title>
-      <link>http://localhost:1313/tags/%E5%81%A5%E8%BA%AB/</link>
-      <pubDate>Mon, 12 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E5%81%A5%E8%BA%AB/</guid>
-      <description>健身</description>
-    </item>
-    <item>
-      <title>写作</title>
-      <link>http://localhost:1313/tags/%E5%86%99%E4%BD%9C/</link>
-      <pubDate>Fri, 29 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E5%86%99%E4%BD%9C/</guid>
-      <description>写作</description>
-    </item>
-    <item>
-      <title>少数派</title>
-      <link>http://localhost:1313/tags/%E5%B0%91%E6%95%B0%E6%B4%BE/</link>
-      <pubDate>Fri, 29 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E5%B0%91%E6%95%B0%E6%B4%BE/</guid>
-      <description>少数派</description>
+      <title>新知识学习</title>
+      <link>http://localhost:1313/tags/%E6%96%B0%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Tue, 23 Mar 2021 15:32:00 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E6%96%B0%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/</guid>
+      <description>新知识学习</description>
     </item>
     <item>
       <title>计算机基础</title>
@@ -182,13 +63,6 @@
       <pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/linux/</guid>
       <description>Linux</description>
-    </item>
-    <item>
-      <title>论文笔记</title>
-      <link>http://localhost:1313/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</guid>
-      <description>论文笔记</description>
     </item>
     <item>
       <title>Git</title>

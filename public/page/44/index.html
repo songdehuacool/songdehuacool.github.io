@@ -12,8 +12,8 @@
 <meta name="description" content="书藏的个人博客，记录学习，记录生活"><meta name="keywords" content='Blog, Blockchain, Book, Movie, Life, Journey'>
   <meta itemprop="name" content="songdehua blog">
   <meta itemprop="description" content="书藏的个人博客，记录学习，记录生活">
-  <meta itemprop="datePublished" content="2024-09-26T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2024-09-26T00:00:00+00:00">
+  <meta itemprop="datePublished" content="2024-09-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-09-16T00:00:00+00:00">
   <meta itemprop="image" content="http://localhost:1313/logo.png"><meta property="og:url" content="http://localhost:1313/">
   <meta property="og:site_name" content="songdehua blog">
   <meta property="og:title" content="songdehua blog">
@@ -165,14 +165,35 @@
     </a><a href="mailto:200637086@qq.com" title="Email"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a><a href="/index.xml" title="RSS"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2021/life-weekly-15/">书藏的生活周刊第 15 期 (20210328)</a>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/hugo-blog-build-personal-blog/">Hugo搭建个人博客1-基础建站</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2021-03-28 14:32:00'>published on <time datetime="2021-03-28">2021-03-28</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E6%97%A5%E7%A8%8B%E5%8F%8A%E5%91%A8%E5%88%8A/" class="post-category" title="Category - 日程及周刊"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 日程及周刊</a></span></div><div class="content"><p>本周刊目的是记录生活，发现生活中的美好，当前为第十五期。</p></div><div class="post-footer">
-    <a href="/2021/life-weekly-15/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E4%B9%A6%E8%97%8F%E7%9A%84%E7%94%9F%E6%B4%BB%E5%91%A8%E5%88%8A/' class="post-tag">书藏的生活周刊</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2021/notes-on-sports-anatomy-2/">运动解剖学学习笔记2-躯干</a>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-04-26 10:45:00'>published on <time datetime="2019-04-26">2019-04-26</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><p><a href="https://gohugo.io/"target="_blank" rel="external nofollow noopener noreferrer">Hugo</a> 是由 Go 语言实现的静态网站生成器，可以快速建立一个静态网站，虽然多数情况下用来搭建个人博客，但也可以用作展示在线书籍、个人简历等。在使用 Hugo 之前，我一直使用 Hexo 搭建个人博客，促使我更换工具的原因主要有两个</p>
+<ol>
+<li>文章数量较多时，Hexo 生成速度非常慢，同样的文章数量下，Hugo 渲染文章几乎是即时的；</li>
+<li>Hexo 依赖于 Node.js，使用需要在电脑里安装 node 和 npm。另外，Hexo 允许开发者提供各种 npm 模块来增强其功能，这种做法虽然使 Hexo 扩展性极高，但在博客的维护、备份和恢复等方面都带来了极大的不便。Hugo 使用 Go 开发，不依赖任何其它模块，只需要按照 Hugo 这一个软件即可。</li>
+</ol>
+<p>综上，我选择将博客网站迁移到 Hugo，这个系列的文章用来记录 Hugo 使用种遇到的问题和积累的经验。本文是第一篇，介绍博客网站搭建的过程和一些基础配置。</p>
+<h3 id="1-安装hugo" class="heading-element"><span>1. 安装Hugo</span>
+  <a href="#1-%e5%ae%89%e8%a3%85hugo" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>详细的安装说明参见<a href="https://gohugo.io/getting-started/quick-start/"target="_blank" rel="external nofollow noopener noreferrer">官方文档</a>，这里简单介绍 win10 和 Ubuntu18.04 的快速安装。</p></div><div class="post-footer">
+    <a href="/2019/hugo-blog-build-personal-blog/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/' class="post-tag">博客搭建</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/raspberry-project-sweeping-robot/">树莓派项目构想-扫地机器人</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2021-03-25 21:17:00'>published on <time datetime="2021-03-25">2021-03-25</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E6%88%91%E6%89%80%E7%83%AD%E7%88%B1%E7%9A%84%E7%94%9F%E6%B4%BB%E5%95%8A/" class="post-category" title="Category - 我所热爱的生活啊"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 我所热爱的生活啊</a></span></div><div class="content"><p>本篇认识躯干部分的骨骼和肌肉，包括脊柱、骨盆、肩胛骨，以及肩、胸、腹部的肌肉。</p></div><div class="post-footer">
-    <a href="/2021/notes-on-sports-anatomy-2/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%81%A5%E8%BA%AB/' class="post-tag">健身</a></div></div>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-03-26 19:40:00'>published on <time datetime="2019-03-26">2019-03-26</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><h3 id="前言" class="heading-element"><span>前言</span>
+  <a href="#%e5%89%8d%e8%a8%80" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>本文是创新创业的结课报告，结课报告的题目要求如下：</p>
+<ul>
+<li>通过课程学习、课下查阅网络与图文资料，了解和掌握树莓派的功能、扩展性与应用领域（树莓派的典型和非典型应用）</li>
+<li>深入分析某一个具体行业或工作的工作特点，找到痛点难点，并分析树莓派的适用性（树莓派的什么特点使其适合用于解决这一问题）</li>
+<li>基于树莓派的功能，讨论如何通过增加相应的软硬件（传感器、软件模块、算法库……等），满足所关注的问题</li>
+<li>以“开发产品原型并吸引风投”为目标，完成一份创业项目计划书</li>
+</ul>
+<p>注：不要求完成实际作品，而是强调基于技术的创意、运用工具和所学知识解决实际问题的能力、分析评价项目商业价值的能力</p></div><div class="post-footer">
+    <a href="/2019/raspberry-project-sweeping-robot/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/' class="post-tag">树莓派</a></div></div>
 </article><ul class="pagination"><li class="page-item">
           <span class="page-link">
             <a href="/">1</a>
@@ -203,7 +224,7 @@
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item">
           <span class="page-link">
-            <a href="/page/174/">174</a>
+            <a href="/page/53/">53</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.13"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>

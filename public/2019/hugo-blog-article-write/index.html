@@ -8,13 +8,13 @@
     <title>Hugo搭建个人博客2-文章写作 - songdehua blog</title><meta name="author" content="">
 <meta name="description" content="本文是 Hugo 使用记录的第二篇，介绍关于文章写作的一些问题，包括分类管理、排版技巧、特殊语法等，所有语法基于 LoveIt 主题。
 Hugo支持的文章格式为.md，即用markdown语言编辑的文章。所有的文章都放在content/posts目录下，支持级联目录，即在posts目录下按分类建立多个子文件夹放置文章，比如本博客的文章按分类放在四个子文件夹下。
-1 2 3 $ ls posts 爱编程爱技术的孩子/ 我所热爱的生活啊/ 平日里的白日梦/ 研究生的区块链学习之路/ 下面是三条方便清晰管理和生成文章的目录结构建议:
+1 2 3 $ ls posts 牧码人/ 我所热爱的生活啊/ 平日里的白日梦/ 研究生的区块链学习之路/ 下面是三条方便清晰管理和生成文章的目录结构建议:
 保持博客文章存放在 content/posts 目录, 例如: content/posts/我的第一篇文章.md 保持简单的静态页面存放在 content 目录, 例如: content/about.md 保持图片之类的媒体资源存放在 static 目录, 例如: static/images/screenshot.png 1. 前置参数 Hugo 允许在文章内容前面添加 yaml, toml 或者 json 格式的前置参数，LoveIt 默认文章模板提供的前置参数有
 "><meta name="keywords" content='博客搭建'>
   <meta itemprop="name" content="hugo搭建个人博客2-文章写作">
   <meta itemprop="description" content="本文是 Hugo 使用记录的第二篇，介绍关于文章写作的一些问题，包括分类管理、排版技巧、特殊语法等，所有语法基于 LoveIt 主题。
 Hugo支持的文章格式为.md，即用markdown语言编辑的文章。所有的文章都放在content/posts目录下，支持级联目录，即在posts目录下按分类建立多个子文件夹放置文章，比如本博客的文章按分类放在四个子文件夹下。
-1 2 3 $ ls posts 爱编程爱技术的孩子/ 我所热爱的生活啊/ 平日里的白日梦/ 研究生的区块链学习之路/ 下面是三条方便清晰管理和生成文章的目录结构建议:
+1 2 3 $ ls posts 牧码人/ 我所热爱的生活啊/ 平日里的白日梦/ 研究生的区块链学习之路/ 下面是三条方便清晰管理和生成文章的目录结构建议:
 保持博客文章存放在 content/posts 目录, 例如: content/posts/我的第一篇文章.md 保持简单的静态页面存放在 content 目录, 例如: content/about.md 保持图片之类的媒体资源存放在 static 目录, 例如: static/images/screenshot.png 1. 前置参数 Hugo 允许在文章内容前面添加 yaml, toml 或者 json 格式的前置参数，LoveIt 默认文章模板提供的前置参数有">
   <meta itemprop="datePublished" content="2019-05-15T00:00:00+00:00">
   <meta itemprop="dateModified" content="2020-02-17T00:00:00+00:00">
@@ -25,7 +25,7 @@ Hugo支持的文章格式为.md，即用markdown语言编辑的文章。所有�
   <meta property="og:title" content="hugo搭建个人博客2-文章写作">
   <meta property="og:description" content="本文是 Hugo 使用记录的第二篇，介绍关于文章写作的一些问题，包括分类管理、排版技巧、特殊语法等，所有语法基于 LoveIt 主题。
 Hugo支持的文章格式为.md，即用markdown语言编辑的文章。所有的文章都放在content/posts目录下，支持级联目录，即在posts目录下按分类建立多个子文件夹放置文章，比如本博客的文章按分类放在四个子文件夹下。
-1 2 3 $ ls posts 爱编程爱技术的孩子/ 我所热爱的生活啊/ 平日里的白日梦/ 研究生的区块链学习之路/ 下面是三条方便清晰管理和生成文章的目录结构建议:
+1 2 3 $ ls posts 牧码人/ 我所热爱的生活啊/ 平日里的白日梦/ 研究生的区块链学习之路/ 下面是三条方便清晰管理和生成文章的目录结构建议:
 保持博客文章存放在 content/posts 目录, 例如: content/posts/我的第一篇文章.md 保持简单的静态页面存放在 content 目录, 例如: content/about.md 保持图片之类的媒体资源存放在 static 目录, 例如: static/images/screenshot.png 1. 前置参数 Hugo 允许在文章内容前面添加 yaml, toml 或者 json 格式的前置参数，LoveIt 默认文章模板提供的前置参数有">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
@@ -40,12 +40,12 @@ Hugo支持的文章格式为.md，即用markdown语言编辑的文章。所有�
   <meta name="twitter:title" content="hugo搭建个人博客2-文章写作">
   <meta name="twitter:description" content="本文是 Hugo 使用记录的第二篇，介绍关于文章写作的一些问题，包括分类管理、排版技巧、特殊语法等，所有语法基于 LoveIt 主题。
 Hugo支持的文章格式为.md，即用markdown语言编辑的文章。所有的文章都放在content/posts目录下，支持级联目录，即在posts目录下按分类建立多个子文件夹放置文章，比如本博客的文章按分类放在四个子文件夹下。
-1 2 3 $ ls posts 爱编程爱技术的孩子/ 我所热爱的生活啊/ 平日里的白日梦/ 研究生的区块链学习之路/ 下面是三条方便清晰管理和生成文章的目录结构建议:
+1 2 3 $ ls posts 牧码人/ 我所热爱的生活啊/ 平日里的白日梦/ 研究生的区块链学习之路/ 下面是三条方便清晰管理和生成文章的目录结构建议:
 保持博客文章存放在 content/posts 目录, 例如: content/posts/我的第一篇文章.md 保持简单的静态页面存放在 content 目录, 例如: content/about.md 保持图片之类的媒体资源存放在 static 目录, 例如: static/images/screenshot.png 1. 前置参数 Hugo 允许在文章内容前面添加 yaml, toml 或者 json 格式的前置参数，LoveIt 默认文章模板提供的前置参数有">
 <meta name="application-name" content="songdehua&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="songdehua&#39;s Blog"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/2019/hugo-blog-article-write/" title="hugo搭建个人博客2-文章写作 - songdehua blog" /><link rel="prev" type="text/html" href="http://localhost:1313/2019/smart-contract-based-access-control-for-the-internet-of-things/" title="Smart Contract-Based Access Control for the Internet of Things" /><link rel="next" type="text/html" href="http://localhost:1313/2019/a-review-on-the-application-of-blockchain-to-the-next-generation/" title="A Review on the Application of Blockchain to the Next Generation" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/2019/hugo-blog-article-write/index.md" title="hugo搭建个人博客2-文章写作 - songdehua blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/2019/hugo-blog-article-write/" title="hugo搭建个人博客2-文章写作 - songdehua blog" /><link rel="prev" type="text/html" href="http://localhost:1313/2019/hugo-blog-build-personal-blog/" title="hugo搭建个人博客1-基础建站" /><link rel="next" type="text/html" href="http://localhost:1313/2019/hugo-blog-advanced-setup/" title="hugo搭建个人博客3-进阶设置" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/2019/hugo-blog-article-write/index.md" title="hugo搭建个人博客2-文章写作 - songdehua blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
   {
@@ -193,7 +193,7 @@ Hugo支持的文章格式为.md，即用markdown语言编辑的文章。所有�
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Hugo搭建个人博客2-文章写作</span>
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/" class="post-category" title="Category - 爱编程爱技术的孩子"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 爱编程爱技术的孩子</a></span></div><div class="post-meta-line"><span title="published on 2019-05-15 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2019-05-15">2019-05-15</time></span>&nbsp;<span title="Updated on 2020-02-17 00:00:00"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden="true"></i><time datetime="2020-02-17">2020-02-17</time></span>&nbsp;<span title="965 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1000 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>5 minutes</span>&nbsp;</div>
+      Anonymous</span></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="post-meta-line"><span title="published on 2019-05-15 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2019-05-15">2019-05-15</time></span>&nbsp;<span title="Updated on 2020-02-17 00:00:00"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden="true"></i><time datetime="2020-02-17">2020-02-17</time></span>&nbsp;<span title="965 words"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>About 1000 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>5 minutes</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>Contents</span>
@@ -270,7 +270,7 @@ Hugo支持的文章格式为.md，即用markdown语言编辑的文章。所有�
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls posts
-</span></span><span class="line"><span class="cl">爱编程爱技术的孩子/  我所热爱的生活啊/
+</span></span><span class="line"><span class="cl">牧码人/  我所热爱的生活啊/
 </span></span><span class="line"><span class="cl">平日里的白日梦/      研究生的区块链学习之路/</span></span></code></pre></td></tr></table>
 </div>
 </div><p>下面是三条方便清晰管理和生成文章的目录结构建议:</p>
@@ -396,7 +396,7 @@ Hugo支持的文章格式为.md，即用markdown语言编辑的文章。所有�
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">博客写作]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">categories</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">爱编程爱技术的孩子]</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">categories</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">牧码人]</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>标签可以有多个，以逗号分隔，不过即使只有一个标签，外面的中括号也不能省略。</p>
 <h2 id="3-排版风格规范" class="heading-element"><span>3. 排版风格规范</span>
@@ -922,7 +922,7 @@ Hugo支持的文章格式为.md，即用markdown语言编辑的文章。所有�
     <section>
       <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
     </section>
-  </div><div class="post-nav"><a href="/2019/smart-contract-based-access-control-for-the-internet-of-things/" class="post-nav-item" rel="prev" title="Smart Contract-Based Access Control for the Internet of Things"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Smart Contract-Based Access Control for the Internet of Things</a><a href="/2019/a-review-on-the-application-of-blockchain-to-the-next-generation/" class="post-nav-item" rel="next" title="A Review on the Application of Blockchain to the Next Generation">A Review on the Application of Blockchain to the Next Generation<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+  </div><div class="post-nav"><a href="/2019/hugo-blog-build-personal-blog/" class="post-nav-item" rel="prev" title="Hugo搭建个人博客1-基础建站"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Hugo搭建个人博客1-基础建站</a><a href="/2019/hugo-blog-advanced-setup/" class="post-nav-item" rel="next" title="Hugo搭建个人博客3-进阶设置">Hugo搭建个人博客3-进阶设置<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div class="post-reward">
     <div class="comment"></div>

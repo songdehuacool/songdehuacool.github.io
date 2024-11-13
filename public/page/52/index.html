@@ -12,8 +12,8 @@
 <meta name="description" content="书藏的个人博客，记录学习，记录生活"><meta name="keywords" content='Blog, Blockchain, Book, Movie, Life, Journey'>
   <meta itemprop="name" content="songdehua blog">
   <meta itemprop="description" content="书藏的个人博客，记录学习，记录生活">
-  <meta itemprop="datePublished" content="2024-09-26T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2024-09-26T00:00:00+00:00">
+  <meta itemprop="datePublished" content="2024-09-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-09-16T00:00:00+00:00">
   <meta itemprop="image" content="http://localhost:1313/logo.png"><meta property="og:url" content="http://localhost:1313/">
   <meta property="og:site_name" content="songdehua blog">
   <meta property="og:title" content="songdehua blog">
@@ -165,14 +165,24 @@
     </a><a href="mailto:200637086@qq.com" title="Email"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a><a href="/index.xml" title="RSS"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2021/theoretical-framework-and-basic-knowledge-of-fitness/">健身的理论框架及基础知识</a>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2018/migration-of-debian-system/">系统移植2-Debian系统的移植</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2021-01-11 00:00:00'>published on <time datetime="2021-01-11">2021-01-11</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E6%88%91%E6%89%80%E7%83%AD%E7%88%B1%E7%9A%84%E7%94%9F%E6%B4%BB%E5%95%8A/" class="post-category" title="Category - 我所热爱的生活啊"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 我所热爱的生活啊</a></span></div><div class="content"><p>这一篇主要来构建健身体系的框架，后续的工作即完善和填充这个框架的细节。</p></div><div class="post-footer">
-    <a href="/2021/theoretical-framework-and-basic-knowledge-of-fitness/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%81%A5%E8%BA%AB/' class="post-tag">健身</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2021/use-theory-to-guide-fitness-practice-exercise/">用理论指导健身实践之运动篇</a>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2018-04-11 00:00:00'>published on <time datetime="2018-04-11">2018-04-11</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><p>Debian 系统的移植总分四部分：u-boot的编译与烧录，Linux内核的编译与烧录，Debian 基本根文件系统的制作、配置与烧录，开发板设置。</p>
+<h3 id="1-u-boot的编译" class="heading-element"><span>1. u-boot的编译</span>
+  <a href="#1-u-boot%e7%9a%84%e7%bc%96%e8%af%91" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>对应于EMSYM的blurr开发板的u-boot项目使用GitHub进行开源维护，<a href="https://github.com/EMSYM/U-boot"target="_blank" rel="external nofollow noopener noreferrer">下载地址</a>，我的编译环境为Ubuntu16.04 LTS系统</p></div><div class="post-footer">
+    <a href="/2018/migration-of-debian-system/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/linux/' class="post-tag">Linux</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2018/android-system-migration/">系统移植3-Android系统移植</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2021-01-11 00:00:00'>published on <time datetime="2021-01-11">2021-01-11</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E6%88%91%E6%89%80%E7%83%AD%E7%88%B1%E7%9A%84%E7%94%9F%E6%B4%BB%E5%95%8A/" class="post-category" title="Category - 我所热爱的生活啊"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 我所热爱的生活啊</a></span></div><div class="content"><p>健身多年依然未有效果，还常被网上各种信息忽悠的找不到北，这次下定决心来一波科学健身，查找了大量资料，构建自己的健身体系，这篇文章主要记录运动方面的内容，之后再来一篇记录饮食方面的内容。</p></div><div class="post-footer">
-    <a href="/2021/use-theory-to-guide-fitness-practice-exercise/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%81%A5%E8%BA%AB/' class="post-tag">健身</a></div></div>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2018-04-11 00:00:00'>published on <time datetime="2018-04-11">2018-04-11</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><p>采用Android6.0（棉花糖），编译环境为Ubuntu14.04和opoenjdk-7-jdk</p>
+<h3 id="1-获取源码" class="heading-element"><span>1. 获取源码</span>
+  <a href="#1-%e8%8e%b7%e5%8f%96%e6%ba%90%e7%a0%81" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>首先参阅Android网站<a href="http://source.android.com/source/initializing.html"target="_blank" rel="external nofollow noopener noreferrer">source.android.com/source/initializing.html</a>安装依赖</p></div><div class="post-footer">
+    <a href="/2018/android-system-migration/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/linux/' class="post-tag">Linux</a></div></div>
 </article><ul class="pagination"><li class="page-item">
           <span class="page-link">
             <a href="/">1</a>
@@ -194,16 +204,6 @@
         </li><li class="page-item">
           <span class="page-link">
             <a href="/page/53/">53</a>
-          </span>
-        </li><li class="page-item">
-          <span class="page-link">
-            <a href="/page/54/">54</a>
-          </span>
-        </li><li class="page-item">
-          <span class="page-link" aria-hidden="true">&hellip;</span>
-        </li><li class="page-item">
-          <span class="page-link">
-            <a href="/page/174/">174</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.13"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>

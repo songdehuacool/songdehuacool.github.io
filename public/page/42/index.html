@@ -12,8 +12,8 @@
 <meta name="description" content="书藏的个人博客，记录学习，记录生活"><meta name="keywords" content='Blog, Blockchain, Book, Movie, Life, Journey'>
   <meta itemprop="name" content="songdehua blog">
   <meta itemprop="description" content="书藏的个人博客，记录学习，记录生活">
-  <meta itemprop="datePublished" content="2024-09-26T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2024-09-26T00:00:00+00:00">
+  <meta itemprop="datePublished" content="2024-09-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-09-16T00:00:00+00:00">
   <meta itemprop="image" content="http://localhost:1313/logo.png"><meta property="og:url" content="http://localhost:1313/">
   <meta property="og:site_name" content="songdehua blog">
   <meta property="og:title" content="songdehua blog">
@@ -165,14 +165,34 @@
     </a><a href="mailto:200637086@qq.com" title="Email"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a><a href="/index.xml" title="RSS"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2021/strength-training/">力量训练</a>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BD%BF%E7%94%A8%E7%BD%91%E7%BA%BF%E7%9B%B4%E8%BF%9E%E7%94%B5%E8%84%91/">树莓派使用网线直连电脑</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2021-04-12 00:00:00'>published on <time datetime="2021-04-12">2021-04-12</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E6%88%91%E6%89%80%E7%83%AD%E7%88%B1%E7%9A%84%E7%94%9F%E6%B4%BB%E5%95%8A/" class="post-category" title="Category - 我所热爱的生活啊"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 我所热爱的生活啊</a></span></div><div class="content"><p>力量训练的作用、原理，制定和执行计划的注意事项，常见的力量训练动作。。</p></div><div class="post-footer">
-    <a href="/2021/strength-training/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%81%A5%E8%BA%AB/' class="post-tag">健身</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2021/five-types-of-fat-loss-exercises/">五种减脂运动</a>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-09-04 00:00:00'>published on <time datetime="2019-09-04">2019-09-04</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><p>树莓派刷好系统，要进行联网使用，手里没有显示屏和HDMI线，实验室没有路由器，电脑也没有无线网卡，唯一的网口也被占用。只能通过网线和USB网口转换器直连电脑并使用SSH登录。</p>
+<h5 id="准备材料" class="heading-element"><span>准备材料</span>
+  <a href="#%e5%87%86%e5%a4%87%e6%9d%90%e6%96%99" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><ol>
+<li>刷好系统的树莓派，已添加<code>ssh</code>文件启用ssh</li>
+<li>一根网线</li>
+<li>一台已联网的电脑</li>
+<li>USB网口转换器（如果有多余的网口可以不需要）</li>
+</ol>
+<h5 id="连接" class="heading-element"><span>连接</span>
+  <a href="#%e8%bf%9e%e6%8e%a5" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p>使用USB网口转换器扩展一个网口出来，使用网线连接扩展的网口和树莓派。</p></div><div class="post-footer">
+    <a href="/2019/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BD%BF%E7%94%A8%E7%BD%91%E7%BA%BF%E7%9B%B4%E8%BF%9E%E7%94%B5%E8%84%91/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/' class="post-tag">树莓派</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/">树莓派常用设置</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2021-04-08 00:00:00'>published on <time datetime="2021-04-08">2021-04-08</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E6%88%91%E6%89%80%E7%83%AD%E7%88%B1%E7%9A%84%E7%94%9F%E6%B4%BB%E5%95%8A/" class="post-category" title="Category - 我所热爱的生活啊"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 我所热爱的生活啊</a></span></div><div class="content"><p>流行的五种减脂运动：低强度恒速有氧、空腹有氧、HIIT、减脂力量训练、循环训练。来自书籍《本能减脂》。</p></div><div class="post-footer">
-    <a href="/2021/five-types-of-fat-loss-exercises/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%81%A5%E8%BA%AB/' class="post-tag">健身</a></div></div>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-09-04 00:00:00'>published on <time datetime="2019-09-04">2019-09-04</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><p>记录树莓派使用过程中经常使用的一些设置。</p>
+<h3 id="1-wifi连接" class="heading-element"><span>1. WiFi连接</span>
+  <a href="#1-wifi%e8%bf%9e%e6%8e%a5" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>这里指的是初次启动直连WiFi，主要是因为手里没有屏幕，因为使用的小米随身WiFi，所以可能有些废话，但为了保存资料，就写这里了。</p></div><div class="post-footer">
+    <a href="/2019/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/' class="post-tag">树莓派</a></div></div>
 </article><ul class="pagination"><li class="page-item">
           <span class="page-link">
             <a href="/">1</a>
@@ -203,7 +223,7 @@
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item">
           <span class="page-link">
-            <a href="/page/174/">174</a>
+            <a href="/page/53/">53</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.13"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
