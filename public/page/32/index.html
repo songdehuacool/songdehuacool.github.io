@@ -12,8 +12,8 @@
 <meta name="description" content="书藏的个人博客，记录学习，记录生活"><meta name="keywords" content='Blog, Blockchain, Book, Movie, Life, Journey'>
   <meta itemprop="name" content="songdehua blog">
   <meta itemprop="description" content="书藏的个人博客，记录学习，记录生活">
-  <meta itemprop="datePublished" content="2024-09-16T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2024-09-16T00:00:00+00:00">
+  <meta itemprop="datePublished" content="2024-11-26T00:39:00+08:00">
+  <meta itemprop="dateModified" content="2024-11-26T00:00:00+00:00">
   <meta itemprop="image" content="http://localhost:1313/logo.png"><meta property="og:url" content="http://localhost:1313/">
   <meta property="og:site_name" content="songdehua blog">
   <meta property="og:title" content="songdehua blog">
@@ -165,7 +165,17 @@
     </a><a href="mailto:200637086@qq.com" title="Email"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a><a href="/index.xml" title="RSS"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/golang-syntax-11-error-and-panic/">Golang语法基础11-错误处理</a>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/golang-syntax-12-test/">Golang语法基础12-测试</a>
+  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-12-22 00:00:00'>published on <time datetime="2019-12-22">2019-12-22</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><p>实际开发中对代码进行测试是不可缺少的工作，在go中可以通过<code>testing</code>包来进行代码的测试。<code>testing</code>包和<code>go test</code>命令相互配合，能够完成代码的自动化测试。</p>
+<p>在实际开发中，对代码进行测试是不可缺少的工作，在go中可以通过<code>testing</code>包对代码进行单元测试和性能测试。</p>
+<h5 id="基本说明" class="heading-element"><span>基本说明</span>
+  <a href="#%e5%9f%ba%e6%9c%ac%e8%af%b4%e6%98%8e" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h5><p><code>testing</code>包是与<code>go test</code>命令配合使用的，编写测试代码需要使用<code>testing</code>包，而执行测试需要使用<code>go test</code>命令。执行测试时，会自动读取源码目录下名为<code>*_test.go</code>的文件，生成并运行测试用的可执行文件，并最终在终端输出测试信息。输出的信息类似于</p></div><div class="post-footer">
+    <a href="/2019/golang-syntax-12-test/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/golang/' class="post-tag">Golang</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/golang-syntax-11-error-and-panic/">Golang语法基础11-错误处理</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-12-20 00:00:00'>published on <time datetime="2019-12-20">2019-12-20</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><p>Go中有两套错误处理的方式</p>
 <ul>
@@ -174,15 +184,6 @@
 </ul>
 <p>主调函数总是应该检查收到的错误，不要忽略，否则可能导致严重的后果。</p></div><div class="post-footer">
     <a href="/2019/golang-syntax-11-error-and-panic/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/golang/' class="post-tag">Golang</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/">Linux系统时间同步</a>
-  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-12-20 00:00:00'>published on <time datetime="2019-12-20">2019-12-20</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><p>虚拟机长时间不开机，系统时间和当前时间不同步，导致很多操作被拒绝，这里记录如何主动同步系统的时间和网络时间</p>
-<h3 id="正文" class="heading-element"><span>正文</span>
-  <a href="#%e6%ad%a3%e6%96%87" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h3><p>设置系统时区</p></div><div class="post-footer">
-    <a href="/2019/linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/linux/' class="post-tag">Linux</a></div></div>
 </article><ul class="pagination"><li class="page-item">
           <span class="page-link">
             <a href="/">1</a>
@@ -213,7 +214,7 @@
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item">
           <span class="page-link">
-            <a href="/page/53/">53</a>
+            <a href="/page/54/">54</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.13"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>

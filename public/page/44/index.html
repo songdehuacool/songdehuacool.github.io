@@ -12,8 +12,8 @@
 <meta name="description" content="书藏的个人博客，记录学习，记录生活"><meta name="keywords" content='Blog, Blockchain, Book, Movie, Life, Journey'>
   <meta itemprop="name" content="songdehua blog">
   <meta itemprop="description" content="书藏的个人博客，记录学习，记录生活">
-  <meta itemprop="datePublished" content="2024-09-16T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2024-09-16T00:00:00+00:00">
+  <meta itemprop="datePublished" content="2024-11-26T00:39:00+08:00">
+  <meta itemprop="dateModified" content="2024-11-26T00:00:00+00:00">
   <meta itemprop="image" content="http://localhost:1313/logo.png"><meta property="og:url" content="http://localhost:1313/">
   <meta property="og:site_name" content="songdehua blog">
   <meta property="og:title" content="songdehua blog">
@@ -165,7 +165,34 @@
     </a><a href="mailto:200637086@qq.com" title="Email"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a><a href="/index.xml" title="RSS"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/hugo-blog-build-personal-blog/">Hugo搭建个人博客1-基础建站</a>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/hugo-blog-article-write/">Hugo搭建个人博客2-文章写作</a>
+  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-05-15 00:00:00'>published on <time datetime="2019-05-15">2019-05-15</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><p>本文是 Hugo 使用记录的第二篇，介绍关于文章写作的一些问题，包括分类管理、排版技巧、特殊语法等，所有语法基于 LoveIt 主题。</p>
+<p>Hugo支持的文章格式为<code>.md</code>，即用markdown语言编辑的文章。所有的文章都放在<code>content/posts</code>目录下，支持级联目录，即在<code>posts</code>目录下按分类建立多个子文件夹放置文章，比如本博客的文章按分类放在四个子文件夹下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls posts
+</span></span><span class="line"><span class="cl">牧码人/  我所热爱的生活啊/
+</span></span><span class="line"><span class="cl">平日里的白日梦/      研究生的区块链学习之路/</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面是三条方便清晰管理和生成文章的目录结构建议:</p>
+<ul>
+<li>保持博客文章存放在 <code>content/posts</code> 目录, 例如: <code>content/posts/我的第一篇文章.md</code></li>
+<li>保持简单的静态页面存放在 <code>content</code> 目录, 例如: <code>content/about.md</code></li>
+<li>保持图片之类的媒体资源存放在 <code>static</code> 目录, 例如: <code>static/images/screenshot.png</code></li>
+</ul>
+<h3 id="1-前置参数" class="heading-element"><span>1. 前置参数</span>
+  <a href="#1-%e5%89%8d%e7%bd%ae%e5%8f%82%e6%95%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>Hugo 允许在文章内容前面添加 <code>yaml</code>, <code>toml</code> 或者 <code>json</code> 格式的前置参数，LoveIt 默认文章模板提供的前置参数有</p></div><div class="post-footer">
+    <a href="/2019/hugo-blog-article-write/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/' class="post-tag">博客搭建</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/hugo-blog-build-personal-blog/">Hugo搭建个人博客1-基础建站</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-04-26 10:45:00'>published on <time datetime="2019-04-26">2019-04-26</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><p><a href="https://gohugo.io/"target="_blank" rel="external nofollow noopener noreferrer">Hugo</a> 是由 Go 语言实现的静态网站生成器，可以快速建立一个静态网站，虽然多数情况下用来搭建个人博客，但也可以用作展示在线书籍、个人简历等。在使用 Hugo 之前，我一直使用 Hexo 搭建个人博客，促使我更换工具的原因主要有两个</p>
 <ol>
@@ -179,21 +206,6 @@
   </a>
 </h3><p>详细的安装说明参见<a href="https://gohugo.io/getting-started/quick-start/"target="_blank" rel="external nofollow noopener noreferrer">官方文档</a>，这里简单介绍 win10 和 Ubuntu18.04 的快速安装。</p></div><div class="post-footer">
     <a href="/2019/hugo-blog-build-personal-blog/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/' class="post-tag">博客搭建</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/raspberry-project-sweeping-robot/">树莓派项目构想-扫地机器人</a>
-  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-03-26 19:40:00'>published on <time datetime="2019-03-26">2019-03-26</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><h3 id="前言" class="heading-element"><span>前言</span>
-  <a href="#%e5%89%8d%e8%a8%80" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h3><p>本文是创新创业的结课报告，结课报告的题目要求如下：</p>
-<ul>
-<li>通过课程学习、课下查阅网络与图文资料，了解和掌握树莓派的功能、扩展性与应用领域（树莓派的典型和非典型应用）</li>
-<li>深入分析某一个具体行业或工作的工作特点，找到痛点难点，并分析树莓派的适用性（树莓派的什么特点使其适合用于解决这一问题）</li>
-<li>基于树莓派的功能，讨论如何通过增加相应的软硬件（传感器、软件模块、算法库……等），满足所关注的问题</li>
-<li>以“开发产品原型并吸引风投”为目标，完成一份创业项目计划书</li>
-</ul>
-<p>注：不要求完成实际作品，而是强调基于技术的创意、运用工具和所学知识解决实际问题的能力、分析评价项目商业价值的能力</p></div><div class="post-footer">
-    <a href="/2019/raspberry-project-sweeping-robot/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/' class="post-tag">树莓派</a></div></div>
 </article><ul class="pagination"><li class="page-item">
           <span class="page-link">
             <a href="/">1</a>
@@ -224,7 +236,7 @@
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item">
           <span class="page-link">
-            <a href="/page/53/">53</a>
+            <a href="/page/54/">54</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.13"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>

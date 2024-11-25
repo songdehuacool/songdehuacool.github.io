@@ -12,8 +12,8 @@
 <meta name="description" content="书藏的个人博客，记录学习，记录生活"><meta name="keywords" content='Blog, Blockchain, Book, Movie, Life, Journey'>
   <meta itemprop="name" content="songdehua blog">
   <meta itemprop="description" content="书藏的个人博客，记录学习，记录生活">
-  <meta itemprop="datePublished" content="2024-09-16T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2024-09-16T00:00:00+00:00">
+  <meta itemprop="datePublished" content="2024-11-26T00:39:00+08:00">
+  <meta itemprop="dateModified" content="2024-11-26T00:00:00+00:00">
   <meta itemprop="image" content="http://localhost:1313/logo.png"><meta property="og:url" content="http://localhost:1313/">
   <meta property="og:site_name" content="songdehua blog">
   <meta property="og:title" content="songdehua blog">
@@ -165,18 +165,14 @@
     </a><a href="mailto:200637086@qq.com" title="Email"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a><a href="/index.xml" title="RSS"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/golang-syntax-9-interface-and-reflect/">Golang语法基础9-接口与反射</a>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/golang-syntax-8-struct-and-method/">Golang语法基础8-结构体与方法</a>
+  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-11-26 00:00:00'>published on <time datetime="2019-11-26">2019-11-26</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><p>结构体是一种非常重要的结构，用到的地方非常多，在 Go 中，结构体还是实现面向对象编程的基础。</p></div><div class="post-footer">
+    <a href="/2019/golang-syntax-8-struct-and-method/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/golang/' class="post-tag">Golang</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/golang-syntax-9-interface-and-reflect/">Golang语法基础9-接口与反射</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-11-26 00:00:00'>published on <time datetime="2019-11-26">2019-11-26</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><p>本篇介绍 Golang 中的接口与反射。</p></div><div class="post-footer">
     <a href="/2019/golang-syntax-9-interface-and-reflect/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/golang/' class="post-tag">Golang</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/golang-syntax-7-function/">Golang语法基础7-函数</a>
-  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-11-25 00:00:00'>published on <time datetime="2019-11-25">2019-11-25</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><h3 id="1-函数声明与定义" class="heading-element"><span>1. 函数声明与定义</span>
-  <a href="#1-%e5%87%bd%e6%95%b0%e5%a3%b0%e6%98%8e%e4%b8%8e%e5%ae%9a%e4%b9%89" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h3><p>Go中有三种类型的函数：</p></div><div class="post-footer">
-    <a href="/2019/golang-syntax-7-function/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/golang/' class="post-tag">Golang</a></div></div>
 </article><ul class="pagination"><li class="page-item">
           <span class="page-link">
             <a href="/">1</a>
@@ -207,7 +203,7 @@
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item">
           <span class="page-link">
-            <a href="/page/53/">53</a>
+            <a href="/page/54/">54</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.13"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
