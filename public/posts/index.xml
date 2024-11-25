@@ -6,16 +6,8 @@
     <description>书藏的个人博客，记录学习，记录生活</description>
     <generator>Hugo 0.135.0 &amp; FixIt v0.3.13</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 26 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 14 Dec 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>最近一些杂记</title>
-      <link>http://localhost:1313/2024/poetry/</link>
-      <pubDate>Tue, 26 Nov 2024 00:39:00 +0800</pubDate>
-      <guid>http://localhost:1313/2024/poetry/</guid>
-      <category domain="http://localhost:1313/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/">牧码人</category>
-      <description>最近一些杂记</description>
-    </item>
     <item>
       <title>hugo搭建个人博客6-CDN加速</title>
       <link>http://localhost:1313/2023/using-hugo-to-build-personal-blog-6-cdn/</link>

@@ -12,7 +12,7 @@
 <meta name="description" content="书藏的个人博客，记录学习，记录生活"><meta name="keywords" content='Blog, Blockchain, Book, Movie, Life, Journey'>
   <meta itemprop="name" content="songdehua blog">
   <meta itemprop="description" content="书藏的个人博客，记录学习，记录生活">
-  <meta itemprop="datePublished" content="2024-11-26T00:39:00+08:00">
+  <meta itemprop="datePublished" content="2024-09-16T00:00:00+00:00">
   <meta itemprop="dateModified" content="2024-11-26T00:00:00+00:00">
   <meta itemprop="image" content="http://localhost:1313/logo.png"><meta property="og:url" content="http://localhost:1313/">
   <meta property="og:site_name" content="songdehua blog">
@@ -165,15 +165,7 @@
     </a><a href="mailto:200637086@qq.com" title="Email"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a><a href="/index.xml" title="RSS"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/golang-syntax-7-function/">Golang语法基础7-函数</a>
-  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-11-25 00:00:00'>published on <time datetime="2019-11-25">2019-11-25</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><h3 id="1-函数声明与定义" class="heading-element"><span>1. 函数声明与定义</span>
-  <a href="#1-%e5%87%bd%e6%95%b0%e5%a3%b0%e6%98%8e%e4%b8%8e%e5%ae%9a%e4%b9%89" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h3><p>Go中有三种类型的函数：</p></div><div class="post-footer">
-    <a href="/2019/golang-syntax-7-function/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/golang/' class="post-tag">Golang</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/golang-syntax-6-array-slice-and-map/">Golang语法基础6-数组、切片与映射</a>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/golang-syntax-6-array-slice-and-map/">Golang语法基础6-数组、切片与映射</a>
   </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-11-18 00:00:00'>published on <time datetime="2019-11-18">2019-11-18</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><p>只有基本的数据类型无法适应所有的情况，当需要存储和处理大量数据时，通常会使用数组、映射、链表等数据结构，称之为容器(container)。在Go语言中，由于数组不够灵活，增加了切片(slice)类型，切片也是一种容器。</p>
 <p>C语言没有提供容器封装，开发者需要自己根据性能需求进行封装，或者使用第三方提供的容器。C++ 语言的容器通过标准库提供，如 vector 对应数组，list 对应双链表，map 对应映射等。</p>
@@ -184,6 +176,37 @@
   </a>
 </h3><p>数组是有限个相同类型的数据的集合，Go语言中数组声明的格式为</p></div><div class="post-footer">
     <a href="/2019/golang-syntax-6-array-slice-and-map/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/golang/' class="post-tag">Golang</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h2 class="single-title" itemprop="name headline"><a href="/2019/hugo-blog-themes-collection/">Hugo搭建个人博客5-博客收集</a>
+  </h2><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      Anonymous</span></span>&nbsp;<span class="post-publish" title='2019-11-17 00:00:00'>published on <time datetime="2019-11-17">2019-11-17</time></span><span class="post-included-in">&nbsp;included in <a href="/categories/%E7%89%A7%E7%A0%81%E4%BA%BA/" class="post-category" title="Category - 牧码人"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 牧码人</a></span></div><div class="content"><p>本文用来收集喜欢的主题和有参考价值的博客(使用Hexo或Hugo的)。</p>
+<h3 id="主题" class="heading-element"><span>主题</span>
+  <a href="#%e4%b8%bb%e9%a2%98" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li><a href="https://github.com/liuzc/LeaveIt"target="_blank" rel="external nofollow noopener noreferrer">LeaveIt</a></li>
+<li><a href="https://github.com/Fastbyte01/KeepIt"target="_blank" rel="external nofollow noopener noreferrer">KeepIt</a></li>
+<li><a href="https://github.com/dillonzq/LoveIt"target="_blank" rel="external nofollow noopener noreferrer">LoveIt</a></li>
+<li><a href="https://github.com/orianna-zzo/AllinOne"target="_blank" rel="external nofollow noopener noreferrer">AllinOne</a></li>
+<li><a href="https://github.com/cofess/hexo-theme-pure"target="_blank" rel="external nofollow noopener noreferrer">hexo-theme-pure</a></li>
+<li><a href="https://github.com/Siricee/hexo-theme-Chic"target="_blank" rel="external nofollow noopener noreferrer">hexo-theme-Chic</a></li>
+</ul>
+<h3 id="博客" class="heading-element"><span>博客</span>
+  <a href="#%e5%8d%9a%e5%ae%a2" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li><a href="http://yearito.cn/"target="_blank" rel="external nofollow noopener noreferrer">Yearito&rsquo;s Blog</a></li>
+<li><a href="https://learnblockchain.cn/"target="_blank" rel="external nofollow noopener noreferrer">深入浅出区块链</a></li>
+<li><a href="https://siricee.github.io/"target="_blank" rel="external nofollow noopener noreferrer">Sirice&rsquo;s Blog</a></li>
+<li><a href="https://mogeko.me/"target="_blank" rel="external nofollow noopener noreferrer">Mogeko&rsquo;s Blog</a></li>
+<li><a href="https://huaien.co/"target="_blank" rel="external nofollow noopener noreferrer">Wyane&rsquo;s Blog</a></li>
+<li><a href="https://dillonzq.com/"target="_blank" rel="external nofollow noopener noreferrer">Dillon&rsquo;s Blog</a></li>
+<li><a href="https://orianna-zzo.github.io/AllinOne-html/"target="_blank" rel="external nofollow noopener noreferrer">Orianna的博客</a></li>
+<li><a href="https://molunerfinn.com/"target="_blank" rel="external nofollow noopener noreferrer">MARKSZ的Blog</a>：PicGo的开发者</li>
+<li><a href="https://liam.page/"target="_blank" rel="external nofollow noopener noreferrer">始终的博客</a>：Hexo-Next主题优秀博客</li>
+</ul></div><div class="post-footer">
+    <a href="/2019/hugo-blog-themes-collection/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/' class="post-tag">博客搭建</a></div></div>
 </article><ul class="pagination"><li class="page-item">
           <span class="page-link">
             <a href="/">1</a>
@@ -214,7 +237,7 @@
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item">
           <span class="page-link">
-            <a href="/page/54/">54</a>
+            <a href="/page/53/">53</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line powered">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.135.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> | Theme - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.13"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>

@@ -6,15 +6,8 @@
     <description>书藏的个人博客，记录学习，记录生活</description>
     <generator>Hugo 0.135.0 &amp; FixIt v0.3.13</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 26 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 14 Dec 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>诗</title>
-      <link>http://localhost:1313/tags/%E8%AF%97/</link>
-      <pubDate>Tue, 26 Nov 2024 00:39:00 +0800</pubDate>
-      <guid>http://localhost:1313/tags/%E8%AF%97/</guid>
-      <description>诗</description>
-    </item>
     <item>
       <title>博客搭建</title>
       <link>http://localhost:1313/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
